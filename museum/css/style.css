@@ -1,0 +1,77 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+a{
+  text-decoration: none;
+  color: #fff;
+}
+
+ul{
+  list-style: none;
+}
+
+body{
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  font-size: 22px;
+  line-height: 38px;
+  color: #fff;
+}
+/* font-family: 'Forum', cursive; */
+
+.container{
+  margin: 0 auto;
+  max-width: 1460px;
+  padding: 0 10px;
+}
+
+.header{
+  background-color: #030303;
+}
+
+.header__inner{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.menu__list{
+  display: flex;
+}
+
+.menu__list-item + .menu__list-item{
+  margin-left: 55px;
+}
+
+.menu__list-link{
+  font-weight: 100;
+  line-height: 26px;
+  letter-spacing: 2px;
+}
+
+.logo{
+  font-family: 'Forum', cursive;
+  text-transform: uppercase;
+  font-size: 28px;
+  line-height: 31px;
+  letter-spacing: 5px;
+  padding-left: 74px;
+  position: relative;
+}
+
+.logo-padding{
+  padding-top: 60px;
+  padding-bottom: 59px;
+}
+
+.logo::before{
+  content: '';
+  width: 49px;
+  height: 26px;
+  left: 0;
+  position: absolute;
+  background-image: url(../assets/svg/logo.svg);
+}
