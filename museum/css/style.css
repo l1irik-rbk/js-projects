@@ -38,6 +38,17 @@ body{
   text-transform: uppercase;
 }
 
+.gold-title{
+  color: #9D8665;
+  padding-top: 75px;
+  padding-bottom: 25px;
+}
+
+.title-undreline{
+  border-bottom: 3px solid #710707;
+  margin-bottom: 75px;
+}
+
 .header,
 .welcom{
   background-color: #030303;
@@ -108,6 +119,11 @@ body{
   background-color: #710707;
   border-radius: 10px;
   margin-bottom: 212px;
+  transition: all .5s;
+}
+
+.btn:hover{
+  background-color: #9D8665;
 }
 
 .welcom__inner{
@@ -130,6 +146,7 @@ body{
 
 .digits{
   display: flex;
+  font-weight: 400;
   margin-right: 55px;
   line-height: 40px;
   text-transform: uppercase;
@@ -164,4 +181,57 @@ body{
   cursor: pointer;
   background-color: transparent;
   border: none;
+}
+
+
+.cards__inner{
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 75px;
+  column-gap: 60px;
+  margin-bottom: 75px;
+}
+
+.card__img{
+  width: 440px;
+  height: 285px;
+  margin-bottom: 25px;
+}
+
+.card__title{
+  font-family: 'Forum', cursive;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 35px;
+  letter-spacing: 5px;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  color: #000000;
+  position: relative;
+}
+
+.card__title::after{
+  content: '';
+  position: absolute;
+  background-color: #710707;
+  width: 300px;
+  height: 2px;
+  left: 0;
+  bottom: 0;
+}
+
+.card__text{
+  line-height: 26px;
+  font-weight: 200;
+  margin-bottom: 10px;
+  color: #000000;
+}
+
+
+.card__text-min{
+  font-weight: 200;
+  font-size: 18px;
+  line-height: 21px;
+  color: #000000;
 }
