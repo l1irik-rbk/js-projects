@@ -50,7 +50,8 @@ body{
 }
 
 .header,
-.welcom{
+.welcom,
+.explore{
   background-color: #030303;
 }
 
@@ -234,4 +235,32 @@ body{
   font-size: 18px;
   line-height: 21px;
   color: #000000;
+}
+
+.explore__inner{
+  display: flex;
+  justify-content: space-between;
+  padding: 75px 0;
+}
+
+.explore__main{
+  margin-right: 60px;
+}
+
+.explore h2{
+  padding-bottom: 25px;
+}
+
+.explore__text{
+  margin-bottom: 25px;
+}
+
+.explore__text span{
+  color: #CAAA7D;
+}
+
+.explore__img{
+  width: 720px;
+  height: 700px;
+  padding-top: 15px;
 }
