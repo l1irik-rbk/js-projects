@@ -7,6 +7,7 @@
 a{
   text-decoration: none;
   color: #fff;
+  display: block;
 }
 
 ul{
@@ -28,7 +29,17 @@ body{
   padding: 0 10px;
 }
 
-.header{
+.section-title{
+  font-family: 'Forum', cursive;
+  font-size: 80px;
+  font-weight: 400;
+  line-height: 90px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+}
+
+.header,
+.welcom{
   background-color: #030303;
 }
 
@@ -74,4 +85,83 @@ body{
   left: 0;
   position: absolute;
   background-image: url(../assets/svg/logo.svg);
+}
+
+.welcom__title{
+  padding-top: 150px;
+  margin-bottom: 25px;
+  width: 598px;
+}
+
+.welcom__text{
+  font-size: 28px;
+  line-height: 33px;
+  letter-spacing: 2px;
+  margin-bottom: 75px;
+}
+
+.btn{
+  max-width: 360px;
+  line-height: 26px;
+  letter-spacing: 2px;
+  padding: 24px 64px;
+  background-color: #710707;
+  border-radius: 10px;
+  margin-bottom: 212px;
+}
+
+.welcom__inner{
+  height: 810px;
+  background-image: url(../assets/img/liza.jpg);
+  background-repeat: no-repeat;
+  background-position: top right;
+  position: relative;
+}
+
+.slider__inner{
+  position: absolute;
+  display: flex;
+  text-align: center;
+  padding: 40px 75px;
+  background-color: #030303;
+  right: 0;
+  bottom: 0;
+}
+
+.digits{
+  display: flex;
+  margin-right: 55px;
+  line-height: 40px;
+  text-transform: uppercase;
+}
+
+.digits span{
+  margin: 0 10px;
+}
+
+.squers{
+  display: flex;
+  margin-right: 50px;
+  align-items: center;
+}
+
+.squer{
+  width: 16px;
+  height: 16px;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.squer-active{
+  background-color: #D2B183;
+}
+
+.squer + .squer{
+  margin-left: 25px;
+}
+
+.arrows__btn{
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
 }
