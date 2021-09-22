@@ -52,7 +52,8 @@ body{
 .header,
 .welcom,
 .explore,
-.gallery{
+.gallery,
+.footer{
   background-color: #030303;
 }
 
@@ -447,4 +448,70 @@ body{
 .contacts__map{
   width: 960px;
   height: 620px;
+}
+
+.footer__inner{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-top: 87px;
+  padding-bottom: 50px;
+}
+
+.footer__menu{
+  display: flex;
+}
+
+.footer__menu-list + .footer__menu-list{
+  margin-left: 150px;
+}
+
+.footer__menu-item{
+  margin-bottom: 25px;
+}
+
+.footer__menu-link{
+  font-weight: 100;
+  font-size: 22px;
+  line-height: 26px;
+  letter-spacing: 2px;
+}
+
+.icons__list{
+  display: flex;
+  margin-top: auto;
+}
+
+.icons__list img{
+  width: 24px;
+  height: 24px;
+  text-align: center;
+}
+
+.icon + .icon{
+  margin-left: 25px;
+}
+
+.icon__link{
+  padding: 10.48px 12px 0 12px;
+  border: 1px solid #666666;
+  border-radius: 50%;
+}
+
+.line{
+  border-bottom: 3px solid #666666;
+}
+
+.footer__bottom-inner{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 50px 0;
+}
+
+.footer__bottom-text{
+  font-weight: 100;
+  line-height: 22px;
+  letter-spacing: 2px;
+  color: #FFFFFF;
 }
