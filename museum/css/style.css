@@ -51,7 +51,8 @@ body{
 
 .header,
 .welcom,
-.explore{
+.explore,
+.gallery{
   background-color: #030303;
 }
 
@@ -264,3 +265,37 @@ body{
   height: 700px;
   padding-top: 15px;
 }
+
+.video{
+  height: 1396px;
+}
+
+.gallery h2{
+  padding: 75px 0;
+}
+
+.gallery__inner {
+  -moz-columns: 456px auto;
+  -webkit-columns: 456px auto;
+  columns: 456px auto;
+  margin-bottom: -24px;
+}
+
+.gallery__item {
+  display: inline-block;
+  width: 456px;
+  margin-bottom: 24px;
+  vertical-align: top;
+}
+
+.gallery__item:first-child,
+.gallery__item:nth-child(9){
+  margin-top: 50px;
+}
+
+.gallery__img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+} 
+
