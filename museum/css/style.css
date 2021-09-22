@@ -347,56 +347,117 @@ body{
 
 .tickets__label input {
   position: absolute;
-  opacity: 0;
-  cursor: pointer;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
 }
 
 .checkmark {
   position: absolute;
-  top: 0;
-  left: 0;
-  height: 17px;
   width: 17px;
-  background-color: #fff;
+  height: 17px;
+  border: 2px solid #000000;
+  border-radius: 50%;
+  left: 0;
+  top: 3px;
+}
+
+.tickets__label input:checked + .checkmark::before{
+  content: '';
+  width: 7px;
+  height: 7px;
+  background-color: #000000;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   border-radius: 50%;
 }
 
-/* On mouse-over, add a grey background color */
-.tickets__label:hover input ~ .checkmark {
-  background-color: #ccc;
+.tickets__amount-title{
+  margin-bottom: 25px;
 }
 
-/* When the radio button is checked, add a blue background */
-.tickets__label input:checked ~ .checkmark {
-  background-color: #2196F3;
+.tickets__amount p{
+  line-height: 26px;
+  color: #000000;
+  margin-bottom: 15px;
 }
 
-/* Create the indicator (the dot/circle - hidden when not checked) */
-.tickets__label:after {
-  content: "";
-  position: absolute;
-  display: none;
+.tickets__buttons{
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  border: 3px solid #000000;
+  padding: 0;
 }
 
-/* Show the indicator (dot/circle) when checked */
-.tickets__label input:checked ~ .checkmark:after {
+.tickets__buttons button{
+  background-color: inherit;
+  border: none;
+  padding: 0;
+  font-weight: normal;
+  font-size: 32px;
+  line-height: 37px;
+  color: #000000;
+  padding: 6px 0 6px 14px;
+  cursor: pointer;
+}
+
+.tickets__buttons .last{
+  padding: 0;
+  padding: 6px 14px 6px 0;
+}
+
+.last__label{
+  margin-bottom: 50px;
+}
+
+
+.tickets__buttons input{
+  background-color: inherit;
   display: block;
+  border: none;
+  font-weight: 300;
+  font-size: 22px;
+  line-height: 26px;
+  text-align: center;
+  align-items: center;
+  color: #000000;
+  padding: 0;
+  margin: 0;
 }
-
-/* Style the indicator (dot/circle) */
-.tickets__label .checkmark:after {
- 	top: 9px;
-	left: 9px;
-	width: 8px;
-	height: 8px;
-	border-radius: 50%;
-	background: white;
-}
-
-
 
 .tickets__amount {
   margin-left: auto;
+  align-items: flex-end;
+ 
+}
+
+.tickets__buttons:last-child{
+  margin-bottom: 50px;
+}
+
+.tickets__btn{
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  font-size: 22px;
+  line-height: 26px;
+  letter-spacing: 2px;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 2px;
+  background-color: #000000;
+  padding: 11px 38px;
+  width: 178px;
+  cursor: pointer;
+  transition: all .5s;
+}
+
+.tickets__btn:hover{
+  background-color: #9D8665;
+  color: #000;
 }
 
 
@@ -431,10 +492,6 @@ body{
   line-height: 33px;
   margin-bottom: 50px;
 }
-
-/* .contacts__list{
-  display: flex;
-} */
 
 .contacts__link{
   color: #000;
