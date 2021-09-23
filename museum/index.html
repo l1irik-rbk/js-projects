@@ -25,32 +25,32 @@
         <nav class="menu">
           <ul class="menu__list">
             <li class="menu__list-item">
-              <a class="menu__list-link" href="#">
+              <a class="menu__list-link" href="#visiting">
                 Visiting
               </a>
             </li>
             <li class="menu__list-item">
-              <a class="menu__list-link" href="#">
+              <a class="menu__list-link" href="#explore">
                 Explore
               </a>
             </li>
             <li class="menu__list-item">
-              <a class="menu__list-link" href="#">
+              <a class="menu__list-link" href="#video">
                 Video
               </a>
             </li>
             <li class="menu__list-item">
-              <a class="menu__list-link" href="#">
+              <a class="menu__list-link" href="#gallery">
                 Gallery
               </a>
             </li>
             <li class="menu__list-item">
-              <a class="menu__list-link" href="#">
+              <a class="menu__list-link" href="#tickets">
                 Tickets
               </a>
             </li>
             <li class="menu__list-item">
-              <a class="menu__list-link" href="#">
+              <a class="menu__list-link" href="#contacts">
                 Contacts
               </a>
             </li>
@@ -68,9 +68,9 @@
             Welcome <br>
             to the Louvre
           </h1>
-          <p class="welcom__text">From the castle to the museum</p>
+          <h2 class="welcom__text">From the castle to the museum</h2>
           <a class="btn"
-            href="https://www.google.com/maps/@48.8618159,2.3366818,3a,75y,81.55h,73.4t/data=!3m7!1e1!3m5!1sAF1QipOVxZQuSy3Bx9T_HpH_7FtBHDTXvI6SF-A10ocT!2e10!3e12!7i5472!8i2736">Discover
+            href="tours/tour1.html">Discover
             the Louvre
           </a>
 
@@ -102,42 +102,42 @@
       </div>
     </section>
 
-    <section class="visiting">
+    <section class="visiting" id="visiting">
       <div class="container">
         <h2 class="section-title gold-title title-undreline">Virtual tour</h2>
 
         <div class="cards__inner">
-          <a class="card" href="#">
+          <a class="card" href="tours/tour2.html">
             <img class="card__img" src="assets/img/palace.jpg" alt="Royal Palace">
             <h3 class="card__title">Royal Palace</h3>
             <p class="card__text">360° Virtual Tour</p>
             <p class="card__text-min">Google Street Panorama View</p>
           </a>
-          <a class="card" href="#">
+          <a class="card" href="tours/tour3.html">
             <img class="card__img" src="assets/img/denon.jpg" alt="Denon Wing">
             <h3 class="card__title">Denon Wing</h3>
             <p class="card__text">360° Virtual Tour</p>
             <p class="card__text-min">Google Street Panorama View</p>
           </a>
-          <a class="card" href="#">
+          <a class="card" href="tours/tour4.html">
             <img class="card__img" src="assets/img//colonnade.jpg" alt="Colonnade Perrault">
             <h3 class="card__title">Colonnade Perrault</h3>
             <p class="card__text">360° Virtual Tour</p>
             <p class="card__text-min">Google Street Panorama View</p>
           </a>
-          <a class="card" href="#">
+          <a class="card" href="tours/tour5.html">
             <img class="card__img" src="assets/img/greek.jpg" alt="Greek hall">
             <h3 class="card__title">Greek hall</h3>
             <p class="card__text">360° Virtual Tour</p>
             <p class="card__text-min">Google Street Panorama View</p>
           </a>
-          <a class="card" href="#">
+          <a class="card" href="tours/tour6.html">
             <img class="card__img" src="assets/img/mona.jpg" alt="Mona Lisa">
             <h3 class="card__title">Mona Lisa</h3>
             <p class="card__text">360° Virtual Tour</p>
             <p class="card__text-min">Google Street Panorama View</p>
           </a>
-          <a class="card" href="#">
+          <a class="card" href="tours/tour7.html">
             <img class="card__img" src="assets/img/night.jpg" alt="Night Palace">
             <h3 class="card__title">Night Palace</h3>
             <p class="card__text">360° Virtual Tour</p>
@@ -147,7 +147,7 @@
       </div>
     </section>
 
-    <section class="explore">
+    <section class="explore" id="explore">
       <div class="container">
 
         <div class="explore__inner">
@@ -172,7 +172,7 @@
       </div>
     </section>
 
-    <section class="video">
+    <section class="video" id="video">
       <div class="container">
         <div class="video__top-inner">
           <h2 class="section-title gold-title">Video journey</h2>
@@ -180,16 +180,27 @@
             such as Mona Lisa or Hammurabi's Code</p>
         </div>
 
-        <img class="main__video" src="assets/img/main__video.jpg" alt="main__video">
+        <div class="play__main-video">
+          <img class="main__video" src="assets/img/main__video.jpg" alt="main__video">
+          <button class="play"><img class="play__img" src="assets/svg/play.svg" alt="play"></button>
+        </div>
 
         <div class="bar">
+          <button class="play__video">
+            <img class="play__video-img" src="assets/svg/play-min.svg" alt="play video">
+          </button>
           <div class="bar__time">
             <input class="progress1" type="range" value="40" min="0" max="100" step="1">
           </div>
-
+          <button class="volume">
+            <img class="volume-img" src="assets/svg/volume.svg" alt="volume">
+          </button>
           <div class="bar__volume">
-            <input class="progress2" type="range" value="40" min="0" max="100" step="1" >
+            <input class="progress2" type="range" value="40" min="0" max="100" step="1">
           </div>
+          <button class="frame">
+            <img class="frame-img" src="assets/svg/frame.svg" alt="frame">
+          </button>
         </div>
 
         <div class="video__slider">
@@ -199,19 +210,22 @@
             <img class="video__slider__img" src="assets/img/video3.jpg" alt="slider__img">
           </div>
 
-
-          <ul class="slider__dots">
-            <li class="slider__dot"><button class="slider__button slider__button--active"></button></li>
-            <li class="slider__dot"><button class="slider__button"></button></li>
-            <li class="slider__dot"><button class="slider__button"></button></li>
-            <li class="slider__dot"><button class="slider__button"></button></li>
-            <li class="slider__dot"><button class="slider__button"></button></li>
-          </ul>
+          <div class="slider__video">
+            <button class="btn__left"><img class="btn__left-img" src="assets/svg/arr-left.svg" alt="left"></button>
+            <ul class="slider__dots">
+              <li class="slider__dot"><button class="slider__button slider__button--active"></button></li>
+              <li class="slider__dot"><button class="slider__button"></button></li>
+              <li class="slider__dot"><button class="slider__button"></button></li>
+              <li class="slider__dot"><button class="slider__button"></button></li>
+              <li class="slider__dot"><button class="slider__button"></button></li>
+            </ul>
+            <button class="btn__right"><img class="btn__right-img" src="assets/svg/arr-right.svg" alt="rigth"></button>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="gallery">
+    <section class="gallery" id="gallery">
       <div class="container">
         <h2 class="section-title">Art Gallery</h2>
 
@@ -259,7 +273,7 @@
       </div>
     </section>
 
-    <section class="tickets">
+    <section class="tickets" id="tickets">
       <div class="container">
         <h2 class="section-title gold-title title-undreline">BUY TICKETS</h2>
 
@@ -292,18 +306,18 @@
 
 
               <p>Basic 18+</p>
-              <label class="tickets__buttons">
-                <button type="button">-</button>
+              <div class="tickets__buttons">
+                <button class="counter__btn-down" type="button">-</button>
                 <input type="number" min="0" max="20" value="1" readonly class="number">
-                <button class="last" type="button">+</button>
-              </label>
+                <button class="counter__btn-up" class="last" type="button">+</button>
+              </div>
 
               <p>Senior 65+</p>
-              <label class="tickets__buttons last__label">
-                <button type="button">-</button>
+              <div class="tickets__buttons last__label">
+                <button class="counter__btn-down" type="button">-</button>
                 <input type="number" min="0" max="20" value="1" readonly class="number">
-                <button class="last" type="button">+</button>
-              </label>
+                <button class="counter__btn-up" class="last" type="button">+</button>
+              </div>
 
               <h4 class="tickets__title">Total €220</h4>
               <button class="tickets__btn" type="button">Buy Now</button>
@@ -315,7 +329,7 @@
 
     <div class="parallax"></div>
 
-    <section class="contacts">
+    <section class="contacts" id="contacts">
       <div class="container">
         <h2 class="section-title gold-title title-undreline">Contacts</h2>
         <div class="contacts__inner">
@@ -359,12 +373,12 @@
           </nav>
 
           <ul class="icons__list">
-            <li class="icon"><a class="icon__link" href="#"><img src="assets/svg/youtube.svg" alt="youtube"></a></li>
-            <li class="icon"><a class="icon__link" href="#"><img src="assets/svg/instagram.svg" alt="instagram"></a>
+            <li class="icon"><a class="icon__link" href="https://www.youtube.com/user/louvre"><img src="assets/svg/youtube.svg" alt="youtube"></a></li>
+            <li class="icon"><a class="icon__link" href="https://www.instagram.com/museelouvre/"><img src="assets/svg/instagram.svg" alt="instagram"></a>
             </li>
-            <li class="icon"><a class="icon__link" href="#"><img src="assets/svg/facebook.svg" alt="facebook"></a></li>
-            <li class="icon"><a class="icon__link" href="#"><img src="assets/svg/twitter.svg" alt="twitter"></a></li>
-            <li class="icon"><a class="icon__link" href="#"><img src="assets/svg/pinterest.svg" alt="pinterest"></a>
+            <li class="icon"><a class="icon__link" href="https://www.facebook.com/museedulouvre"><img src="assets/svg/facebook.svg" alt="facebook"></a></li>
+            <li class="icon"><a class="icon__link" href="http://twitter.com/museelouvre"><img src="assets/svg/twitter.svg" alt="twitter"></a></li>
+            <li class="icon"><a class="icon__link" href="https://www.pinterest.fr/museedulouvre/"><img src="assets/svg/pinterest.svg" alt="pinterest"></a>
             </li>
           </ul>
         </div>
@@ -387,6 +401,7 @@
     </div>
   </footer>
 
+  <script src="js/main.js"></script>
 </body>
 
 </html>

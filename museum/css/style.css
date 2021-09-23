@@ -4,6 +4,10 @@
   box-sizing: border-box;
 }
 
+html{
+  scroll-behavior: smooth
+}
+
 a{
   text-decoration: none;
   color: #fff;
@@ -75,6 +79,15 @@ body{
   font-weight: 100;
   line-height: 26px;
   letter-spacing: 2px;
+  transition: all .5s;
+}
+
+.menu__list-link:hover{
+  color: #9D8665;
+}
+
+.menu__list-link:active{
+  color: #7E6C51;
 }
 
 .logo{
@@ -108,6 +121,7 @@ body{
 }
 
 .welcom__text{
+  font-weight: 300;
   font-size: 28px;
   line-height: 33px;
   letter-spacing: 2px;
@@ -222,6 +236,11 @@ body{
   height: 2px;
   left: 0;
   bottom: 0;
+  transition: all .3s;
+}
+
+.card__title:hover:after{
+  width: 100%;
 }
 
 .card__text{
@@ -282,14 +301,24 @@ body{
   color: #000000;
 }
 
-.main__video{
+.play__main-video{
   width: 1440px;
   height: 650px;
+  position: relative;
+}
+
+.play{
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  top: 215px;
+  left: 610px;
 }
 
 .bar{
   display: flex;
   background-color: #000;
+  align-items: center;
   margin-bottom: 40px;
   height: 85px;
   margin-top: -12px;
@@ -303,25 +332,29 @@ body{
 .bar__time{
   margin: auto 0;
   padding: 0;
-  padding-left: 73px;
   margin-right: 50px;
-  margin-left: 30px;
+  margin-left: 50px;
   position: relative;
 }
 
-.bar__time::before{
-  content: '';
-  position: absolute;
-  width: 23px;
-  height: 31px;
-  background-image: url(../assets/svg/play-min.svg);
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
+.play__video,
+.volume,
+.frame,
+.play{
+  border: none;
+  background-color: inherit;
+  margin: 0;
+  padding: 0;
   cursor: pointer;
-  
+}
+.play__video{
+  margin-left: 30px;
 }
 
+.play__video-img{
+  width: 23px;
+  height: 31px;
+}
 
 .progress1 {
   background: #710707;
@@ -344,33 +377,11 @@ body{
 .bar__volume{
   margin: auto 0;
   padding: 0;
-  padding-left: 88px;
-  padding-right: 85px;
+  margin-left: 50px;
   margin-right: 50px;
-  position: relative;
 }
 
-.bar__volume::before{
-  content: '';
-  position: absolute;
-  width: 38px;
-  height: 31px;
-  background-image: url(../assets/svg/volume.svg);
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-}
 
-.bar__volume::after{
-  content: '';
-  position: absolute;
-  width: 35px;
-  height: 35px;
-  background-image: url(../assets/svg/frame.svg);
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-}
 
 .progress2 {
   background: #710707;
@@ -404,10 +415,11 @@ body{
   display: flex;
   align-items: center;
   justify-content: center;
+  margin: 0 10px;
 }
 
-.slider__dot + .slider__dot{
-  margin-left: 20px;
+.slider__dot{
+  margin: 0 10px;
 }
 
 .slider__button{
@@ -423,42 +435,25 @@ body{
   position: relative;
 }
 
-.slider__dot:first-child{
-  padding-left: 32px;
-  position: relative;
-}
-
-.slider__dot:last-child{
-  padding-right: 32px;
-  position: relative;
-}
-
 .slider__button--active{
   background-color: #333333;
 }
 
-.slider__dot:first-child::before{
-  content: '';
-  width: 10px;
-  height: 12px;
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  background-image: url(../assets/svg/arr-left.svg);
-  cursor: pointer;
+.slider__video{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
-.slider__dot:last-child::before{
-  content: '';
-  width: 10px;
-  height: 12px;
-  position: absolute;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  background-image: url(../assets/svg/arr-right.svg);
+.btn__left,
+.btn__right{
+  border: none;
+  background-color: inherit;
+  padding: 0;
+  margin: 0;
   cursor: pointer;
+  padding-top: 4px;
 }
 
 
@@ -657,7 +652,7 @@ body{
 }
 
 .parallax{
-  background-image: url(../assets/img/panorama.jpg);
+  background-image: url(../assets/img/parallax.jpg);
   height: 400px;
   background-attachment: fixed;
   background-position: center;
@@ -720,6 +715,14 @@ body{
   letter-spacing: 2px;
 }
 
+.footer__menu-link:hover{
+  color: #9D8665;
+}
+
+.footer__menu-link:active{
+  color: #7E6C51;
+}
+
 .icons__list{
   display: flex;
   margin-top: auto;
@@ -758,3 +761,4 @@ body{
   letter-spacing: 2px;
   color: #FFFFFF;
 }
+
