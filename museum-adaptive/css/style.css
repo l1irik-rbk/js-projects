@@ -1467,7 +1467,100 @@ body{
 
 
 
+@media(max-width: 1460px) {
+  .welcom__title {
+    padding-top: 90px;
+    margin-bottom: 25px;
+    width: 598px;
+}
+  .welcom__inner{
+    height: 634px;
+    background-size: 68%;
+  }
 
+  .cards__inner {
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 75px;
+    column-gap: 60px;
+    margin-bottom: 75px;
+    justify-content: space-around;
+}
+
+.explore__main {
+  margin-right: 40px;
+}
+
+.explore__img {
+  display: block;
+  width: 500px;
+  height: 100%;
+  padding-top: 0;
+}
+
+.video__top-text{
+  display: none;
+}
+
+.bar{
+  display: none;
+}
+
+.play{
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.play__main-video {
+  width: 100%;
+  height: auto;
+  position: relative;
+}
+
+.main__video{
+  width: 100%;
+  height: auto;
+}
+
+.video__inner {
+  margin: 0 0;
+  margin-bottom: 40px;
+}
+
+.video__item {
+  margin: 0 0;
+  width: 452px;
+  height: 254px;
+}
+
+.video__item + .video__item{
+  margin-left: 15px;
+}
+
+.tickets__radio{
+  display: none;
+}
+
+.contacts__inner{
+  flex-direction: column;
+}
+
+.contacts__map {
+  display: flex;
+  margin: 0 auto;
+}
+
+.form__inner {
+  width: 1024px;
+  padding: 75px 27px 30px 27px;
+}
+
+.close__btn {
+  right: 27px;
+  top: 30px;
+}
+}
 
 
 
@@ -1793,6 +1886,94 @@ body{
 }
 }
 
+@media(max-width: 1010px) {
+  .welcom__inner {
+    height: auto;
+}
+
+  .slider__inner{
+    position: static;
+    padding: 40px 60px;
+    justify-content: center;
+  }
+
+  .btn {
+    margin-bottom: 20px;
+}
+
+.cards__inner {
+  justify-content: space-around;
+}
+
+.video__item:nth-child(3){
+  display: none;
+}
+.video__inner {
+  justify-content: space-around;
+}
+
+.tickets__img {
+  display: block;
+  width: 60%;
+  height: auto;
+  margin-right: 0;
+  object-fit: cover;
+}
+
+.icons__list{
+  position: absolute;
+  right: 60px;
+  bottom: 55px;
+}
+
+.footer__inner{
+  position: relative;
+}
+
+
+.footer__menu{
+  margin-right: 66px;
+  margin-bottom: 110px;
+  margin-top: 20px;
+  width: 344px;
+  justify-content: space-between;
+}
+
+.footer__menu-link{
+  font-size: 18px;
+  line-height: 21px;
+  letter-spacing: 2px;
+}
+
+.footer__bottom-inner {
+  padding: 40px 0;
+}
+
+.form__inner {
+  width: 590px;
+  padding: 80px 30px 40px 30px;
+  flex-direction: column;
+}
+
+.form__left {
+  width: 100%;
+  margin-bottom: 51px;
+}
+
+.form__time,
+.form__date {
+  width: 251px;
+}
+
+.form__left-up {
+  margin-bottom: 40px;
+}
+
+.form__main-btn {
+  margin-top: 277px;
+}
+}
+
 
 
 @media(max-width: 768px) {
@@ -2095,6 +2276,211 @@ line-height: 60px;
   margin-top: 277px;
 }
 
+}
+
+@media(max-width: 460px) {
+  .slider__inner{
+    padding: 20px 0;
+  }
+  
+  .digits {
+    font-size: 20px;
+    line-height: 40px;
+    margin-right: 25px;
+  }
+  
+  .squer {
+    width: 12px;
+    height: 12px;
+  }
+  .arrows__btn{
+    width: 20px;
+    height: 8px;
+  }
+  
+  .squer + .squer {
+    margin-left: 10px;
+  }
+  
+  .squers {
+    margin-right: 25px;
+  }
+  
+  .arrows__btn img{
+    width: 20px;
+    height: 8px;
+  }
+
+  .explore__img {
+    width: 100%;
+    height: auto;
+  }
+
+  .main__video {
+    width: 100%;
+    height: auto;
+  }
+  .play__main-video {
+    width: 100%;
+    height: 172px;
+  }
+  
+  .play__img {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .play {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .video__slider {
+    margin-bottom: 0;
+  }
+  
+  .slider__video{
+    margin-bottom: 40px;
+  }
+  
+  .video__inner {
+    margin-bottom: 40px;
+  }
+  
+  .video__item {
+    max-width: 180px;
+    height: 101px;
+    
+  }
+  
+  .video__item + .video__item {
+    margin-left: 21px;
+  }
+  
+  .video__item iframe {
+    max-width: 180px;
+    height: 101px;
+  }
+
+  .gallery__item {
+    width: 178px;
+  }
+  
+  .gallery{
+    height: 757px;
+    overflow: hidden;
+  }
+
+  .tickets__img {
+    max-width: 380px;
+    height: 160px;
+    margin-bottom: 40px;
+  }
+  
+  .tickets__inner{
+    flex-direction: column;
+  }
+
+  .tickets__amount {
+    align-items: center;
+    margin: 0 auto;
+}
+
+.contacts__map {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.footer__inner{
+  flex-direction: column;
+  padding: 40px 0;
+}
+
+.icons__list {
+  position: static;
+}
+
+.footer__inner .logo{
+  margin-bottom: 40px;
+}
+
+.footer__menu{
+  margin: 0;
+  margin-bottom: 40px;
+}
+
+.icons__list{
+  margin: 0 auto;
+
+}
+
+.icon + .icon {
+  margin-left: 5px;
+}
+
+.footer__bottom-text:nth-child(2){
+  display: none;
+}
+
+.footer__bottom-text{
+  font-size: 16px;
+  line-height: 22px;
+}
+
+.form__inner {
+  width: 420px;
+  padding: 80px 30px 50px 30px;
+  flex-direction: column;
+}
+
+.form__title{
+  font-size: 32px;
+  line-height: 35px;
+}
+
+.form__left-midle div{
+  flex-direction: column;
+}
+.form__time, .form__date {
+  width: 100%;
+}
+
+.form__right {
+  width: 100%;
+  padding: 25px 15px;
+}
+
+.card1, .card2 {
+  width: 330px;
+  height: 219px;
+  background-color: #BCBCBC;
+  border-radius: 3px;
+}
+
+.card1 {
+  padding: 15px 20px;
+  margin-bottom: 25px;
+  position: static;
+  z-index: 1;
+}
+
+.card2 {
+  padding: 25px 0 15px 0;
+  background-color: #939393;
+  position: static;
+  top: 30px;
+  right: 0;
+  z-index: 0;
+}
+
+.form__main-btn {
+  margin-top: 40px;
+}
+
+.card__name {
+  width: 290px;
+}
 }
 
 
@@ -2429,5 +2815,55 @@ line-height: 20px;
 
 .card__name {
   width: 290px;
+}
+}
+
+@media(max-width: 400px) {
+  .video__item {
+    max-width: 140px;
+    height: 60px;
+    
+  }
+  
+  .video__item + .video__item {
+    margin-left: 5px;
+  }
+  
+  .video__item iframe {
+    max-width: 140px;
+    height: 60px;
+  }
+  .video__slider{
+    padding-top: 0;
+  }
+
+  .gallery__inner {
+    columns: 167px auto;
+}
+
+  .gallery__item {
+    width: 137px;
+}
+
+.tickets__img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 40px;
+}
+
+.contacts__map {
+  width: 100%;
+  height: auto;
+}
+
+.footer__menu {
+  flex-direction: column;
+  margin: 0 auto;
+  
+}
+
+.footer__menu-list + .footer__menu-list {
+  margin-left: 0;
 }
 }
