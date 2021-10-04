@@ -1459,6 +1459,9 @@ body{
   display: none;
 }
 
+.bg__img{
+  display: none;
+}
 
 
 
@@ -1470,8 +1473,8 @@ body{
 
 @media(max-width: 1024px) {
   .container{
-    max-width: 1044px;
-    padding: 0 10px;
+    max-width: 1064px;
+    padding: 0 20px;
   }
 
   .logo-padding {
@@ -1794,8 +1797,8 @@ body{
 
 @media(max-width: 768px) {
   .container{
-    max-width: 788px;
-    padding: 0 10px;
+    max-width: 808px;
+    padding: 0 20px;
   }
 
   .logo {
@@ -1842,8 +1845,7 @@ body{
 }
 
 .bg__img{
-  width: 728px;
-  height: 546px;
+  width: 100%;
   display: block;
   margin: 0 auto;
 }
@@ -2069,12 +2071,6 @@ line-height: 60px;
   padding: 40px 0;
 }
 
-
-.container{
-  max-width: 788px;
-  padding: 0 10px;
-}
-
 .form__inner {
   width: 590px;
   padding: 80px 30px 40px 30px;
@@ -2103,5 +2099,335 @@ line-height: 60px;
 
 
 @media(max-width: 420px) {
+  .container{
+    max-width: 460px;
+    padding: 0 20px;
+  }
+
+  .logo {
+    font-size: 16px;
+    line-height: 18px;
+    letter-spacing: 5px;
+    padding-left: 54px;
+}
+
+.logo::before {
+  content: '';
+  width: 29px;
+  height: 16px;
+  left: 0;
+  position: absolute;
+  background-image: url(../assets/img/logo-min.svg);
+  transform: translateY(-63%);
+}
+
+.logo-padding {
+  padding-top: 36px;
+  padding-bottom: 36px;
+}
+
+.welcom .section-title {
+  font-size: 28px;
+line-height: 40px;
+padding-top: 5px;
+}
+
+.welcom__text {
+  font-size: 16px;
+  line-height: 19px;
+  letter-spacing: 2px;
+}
+
+.slider__inner{
+  padding: 20px 0;
+}
+
+.digits {
+  font-size: 16px;
+  line-height: 40px;
+  margin-right: 25px;
+}
+
+.squer {
+  width: 7px;
+  height: 7px;
+}
+.arrows__btn{
+  width: 20px;
+  height: 8px;
+}
+
+.squer + .squer {
+  margin-left: 10px;
+}
+
+.squers {
+  margin-right: 25px;
+}
+
+.arrows__btn img{
+  width: 20px;
+  height: 8px;
+}
+
+.section-title {
+  font-size: 28px;
+  line-height: 40px;
+}
+
+.card__title {
+  font-size: 18px;
+line-height: 20px;
+  letter-spacing: 3px;
+}
+
+.card__text {
+  font-size: 16px;
+  line-height: 19px;
+}
+
+.cards__inner {
+  margin-bottom: 40px;
+}
+
+.explore h2 {
+  font-size: 28px;
+  line-height: 40px;
+  letter-spacing: 5px;
+}
+
+.explore__img {
+  width: 100%;
+  height: auto;
+}
+
+.main__video {
+  width: 100%;
+  height: auto;
+}
+.play__main-video {
+  width: 100%;
+  height: 172px;
+}
+
+.play__img {
+  width: 50px;
+  height: 50px;
+}
+
+.play {
+  width: 50px;
+  height: 50px;
+}
+
+.video__slider {
+  margin-bottom: 0;
+}
+
+.slider__video{
+  margin-bottom: 40px;
+}
+
+.video__inner {
+  margin-bottom: 40px;
+}
+
+.video__item {
+  max-width: 180px;
+  height: 101px;
   
+}
+
+.video__item + .video__item {
+  margin-left: 21px;
+}
+
+.video__item iframe {
+  max-width: 180px;
+  height: 101px;
+}
+
+.slider__button {
+  width: 8px;
+  height: 8px;
+}
+
+.slider__dot {
+  margin: 0 5px;
+}
+
+.btn__left,
+.btn__right{
+  width: 7px;
+  height: 8px;
+  padding-top: 3px;
+}
+
+.btn__right-img,
+.btn__left-img{
+  width: 7px;
+  height: 8px;
+  display: block;
+}
+
+.gallery h2 {
+  padding: 40px 0;
+}
+
+.gallery__item {
+  width: 178px;
+}
+
+.gallery{
+  height: 757px;
+  overflow: hidden;
+}
+
+.tickets__img {
+  max-width: 380px;
+  height: 160px;
+  margin-bottom: 40px;
+}
+
+.tickets__inner{
+  flex-direction: column;
+}
+
+.tickets__amount{
+  margin: 0 auto;
+}
+
+.tickets__amount-title {
+  font-size: 16px;
+  line-height: 19px;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
+
+.tickets__amount p {
+  font-size: 16px;
+  line-height: 19px;
+  margin-bottom: 15px;
+}
+
+.last__label {
+  margin-bottom: 40px;
+}
+
+.tickets__title {
+  font-size: 16px;
+  line-height: 19px;
+  margin: 0 auto;
+  margin-bottom: 40px;
+}
+
+.contacts__title {
+  font-size: 16px;
+  line-height: 19px;
+}
+
+.contacts__item{
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 19px;
+}
+
+.contacts__map{
+  width: 380px;
+  height: auto;
+}
+
+.contacts__inner {
+  margin-bottom: 40px;
+}
+
+.footer__inner{
+  flex-direction: column;
+  padding: 40px 0;
+}
+
+.icons__list {
+  position: static;
+}
+
+.footer__inner .logo{
+  margin-bottom: 40px;
+}
+
+.footer__menu{
+  margin: 0;
+  margin-bottom: 40px;
+}
+
+.icons__list{
+  margin: 0 auto;
+
+}
+
+.icon + .icon {
+  margin-left: 5px;
+}
+
+.footer__bottom-text:nth-child(2){
+  display: none;
+}
+
+.footer__bottom-text{
+  font-size: 16px;
+  line-height: 22px;
+}
+
+.form__inner {
+  width: 420px;
+  padding: 80px 30px 50px 30px;
+  flex-direction: column;
+}
+
+.form__title{
+  font-size: 32px;
+  line-height: 35px;
+}
+
+.form__left-midle div{
+  flex-direction: column;
+}
+.form__time, .form__date {
+  width: 100%;
+}
+
+.form__right {
+  width: 100%;
+  padding: 25px 15px;
+}
+
+.card1, .card2 {
+  width: 330px;
+  height: 219px;
+  background-color: #BCBCBC;
+  border-radius: 3px;
+}
+
+.card1 {
+  padding: 15px 20px;
+  margin-bottom: 25px;
+  position: static;
+  z-index: 1;
+}
+
+.card2 {
+  padding: 25px 0 15px 0;
+  background-color: #939393;
+  position: static;
+  top: 30px;
+  right: 0;
+  z-index: 0;
+}
+
+.form__main-btn {
+  margin-top: 40px;
+}
+
+.card__name {
+  width: 290px;
+}
 }
