@@ -1638,7 +1638,7 @@ body{
 }
 
 .close__butrger-btn {
-  display: block;
+  display: block ;
   position: absolute;
   background-image: url('../assets/svg/close-btn.svg');
   width: 25px;
