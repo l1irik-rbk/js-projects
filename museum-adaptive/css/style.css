@@ -545,6 +545,7 @@ body{
   position: absolute;
   bottom: 0;
   left: 0;
+  width: 100%;
   height: 360px;
   background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%);
 }
@@ -1787,9 +1788,320 @@ body{
   right: 27px;
   top: 30px;
 }
+}
 
 
+
+@media(max-width: 768px) {
+  .container{
+    max-width: 788px;
+    padding: 0 10px;
+  }
+
+  .logo {
+    font-size: 28px;
+    line-height: 41px;
+    letter-spacing: 5px;
+    padding-left: 74px;
+  }
+
+.logo::before {
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.logo-padding {
+  padding-top: 35px;
+  padding-bottom: 34px;
+}
+
+.welcom__inner{
+  display: flex;
+  flex-direction: column;
+  background-image: none;
+  text-align: center;
+}
+
+.slider__inner{
+  display: block;
+  position: static;
+}
+
+.welcom .section-title {
+  font-size: 40px;
+  line-height: 60px;
+  letter-spacing: 5px;
+  width: 100%;
+  padding-top: 0;
+}
+.welcom__text{
+  font-size: 20px;
+  line-height: 23px;
+  letter-spacing: 2px;
+}
+
+.bg__img{
+  width: 728px;
+  height: 546px;
+  display: block;
+  margin: 0 auto;
+}
+
+.btn{
+  display: none;
+}
+
+.welcom__inner {
+  height: 100%;
+}
+
+.slider__inner{
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px 0;
+}
+
+.section-title {
+  font-size: 40px;
+line-height: 60px;
+}
+
+.gold-title {
+  padding-top: 40px;
+  padding-bottom: 20px;
+}
+
+.title-undreline {
+  margin-bottom: 40px;
+}
+
+.card__img {
+  width: 280px;
+  height: 180px;
+}
+
+.cards__inner {
+  justify-content: center;
+  column-gap: 56px;
+  row-gap: 40px;
+}
+
+.card__title {
+  font-size: 22px;
+  line-height: 24px;
+  letter-spacing: 3px;
+}
+
+.card__title::after {
+  width: 100%;
+}
+
+.card__text {
+  font-size: 18px;
+  line-height: 21px;
+}
+
+.explore__text{
+  display: none;
+}
+
+.explore__inner{
+  display: block;
+  padding: 40px 0;
+}
+
+.explore h2 {
+  font-size: 40px;
+  line-height: 60px;
+  letter-spacing: 5px;
+}
+
+.explore__img{
+  display: block;
+  margin: 0 auto;
+}
+
+.video__top-inner {
+  margin-bottom: 20px;
+  margin-top: 40px;
+}
+
+.play {
+  width: 80px;
+  height: 80px;
+}
+
+.play__img {
+  width: 80px;
+  height: 80px;
+}
+
+.play__main-video {
+  width: 100%;
+  height: 329px;
+}
+
+.main__video {
+  width: 100%;
+  height: 329px;
+}
+
+.video__item:nth-child(3){
+  display: none;
+}
+
+.video__item{
+  width: 354px;
+  height: 199px;
+}
+
+.video__item iframe {
+  width: 354px;
+  height: 199px;
+}
+
+.video__inner {
+  margin-bottom: 20px;
+}
+.slider__button{
+  width: 10px;
+  height: 10px;
+  }
+
+  .btn__left, .btn__right {
+    padding-top: 8px;
+}
+
+.video__slider {
+  margin-bottom: 80px;
+}
+
+.gallery{
+  height: 1220px;
+  overflow: hidden;
+}
+
+.gallery__item {
+  width: 352px;
+}
+
+.tickets h2 {
+  padding-top: 40px;
+}
+
+.tickets__img {
+  width: 444px;
+  height: 340px;
+}
+
+.tickets__inner {
+  margin-bottom: 40px;
+}
+
+.parallax {
+  height: 300px;
+}
+
+.contacts__inner{
+  flex-direction: column;
+}
+
+.contacts__map{
+  width: 100%;
+  height: 476px;
+  display: block;
+}
+
+.contacts__inner {
+  margin-bottom: 69px;
+}
+
+.contacts__title {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 23px;
+  margin-bottom: 40px;
+}
+
+.contacts__list p {
+  font-size: 18px;
+  line-height: 21px;
+  margin-bottom: 15px;
+}
+
+.contacts__item:last-child{
+  margin-bottom: 40px;
+}
+
+.contacts__item {
+  margin-bottom: 15px;
+}
+
+.icons__list{
+  position: absolute;
+  right: 60px;
+  bottom: 55px;
+}
+
+.footer__inner{
+  position: relative;
+}
+
+
+.footer__menu{
+  margin-right: 66px;
+  margin-bottom: 110px;
+  margin-top: 20px;
+  width: 344px;
+  justify-content: space-between;
+}
+
+.footer__menu-link{
+  font-size: 18px;
+  line-height: 21px;
+  letter-spacing: 2px;
+}
+
+.footer__bottom-inner {
+  padding: 40px 0;
+}
+
+
+.container{
+  max-width: 788px;
+  padding: 0 10px;
+}
+
+.form__inner {
+  width: 590px;
+  padding: 80px 30px 40px 30px;
+  flex-direction: column;
+}
+
+.form__left {
+  width: 100%;
+  margin-bottom: 51px;
+}
+
+.form__time,
+.form__date {
+  width: 251px;
+}
+
+.form__left-up {
+  margin-bottom: 40px;
+}
+
+.form__main-btn {
+  margin-top: 277px;
+}
 
 }
 
 
+@media(max-width: 420px) {
+  
+}
