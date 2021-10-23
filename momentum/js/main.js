@@ -80,43 +80,43 @@ function getRandomNum() {
   return Math.ceil(Math.random() * 20)
 }
 
-// function setBg() {
-//   let timeOfDay = getTimeOfDay()
-//   let bgNum = randomNumber.toString()
-//   if (bgNum < 10) {
-//     bgNum = bgNum.padStart(2, '0')
-//   }
+function setBg() {
+  let timeOfDay = getTimeOfDay()
+  let bgNum = randomNumber.toString()
+  if (bgNum < 10) {
+    bgNum = bgNum.padStart(2, '0')
+  }
 
-//   const img = new Image()
-//   img.src = `https://raw.githubusercontent.com/rolling-scopes-school/stage1-tasks/assets/images/${timeOfDay}/${bgNum}.jpg`
+  const img = new Image()
+  img.src = `https://raw.githubusercontent.com/rolling-scopes-school/stage1-tasks/assets/images/${timeOfDay}/${bgNum}.jpg`
 
-//   img.onload = () => {
-//     body.style.backgroundImage = `url('https://raw.githubusercontent.com/rolling-scopes-school/stage1-tasks/assets/images/${timeOfDay}/${bgNum}.jpg')`
-//   }
-// }
-// setBg()
+  img.onload = () => {
+    body.style.backgroundImage = `url('https://raw.githubusercontent.com/rolling-scopes-school/stage1-tasks/assets/images/${timeOfDay}/${bgNum}.jpg')`
+  }
+}
+setBg()
 
-// function getSlideNext() {
-//   if (randomNumber < 20) {
-//     randomNumber++
-//   } else if (randomNumber === 20) {
-//     randomNumber = 1
-//   }
-//   console.log(randomNumber)
-//   setBg()
-// }
+function getSlideNext() {
+  if (randomNumber < 20) {
+    randomNumber++
+  } else if (randomNumber === 20) {
+    randomNumber = 1
+  }
+  console.log(randomNumber)
+  setBg()
+}
 
-// function getSlidePrev() {
-//   if (randomNumber > 1) {
-//     randomNumber--
-//   } else if (randomNumber === 1) {
-//     randomNumber = 20
-//   }
-//   console.log(randomNumber)
-//   setBg()
-// }
-// slidePrev.addEventListener('click', getSlidePrev)
-// slideNext.addEventListener('click', getSlideNext)
+function getSlidePrev() {
+  if (randomNumber > 1) {
+    randomNumber--
+  } else if (randomNumber === 1) {
+    randomNumber = 20
+  }
+  console.log(randomNumber)
+  setBg()
+}
+slidePrev.addEventListener('click', getSlidePrev)
+slideNext.addEventListener('click', getSlideNext)
 
 
 // const weatherIcon = document.querySelector('.weather-icon')
