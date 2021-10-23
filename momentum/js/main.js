@@ -217,161 +217,161 @@ window.addEventListener('load', getQuotes)
 
 
 
-// import playList from './playList.js'
-// function asfasf() {
-//   const playPrevBtn = document.querySelector('.play-prev')
-//   const play = document.querySelector('.play')
-//   const playNextBtn = document.querySelector('.play-next')
-//   const playListContainer = document.querySelector('.play-list')
+import playList from './playList.js'
+function asfasf() {
+  const playPrevBtn = document.querySelector('.play-prev')
+  const play = document.querySelector('.play')
+  const playNextBtn = document.querySelector('.play-next')
+  const playListContainer = document.querySelector('.play-list')
 
-//   let isPlay = false
-//   let playNum = 0
+  let isPlay = false
+  let playNum = 0
 
-//   const audio = new Audio()
-//   const constVolume = audio.volume = 0.2
+  const audio = new Audio()
+  const constVolume = audio.volume = 0.2
 
-//   function playAudio() {
-//     if (!isPlay) {
-//       isPlay = true
-//       length.textContent = playList[playNum].duration
-//       playerNameSong.textContent = playList[playNum].title
-//       audio.src = playList[playNum].src
-//       list[playNum].classList.add('item-active')
-//       audio.currentTime = 0
-//       audio.play()
-//     } else {
-//       isPlay = false
-//       audio.pause()
-//     }
-//   }
+  function playAudio() {
+    if (!isPlay) {
+      isPlay = true
+      length.textContent = playList[playNum].duration
+      playerNameSong.textContent = playList[playNum].title
+      audio.src = playList[playNum].src
+      list[playNum].classList.add('item-active')
+      audio.currentTime = 0
+      audio.play()
+    } else {
+      isPlay = false
+      audio.pause()
+    }
+  }
 
-//   function pause() {
-//     if (isPlay) {
-//       play.classList.add('pause')
-//     } else {
-//       play.classList.remove('pause')
-//     }
-//   }
-
-
-//   function toggleBtn() {
-//     play.classList.toggle('pause')
-//   }
-
-//   function playNext() {
-//     if (playNum !== playList.length - 1) {
-//       list[playNum].classList.remove('item-active')
-//       isPlay = false
-//       playNum++
-//       volumeProgress.style.width = `${constVolume * 100}%`
-//     } else {
-//       list[playNum].classList.remove('item-active')
-//       isPlay = false
-//       playNum = 0
-//       volumeProgress.style.width = `${constVolume * 100}%`
-//     }
-
-//     playAudio()
-//     pause()
-//   }
-
-//   function playPrev() {
-//     if (playNum !== 0) {
-//       list[playNum].classList.remove('item-active')
-//       isPlay = false
-//       playNum--
-//       volumeProgress.style.width = `${constVolume * 100}%`
-//     } else {
-//       list[playNum].classList.remove('item-active')
-//       isPlay = false
-//       playNum = playList.length - 1
-//       volumeProgress.style.width = `${constVolume * 100}%`
-//     }
-
-//     playAudio()
-//     pause()
-//   }
-
-//   playList.forEach(element => {
-//     const li = document.createElement('li')
-//     li.classList.add('play-item')
-//     li.textContent = `${element.title}`
-//     playListContainer.append(li)
-//   })
-
-//   const list = document.querySelectorAll('.play-item')
+  function pause() {
+    if (isPlay) {
+      play.classList.add('pause')
+    } else {
+      play.classList.remove('pause')
+    }
+  }
 
 
+  function toggleBtn() {
+    play.classList.toggle('pause')
+  }
 
+  function playNext() {
+    if (playNum !== playList.length - 1) {
+      list[playNum].classList.remove('item-active')
+      isPlay = false
+      playNum++
+      volumeProgress.style.width = `${constVolume * 100}%`
+    } else {
+      list[playNum].classList.remove('item-active')
+      isPlay = false
+      playNum = 0
+      volumeProgress.style.width = `${constVolume * 100}%`
+    }
 
-//   audio.addEventListener('ended', playNext)
-//   playPrevBtn.addEventListener('click', playPrev)
-//   playNextBtn.addEventListener('click', playNext)
-//   play.addEventListener('click', playAudio)
-//   play.addEventListener('click', toggleBtn)
+    playAudio()
+    pause()
+  }
+
+  function playPrev() {
+    if (playNum !== 0) {
+      list[playNum].classList.remove('item-active')
+      isPlay = false
+      playNum--
+      volumeProgress.style.width = `${constVolume * 100}%`
+    } else {
+      list[playNum].classList.remove('item-active')
+      isPlay = false
+      playNum = playList.length - 1
+      volumeProgress.style.width = `${constVolume * 100}%`
+    }
+
+    playAudio()
+    pause()
+  }
+
+  playList.forEach(element => {
+    const li = document.createElement('li')
+    li.classList.add('play-item')
+    li.textContent = `${element.title}`
+    playListContainer.append(li)
+  })
+
+  const list = document.querySelectorAll('.play-item')
 
 
 
 
-//   const length = document.querySelector('.length')
-//   const current = document.querySelector('.current')
-//   const progressBar = document.querySelector('.progress')
-//   const playerNameSong = document.querySelector('.player-name-song')
-//   const timeline = document.querySelector('.timeline')
-//   const volumeBtn = document.querySelector('.volume-btn')
-//   const volumeLine = document.querySelector('.volume-line')
-//   const volumeProgress = document.querySelector('.volume-progress')
-//   let isMudted = false
+  audio.addEventListener('ended', playNext)
+  playPrevBtn.addEventListener('click', playPrev)
+  playNextBtn.addEventListener('click', playNext)
+  play.addEventListener('click', playAudio)
+  play.addEventListener('click', toggleBtn)
 
-//   length.textContent = playList[playNum].duration
 
-//   setInterval(() => {
-//     progressBar.style.width = `${audio.currentTime / audio.duration * 100}%`
-//     current.textContent = progressTime(audio.currentTime)
 
-//   }, 100);
 
-//   function progressTime(time) {
-//     let seconds = parseInt(time)
-//     let minutes = parseInt(seconds / 60)
-//     seconds -= minutes * 60
-//     return `${String(minutes).padStart(2, 0)}:${String(seconds).padStart(2, 0)}`
-//   }
+  const length = document.querySelector('.length')
+  const current = document.querySelector('.current')
+  const progressBar = document.querySelector('.progress')
+  const playerNameSong = document.querySelector('.player-name-song')
+  const timeline = document.querySelector('.timeline')
+  const volumeBtn = document.querySelector('.volume-btn')
+  const volumeLine = document.querySelector('.volume-line')
+  const volumeProgress = document.querySelector('.volume-progress')
+  let isMudted = false
 
-//   function changeTime(e) {
-//     const timelineWidth = window.getComputedStyle(timeline).width
-//     const newTime = e.offsetX / parseInt(timelineWidth) * audio.duration
-//     audio.currentTime = newTime
-//   }
+  length.textContent = playList[playNum].duration
 
-//   function changeVolume(e) {
-//     const volumeLineWidth = window.getComputedStyle(volumeLine).width
-//     const newVolume = e.offsetX / parseInt(volumeLineWidth)
-//     audio.volume = newVolume
-//     volumeProgress.style.width = `${newVolume * 100}%`
+  setInterval(() => {
+    progressBar.style.width = `${audio.currentTime / audio.duration * 100}%`
+    current.textContent = progressTime(audio.currentTime)
 
-//     if (!newVolume) {
-//       volumeBtn.classList.add('mute-btn')
-//     } else {
-//       volumeBtn.classList.remove('mute-btn')
-//     }
-//     return newVolume
-//   }
+  }, 100);
 
-//   function toggleVolume() {
-//     if (!audio.muted) {
-//       audio.muted = true
-//     } else {
-//       audio.muted = false
-//     }
-//     volumeBtn.classList.toggle('mute-btn')
-//   }
+  function progressTime(time) {
+    let seconds = parseInt(time)
+    let minutes = parseInt(seconds / 60)
+    seconds -= minutes * 60
+    return `${String(minutes).padStart(2, 0)}:${String(seconds).padStart(2, 0)}`
+  }
 
-//   volumeBtn.addEventListener('click', toggleVolume)
-//   timeline.addEventListener('click', changeTime)
-//   volumeLine.addEventListener('click', changeVolume)
-// }
-// asfasf()
+  function changeTime(e) {
+    const timelineWidth = window.getComputedStyle(timeline).width
+    const newTime = e.offsetX / parseInt(timelineWidth) * audio.duration
+    audio.currentTime = newTime
+  }
+
+  function changeVolume(e) {
+    const volumeLineWidth = window.getComputedStyle(volumeLine).width
+    const newVolume = e.offsetX / parseInt(volumeLineWidth)
+    audio.volume = newVolume
+    volumeProgress.style.width = `${newVolume * 100}%`
+
+    if (!newVolume) {
+      volumeBtn.classList.add('mute-btn')
+    } else {
+      volumeBtn.classList.remove('mute-btn')
+    }
+    return newVolume
+  }
+
+  function toggleVolume() {
+    if (!audio.muted) {
+      audio.muted = true
+    } else {
+      audio.muted = false
+    }
+    volumeBtn.classList.toggle('mute-btn')
+  }
+
+  volumeBtn.addEventListener('click', toggleVolume)
+  timeline.addEventListener('click', changeTime)
+  volumeLine.addEventListener('click', changeVolume)
+}
+asfasf()
 
 
 
