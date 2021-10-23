@@ -184,34 +184,34 @@ city.addEventListener('change', getWeather)
 
 
 
-// const changeQuote = document.querySelector('.change-quote')
-// const quoteField = document.querySelector('.quote')
-// const authorField = document.querySelector('.author')
+const changeQuote = document.querySelector('.change-quote')
+const quoteField = document.querySelector('.quote')
+const authorField = document.querySelector('.author')
 
-// async function getQuotes() {
-//   const url = 'https://gist.githubusercontent.com/nasrulhazim/54b659e43b1035215cd0ba1d4577ee80/raw/e3c6895ce42069f0ee7e991229064f167fe8ccdc/quotes.json'
+async function getQuotes() {
+  const url = 'https://gist.githubusercontent.com/nasrulhazim/54b659e43b1035215cd0ba1d4577ee80/raw/e3c6895ce42069f0ee7e991229064f167fe8ccdc/quotes.json'
 
-//   try {
-//     const res = await fetch(url)
-//     const data = await res.json()
-//     let randomNum = getRandomNumberForQuotes()
+  try {
+    const res = await fetch(url)
+    const data = await res.json()
+    let randomNum = getRandomNumberForQuotes()
 
-//     quoteField.textContent = `${data.quotes[randomNum].quote}`
-//     authorField.textContent = `${data.quotes[randomNum].author}`
+    quoteField.textContent = `${data.quotes[randomNum].quote}`
+    authorField.textContent = `${data.quotes[randomNum].author}`
 
-//     function getRandomNumberForQuotes() {
-//       return Math.floor(Math.random() * data.quotes.length)
-//     }
+    function getRandomNumberForQuotes() {
+      return Math.floor(Math.random() * data.quotes.length)
+    }
 
-//   } catch (error) {
-//     quoteField.textContent = `Error!`
-//     authorField.textContent = `Error!`
-//   }
+  } catch (error) {
+    quoteField.textContent = `Error!`
+    authorField.textContent = `Error!`
+  }
 
 
-// }
-// changeQuote.addEventListener('click', getQuotes)
-// window.addEventListener('load', getQuotes)
+}
+changeQuote.addEventListener('click', getQuotes)
+window.addEventListener('load', getQuotes)
 
 
 
