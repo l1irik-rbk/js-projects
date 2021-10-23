@@ -119,43 +119,43 @@ slidePrev.addEventListener('click', getSlidePrev)
 slideNext.addEventListener('click', getSlideNext)
 
 
-// const weatherIcon = document.querySelector('.weather-icon')
-// const temperature = document.querySelector('.temperature')
-// const weatherDescription = document.querySelector('.weather-description')
-// const city = document.querySelector('.city')
-// const wind = document.querySelector('.wind')
-// const humidity = document.querySelector('.humidity')
-// const weatherError = document.querySelector('.weather-error')
-// let language = 'en'
+const weatherIcon = document.querySelector('.weather-icon')
+const temperature = document.querySelector('.temperature')
+const weatherDescription = document.querySelector('.weather-description')
+const city = document.querySelector('.city')
+const wind = document.querySelector('.wind')
+const humidity = document.querySelector('.humidity')
+const weatherError = document.querySelector('.weather-error')
+let language = 'en'
 
-// if (city.value === '') {
-//   city.value = 'Minsk'
-// }
+if (city.value === '') {
+  city.value = 'Minsk'
+}
 
-// async function getWeather() {
-//   const url = `https://api.openweathermap.org/data/2.5/weather?q=${city.value}&lang=${language}&appid=19edc5a868bc62fece7561f1e2461d19&units=metric`
+async function getWeather() {
+  const url = `https://api.openweathermap.org/data/2.5/weather?q=${city.value}&lang=${language}&appid=19edc5a868bc62fece7561f1e2461d19&units=metric`
   
-//   try {
-//     const res = await fetch(url)
-//     const data = await res.json()
+  try {
+    const res = await fetch(url)
+    const data = await res.json()
 
-//     weatherIcon.className = 'weather-icon owf'
-//     weatherIcon.classList.add(`owf-${data.weather[0].id}`)
-//     temperature.textContent = `${Math.floor(data.main.temp)}°C`
-//     weatherDescription.textContent = data.weather[0].description
-//     wind.textContent = `${Math.floor(data.wind.speed)} ${weatherObj[language].speed}`
-//     humidity.textContent = `${weatherObj[language].humidity}: ${Math.floor(data.main.humidity)}%`
-//     weatherError.textContent = ``
-//   } catch (error) {
-//     weatherError.textContent = `${weatherObj[language].err} '${city.value}'!`
-//     temperature.textContent = ''
-//     weatherDescription.textContent = ''
-//     wind.textContent = ''
-//     humidity.textContent = ''
-//   }
-// }
-// window.addEventListener('load', getWeather)
-// city.addEventListener('change', getWeather)
+    weatherIcon.className = 'weather-icon owf'
+    weatherIcon.classList.add(`owf-${data.weather[0].id}`)
+    temperature.textContent = `${Math.floor(data.main.temp)}°C`
+    weatherDescription.textContent = data.weather[0].description
+    wind.textContent = `${Math.floor(data.wind.speed)} ${weatherObj[language].speed}`
+    humidity.textContent = `${weatherObj[language].humidity}: ${Math.floor(data.main.humidity)}%`
+    weatherError.textContent = ``
+  } catch (error) {
+    weatherError.textContent = `${weatherObj[language].err} '${city.value}'!`
+    temperature.textContent = ''
+    weatherDescription.textContent = ''
+    wind.textContent = ''
+    humidity.textContent = ''
+  }
+}
+window.addEventListener('load', getWeather)
+city.addEventListener('change', getWeather)
 
 // const greetingTranslation = {
 //   ['en']: ['Good morning', 'Good afternoon', 'Good evening', 'Good night'],
