@@ -25,60 +25,60 @@ function showDate() {
   dateElement.textContent = `${currentDate}`
 }
 
-// function getTimeOfDay() {
-//   const date = new Date()
-//   const hours = date.getHours()
+function getTimeOfDay() {
+  const date = new Date()
+  const hours = date.getHours()
 
-//   if (hours >= 6 && hours < 12) {
-//     day = 0
-//     return 'morning'
-//   } else if (hours >= 12 && hours < 18) {
-//     day = 1
-//     return 'afternoon'
-//   } else if (hours >= 18) {
-//     day = 2
-//     return 'evening'
-//   } else if (hours < 6) {
-//     day = 3
-//     return 'night'
-//   }
-// }
+  if (hours >= 6 && hours < 12) {
+    day = 0
+    return 'morning'
+  } else if (hours >= 12 && hours < 18) {
+    day = 1
+    return 'afternoon'
+  } else if (hours >= 18) {
+    day = 2
+    return 'evening'
+  } else if (hours < 6) {
+    day = 3
+    return 'night'
+  }
+}
 
-// function showGreeting() {
-//   const timeOfDay = getTimeOfDay()
-//   const greetingText = `Good ${timeOfDay}`
-//   greeting.textContent = greetingText
-// }
-// showGreeting()
-
-
-
-// function setLocalStorage() {
-//   localStorage.setItem('name', name.value)
-//   localStorage.setItem('city', city.value)
-// }
-
-// function getLocalStorage() {
-//   if (localStorage.getItem('name')) {
-//     name.value = localStorage.getItem('name')
-//   }
-
-//   if (localStorage.getItem('city')) {
-//     city.value = localStorage.getItem('city')
-//   }
-// }
-
-// window.addEventListener('beforeunload', setLocalStorage)
-// window.addEventListener('load', getLocalStorage)
+function showGreeting() {
+  const timeOfDay = getTimeOfDay()
+  const greetingText = `Good ${timeOfDay}`
+  greeting.textContent = greetingText
+}
+showGreeting()
 
 
+
+function setLocalStorage() {
+  localStorage.setItem('name', name.value)
+  localStorage.setItem('city', city.value)
+}
+
+function getLocalStorage() {
+  if (localStorage.getItem('name')) {
+    name.value = localStorage.getItem('name')
+  }
+
+  if (localStorage.getItem('city')) {
+    city.value = localStorage.getItem('city')
+  }
+}
+
+window.addEventListener('beforeunload', setLocalStorage)
+window.addEventListener('load', getLocalStorage)
 
 
 
 
-// function getRandomNum() {
-//   return Math.ceil(Math.random() * 20)
-// }
+
+
+function getRandomNum() {
+  return Math.ceil(Math.random() * 20)
+}
 
 // function setBg() {
 //   let timeOfDay = getTimeOfDay()
