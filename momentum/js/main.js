@@ -680,6 +680,77 @@ ru.addEventListener('click', ruClick)
 gearBtn.addEventListener('click', showSettings)
 
 
+// ToDo List
+
+const todoListBtn = document.querySelector('.todo-list-btn')
+const todoListInput = document.querySelector('.todo-list-input')
+const todoListMain = document.querySelector('.todo-list-main')
+const inputImportant = document.querySelector('.input-important')
+const todoListTitle = document.querySelector('.todo-list-title')
+const todoList = document.querySelector('.todo-list')
+
+let counter = 1
+
+function addToDo() {
+  if (counter > 10) return
+  if (todoListInput.value === '') return
+
+  const divTodoListTask = document.createElement('div')
+  const todoListText = document.createElement('div')
+  const todoListBtns = document.createElement('div')
+  const todoListDone = document.createElement('div')
+  const todoListDelete = document.createElement('div')
+
+  divTodoListTask.classList.add('todo-list-task')
+
+  if (inputImportant.checked) {
+    divTodoListTask.classList.add('imporatant')
+    todoListText.textContent = todoListInput.value
+    todoListMain.prepend(divTodoListTask)
+
+  } else {
+    todoListText.textContent = todoListInput.value
+    todoListMain.append(divTodoListTask)
+  }
+
+  todoListText.classList.add('todo-list-text')
+  divTodoListTask.append(todoListText)
+
+  todoListBtns.classList.add('todo-list-btns')
+  divTodoListTask.append(todoListBtns)
+
+  todoListDone.classList.add('todo-list-done')
+  todoListDone.textContent = 'Done'
+  todoListBtns.append(todoListDone)
+
+  todoListDelete.classList.add('todo-list-delete')
+  todoListDelete.textContent = 'Delete'
+  todoListBtns.append(todoListDelete)
+
+  function deleteRow() {
+    counter--
+    divTodoListTask.remove()
+  }
+
+  function doneRow() {
+    todoListText.classList.toggle('todo-list-all-done')
+  }
+
+  todoListInput.value = ''
+  counter++
+
+  todoListDone.addEventListener('click', doneRow)
+  todoListDelete.addEventListener('click', deleteRow)
+}
+
+function toggleTodo() {
+  todoList.classList.toggle('todo-list-show')
+}
+
+todoListTitle.addEventListener('click', toggleTodo)
+todoListInput.addEventListener('change', addToDo)
+todoListBtn.addEventListener('click', addToDo)
+
 // localStorage settings
 
 function setNewLocalStorage() {

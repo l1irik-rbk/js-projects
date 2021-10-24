@@ -413,13 +413,15 @@ body {
   bottom: 90px;
   border-radius: 10px;
   padding: 10px;
-  transform: translateX(-120%);
   transition: all .5s;
   color: #000;
+  opacity: 0;
+  visibility: hidden;
 }
 
 .settings-active{
-  transform: translateX(0);
+  opacity: 1;
+  visibility: visible;
 }
 
 .settings-lang{
@@ -572,6 +574,146 @@ body {
 .tag-input::placeholder{
   font-family: 'Arial', sans-serif;
   font-size: 16px;
+}
+
+.todo-list{
+  width: 500px;
+  position: absolute;
+  background-color: #fff;
+  right: 20px;
+  bottom: 90px;
+  border-radius: 10px;
+  padding: 10px;
+  transition: all .5s;
+  color: #000;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.todo-list-show{
+  visibility: visible;
+  opacity: 1;
+}
+
+.todo-list-bottom{
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.todo-list-input{
+  display: block;
+  padding: 0;
+  margin: 0;
+  border: none;
+  font-family: 'Arial', sans-serif;
+  font-size: 16px;
+  padding: 5px;
+  border: 1px solid #000;
+  width: 100%;
+  border-radius: 5px;
+}
+
+.todo-list-btn{
+  text-align: left;
+  padding: 5px 20px; 
+  color: #fff;
+  background-color: #000;
+  border-radius: 5px;
+  margin: 5px 0;
+  cursor: pointer;
+  transition: all .3s;
+  margin-right: 10px;
+}
+
+.todo-list-btn:hover{
+  background-color: #5a5656;
+}
+
+.todo-list-task{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: left;
+  margin-bottom: 5px;
+  padding: 5px;
+  background-color: #cfbdbd;
+  border-radius: 5px;
+}
+
+.todo-list-btns{
+  display: flex;
+}
+
+.todo-list-delete,
+.todo-list-done{
+  text-align: left;
+  padding: 5px 20px; 
+  color: #fff;
+  background-color: #e14949;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all .3s;
+}
+
+.todo-list-delete:hover{
+  background-color: #8b2727;
+}
+
+.todo-list-done{
+  margin-right: 10px;
+  background-color: #35914f;
+}
+
+.todo-list-done:hover{
+  background-color: #285a36;
+}
+
+.todo-list-text{
+  display: block;
+  width: 265px;
+  height: auto;
+}
+
+.todo-list-all-done{
+  text-decoration: line-through;
+  color: gray;
+}
+
+.todo-list-bottom-btns{
+  display: flex;
+  align-items: center;
+}
+
+.todo-list-important{
+  display: flex;
+  align-items: center;
+  padding: 5px 20px;
+  background-color: #df9b1d;
+  color: #fff;
+  border-radius: 5px;
+}
+
+.todo-list-important label{
+  cursor: pointer;
+}
+
+.input-important{
+  display: inline-block;
+  padding: 5px;
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+.imporatant{
+  background-color: #ffa704;
+}
+
+.todo-list-title{
+  position: absolute;
+  right: 140px;
+  bottom: 20px;
+  cursor: pointer;
 }
 
 @media (max-width: 768px) {
