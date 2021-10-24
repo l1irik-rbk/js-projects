@@ -5,8 +5,12 @@ const name = document.querySelector('.name')
 const body = document.querySelector('body')
 const slidePrev = document.querySelector('.slide-prev')
 const slideNext = document.querySelector('.slide-next')
-let randomNumber = getRandomNum()
+const en = document.querySelector('.en')
+const ru = document.querySelector('.ru')
+let randomNumber = getRandomNum(20)
 let day = 0
+let language = 'en'
+
 
 function showTime() {
   const date = new Date()
@@ -20,9 +24,18 @@ showTime()
 
 function showDate() {
   const date = new Date()
-  const options = { weekday: 'long', month: 'long', day: 'numeric' };
-  const currentDate = date.toLocaleDateString('en-US', options);
-  dateElement.textContent = `${currentDate}`
+  let options
+  let currentDate
+
+  if (language === 'en') {
+    options = { weekday: 'long', month: 'long', day: 'numeric' };
+    currentDate = date.toLocaleDateString('en-US', options);
+    dateElement.textContent = `${currentDate}`
+  } else if (language === 'ru') {
+    options = { weekday: 'long', day: 'numeric', month: 'long' };
+    currentDate = date.toLocaleDateString('ru-RU', options);
+    dateElement.textContent = `${currentDate}`
+  }
 }
 
 function getTimeOfDay() {
@@ -76,9 +89,10 @@ window.addEventListener('load', getLocalStorage)
 
 
 
-function getRandomNum() {
-  return Math.ceil(Math.random() * 20)
+function getRandomNum(num) {
+  return Math.ceil(Math.random() * num)
 }
+
 
 function setBg() {
   let timeOfDay = getTimeOfDay()
@@ -96,27 +110,32 @@ function setBg() {
 }
 setBg()
 
-function getSlideNext() {
-  if (randomNumber < 20) {
-    randomNumber++
-  } else if (randomNumber === 20) {
-    randomNumber = 1
-  }
-  console.log(randomNumber)
-  setBg()
-}
+function changeImageGithub() {
+  function getSlideNext() {
+    if (randomNumber < 20) {
+      randomNumber++
+    } else if (randomNumber === 20) {
+      randomNumber = 1
+    }
 
-function getSlidePrev() {
-  if (randomNumber > 1) {
-    randomNumber--
-  } else if (randomNumber === 1) {
-    randomNumber = 20
+    setBg()
   }
-  console.log(randomNumber)
-  setBg()
+
+  function getSlidePrev() {
+    if (randomNumber > 1) {
+      randomNumber--
+    } else if (randomNumber === 1) {
+      randomNumber = 20
+    }
+
+    setBg()
+  }
+  slidePrev.addEventListener('click', getSlidePrev)
+  slideNext.addEventListener('click', getSlideNext)
 }
-slidePrev.addEventListener('click', getSlidePrev)
-slideNext.addEventListener('click', getSlideNext)
+changeImageGithub()
+
+
 
 
 const weatherIcon = document.querySelector('.weather-icon')
@@ -126,15 +145,15 @@ const city = document.querySelector('.city')
 const wind = document.querySelector('.wind')
 const humidity = document.querySelector('.humidity')
 const weatherError = document.querySelector('.weather-error')
-let language = 'en'
+
 
 if (city.value === '') {
   city.value = 'Minsk'
 }
 
 async function getWeather() {
-  const url = `https://api.openweathermap.org/data/2.5/weather?q=${city.value}&lang=${language}&appid=19edc5a868bc62fece7561f1e2461d19&units=metric`
-  
+  let url = `https://api.openweathermap.org/data/2.5/weather?q=${city.value}&lang=${language}&appid=19edc5a868bc62fece7561f1e2461d19&units=metric`
+
   try {
     const res = await fetch(url)
     const data = await res.json()
@@ -147,7 +166,7 @@ async function getWeather() {
     humidity.textContent = `${weatherObj[language].humidity}: ${Math.floor(data.main.humidity)}%`
     weatherError.textContent = ``
   } catch (error) {
-    weatherError.textContent = `${weatherObj[language].err} '${city.value}'!`
+    weatherError.textContent = `${weatherObj[language].error} '${city.value}'!`
     temperature.textContent = ''
     weatherDescription.textContent = ''
     wind.textContent = ''
@@ -157,28 +176,6 @@ async function getWeather() {
 window.addEventListener('load', getWeather)
 city.addEventListener('change', getWeather)
 
-// const greetingTranslation = {
-//   ['en']: ['Good morning', 'Good afternoon', 'Good evening', 'Good night'],
-//   ['ru']: ['Доброе утро', 'Добрый день', 'Добрый вечер', 'Доброй ночи'],
-// }
-
-// const weatherObj = {
-//   ['en']: {
-//     error: 'Error! Nothing to geocode for',
-//     humidity: 'Humidity',
-//     speed: 'm/s'
-//   },
-//   ['ru']: {
-//     error: 'Ошибка! Нечего геокодировать для',
-//     humidity: 'Влажность',
-//     speed: 'м/с'
-//   }
-// }
-
-// function trtanslateLang(lang = 'en') {
-//   greeting.textContent = greetingTranslation[lang][day]
-// }
-// trtanslateLang(language)
 
 
 
@@ -189,18 +186,23 @@ const quoteField = document.querySelector('.quote')
 const authorField = document.querySelector('.author')
 
 async function getQuotes() {
-  const url = 'https://gist.githubusercontent.com/nasrulhazim/54b659e43b1035215cd0ba1d4577ee80/raw/e3c6895ce42069f0ee7e991229064f167fe8ccdc/quotes.json'
+  let url
+  if (language === 'en') {
+    url = 'js/quotes_en.json'
+  } else if (language === 'ru') {
+    url = 'js/quotes_ru.json'
+  }
 
   try {
     const res = await fetch(url)
     const data = await res.json()
     let randomNum = getRandomNumberForQuotes()
 
-    quoteField.textContent = `${data.quotes[randomNum].quote}`
-    authorField.textContent = `${data.quotes[randomNum].author}`
+    quoteField.textContent = `${data[randomNum].text}`
+    authorField.textContent = `${data[randomNum].author}`
 
     function getRandomNumberForQuotes() {
-      return Math.floor(Math.random() * data.quotes.length)
+      return Math.floor(Math.random() * data.length)
     }
 
   } catch (error) {
@@ -375,3 +377,221 @@ asfasf()
 
 
 
+
+
+
+
+
+
+
+
+
+const greetingTranslation = {
+  ['en']: ['Good morning', 'Good afternoon', 'Good evening', 'Good night'],
+  ['ru']: ['Доброе утро', 'Добрый день', 'Добрый вечер', 'Доброй ночи'],
+}
+
+const weatherObj = {
+  ['en']: {
+    error: 'Error! Nothing to geocode for',
+    humidity: 'Humidity',
+    speed: 'm/s'
+  },
+  ['ru']: {
+    error: 'Ошибка! Нечего геокодировать для',
+    humidity: 'Влажность',
+    speed: 'м/с'
+  }
+}
+
+function trtanslateLang(lang = 'en') {
+  greeting.textContent = greetingTranslation[lang][day]
+}
+
+
+
+
+
+
+
+
+const gearBtn = document.querySelector('.gear')
+const settings = document.querySelector('.settings')
+
+function showSettings() {
+  settings.classList.toggle('settings-active')
+  gearBtn.classList.toggle('gear-rotate')
+}
+
+function enClick() {
+  ru.classList.remove('active-lang')
+  en.classList.add('active-lang')
+  language = 'en'
+  getWeather()
+  showDate()
+  trtanslateLang(language)
+  getQuotes()
+}
+
+function ruClick() {
+  en.classList.remove('active-lang')
+  ru.classList.add('active-lang')
+  language = 'ru'
+  getWeather()
+  showDate()
+  trtanslateLang(language)
+  getQuotes()
+}
+
+en.addEventListener('click', enClick)
+ru.addEventListener('click', ruClick)
+gearBtn.addEventListener('click', showSettings)
+
+
+
+
+const player = document.querySelector('.player')
+const weather = document.querySelector('.weather')
+const footerQuote = document.querySelector('.footer-quote')
+const greetingContainer = document.querySelector('.greeting-container')
+const timeShow = document.querySelector('.time-show')
+const timeHide = document.querySelector('.time-hide')
+const dateShow = document.querySelector('.date-show')
+const dateHide = document.querySelector('.date-hide')
+const greetingShow = document.querySelector('.greeting-show')
+const greetingHide = document.querySelector('.greeting-hide')
+const quoteShow = document.querySelector('.quote-show')
+const quoteHide = document.querySelector('.quote-hide')
+const weatherShow = document.querySelector('.weather-show')
+const weatherHide = document.querySelector('.weather-hide')
+const playerShow = document.querySelector('.player-show')
+const playerHide = document.querySelector('.player-hide')
+
+function showElement(e) {
+  if (e.target === timeShow) {
+    timeHide.classList.remove('active-show')
+    timeShow.classList.add('active-show')
+    time.classList.remove('hidden')
+  } else if (e.target === dateShow) {
+    dateHide.classList.remove('active-show')
+    dateShow.classList.add('active-show')
+    dateElement.classList.remove('hidden')
+  } else if (e.target === greetingShow) {
+    greetingHide.classList.remove('active-show')
+    greetingShow.classList.add('active-show')
+    greetingContainer.classList.remove('hidden')
+  } else if (e.target === quoteShow) {
+    quoteHide.classList.remove('active-show')
+    quoteShow.classList.add('active-show')
+    footerQuote.classList.remove('hidden')
+  } else if (e.target === weatherShow) {
+    weatherHide.classList.remove('active-show')
+    weatherShow.classList.add('active-show')
+    weather.classList.remove('hidden')
+  } else if (e.target === playerShow) {
+    playerHide.classList.remove('active-show')
+    playerShow.classList.add('active-show')
+    player.classList.remove('hidden')
+  }
+}
+
+function hideElement(e) {
+  if (e.target === timeHide) {
+    timeShow.classList.remove('active-show')
+    timeHide.classList.add('active-show')
+    time.classList.add('hidden')
+  } else if (e.target === dateHide) {
+    dateShow.classList.remove('active-show')
+    dateHide.classList.add('active-show')
+    dateElement.classList.add('hidden')
+  } else if (e.target === greetingHide) {
+    greetingShow.classList.remove('active-show')
+    greetingHide.classList.add('active-show')
+    greetingContainer.classList.add('hidden')
+  } else if (e.target === quoteHide) {
+    quoteShow.classList.remove('active-show')
+    quoteHide.classList.add('active-show')
+    footerQuote.classList.add('hidden')
+  } else if (e.target === weatherHide) {
+    weatherShow.classList.remove('active-show')
+    weatherHide.classList.add('active-show')
+    weather.classList.add('hidden')
+  } else if (e.target === playerHide) {
+    playerShow.classList.remove('active-show')
+    playerHide.classList.add('active-show')
+    player.classList.add('hidden')
+  }
+
+}
+
+timeShow.addEventListener('click', showElement)
+timeHide.addEventListener('click', hideElement)
+dateShow.addEventListener('click', showElement)
+dateHide.addEventListener('click', hideElement)
+greetingShow.addEventListener('click', showElement)
+greetingHide.addEventListener('click', hideElement)
+quoteShow.addEventListener('click', showElement)
+quoteHide.addEventListener('click', hideElement)
+weatherShow.addEventListener('click', showElement)
+weatherHide.addEventListener('click', hideElement)
+playerShow.addEventListener('click', showElement)
+playerHide.addEventListener('click', hideElement)
+
+
+const github = document.querySelector('.github')
+const unsplash = document.querySelector('.unsplash')
+const flickr = document.querySelector('.flickr')
+
+function choiceImageFrom(e) {
+  if (e.target === github) {
+    unsplash.classList.remove('photo-from-active')
+    flickr.classList.remove('photo-from-active')
+    github.classList.add('photo-from-active')
+    setBg()
+  } else if (e.target === unsplash) {
+    github.classList.remove('photo-from-active')
+    flickr.classList.remove('photo-from-active')
+    unsplash.classList.add('photo-from-active')
+    getLinkToImageUnsplah()
+  } else if (e.target === flickr) {
+    unsplash.classList.remove('photo-from-active')
+    github.classList.remove('photo-from-active')
+    flickr.classList.add('photo-from-active')
+    getLinkToImageFlickr()
+  }
+}
+
+github.addEventListener('click', choiceImageFrom)
+unsplash.addEventListener('click', choiceImageFrom)
+flickr.addEventListener('click', choiceImageFrom)
+
+
+async function getLinkToImageUnsplah() {
+  let timeOfDayUnsplah = getTimeOfDay()
+  const url = `https://api.unsplash.com/photos/random?orientation=landscape&query=${timeOfDayUnsplah}&client_id=VywgysqUDvbbK0P7RQ21ln0LJgopoS8O7LJSgX_2tyA`
+
+  try {
+    const res = await fetch(url)
+    const data = await res.json()
+    console.log(data.urls.regular)
+    body.style.backgroundImage = `url('${data.urls.regular}')`
+  } catch (error) {
+    console.log('Error!')
+  }
+
+}
+
+async function getLinkToImageFlickr() {
+  let timeOfDayFlickr = getTimeOfDay()
+  const url = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=0f15ff623f1198a1f7f52550f8c36057&tags=${timeOfDayFlickr}&extras=url_l&format=json&nojsoncallback=1`
+
+  try {
+    const res = await fetch(url)
+    const data = await res.json()
+    let randomNum = getRandomNum(data.photos.photo.length)
+    body.style.backgroundImage = `url('${data.photos.photo[randomNum].url_l}')`
+  } catch (error) {
+    console.log('Error!')
+  }
+
+}

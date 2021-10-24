@@ -71,14 +71,90 @@
     </div>
   </main>
   <footer class="footer">
-    <button class="change-quote"></button>
-    <div>
-      <div class="quote"></div>
-      <div class="author"></div>
+    <div class="gear"></div>
+    <div class="settings settings-active">
+      <div class="settings-lang">
+        <div class="settings-lang_text">Choose language</div>
+        <div class="languages">
+          <div class="en active-lang">En</div>
+          <div class="ru">Ru</div>
+        </div>
+      </div>
+
+      <div class="show">
+        <div class="show-hide show-flex">
+          <div>Show/Hide</div>
+        </div>
+
+        <div class="show-time show-flex">
+          <div>Time</div>
+          <div class="show-flex-in">
+            <div class="time-show show1 active-show">Show</div>
+            <div class="time-hide hide1">Hide</div>
+          </div>
+        </div>
+
+        <div class="show-date show-flex">
+          <div>Date</div>
+          <div class="show-flex-in">
+            <div class="date-show show1 active-show">Show</div>
+            <div class="date-hide hide1">Hide</div>
+          </div>
+        </div>
+
+        <div class="show-greeting show-flex">
+          <div>Greeting</div>
+          <div class="show-flex-in">
+            <div class="greeting-show show1 active-show">Show</div>
+            <div class="greeting-hide hide1">Hide</div>
+          </div>
+        </div>
+
+        <div class="show-quote show-flex">
+          <div>Quote</div>
+          <div class="show-flex-in">
+            <div class="quote-show show1 active-show">Show</div>
+            <div class="quote-hide hide1">Hide</div>
+          </div>
+        </div>
+
+        <div class="show-weather show-flex">
+          <div>Weather</div>
+          <div class="show-flex-in">
+            <div class="weather-show show1 active-show">Show</div>
+            <div class="weather-hide hide1">Hide</div>
+          </div>
+        </div>
+
+        <div class="show-player show-flex">
+          <div>Audo player</div>
+          <div class="show-flex-in">
+            <div class="player-show show1 active-show">Show</div>
+            <div class="player-hide hide1">Hide</div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="photo-from">
+        <div class="photo-from-title">Background image from</div>
+        <div class="photo-from-choice">
+          <div class="github photo-from-frame photo-from-active">GitHub</div>
+          <div class="unsplash photo-from-frame">Unsplash API</div>
+          <div class="flickr photo-from-frame">Flickr API</div>
+        </div>
+      </div>
+
+    </div>
+    <div class="footer-quote">
+      <button class="change-quote"></button>
+      <div>
+        <div class="quote"></div>
+        <div class="author"></div>
+      </div>
     </div>
   </footer>
   <script type="module" src="js/main.js"></script>
-  <!-- <script type="module" src="js/audio.js"></script> -->
 </body>
 
 </html>
