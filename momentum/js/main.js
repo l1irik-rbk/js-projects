@@ -1,3 +1,5 @@
+// Time and date
+
 const time = document.querySelector('.time')
 const dateElement = document.querySelector('.date')
 const greeting = document.querySelector('.greeting')
@@ -38,6 +40,9 @@ function showDate() {
   }
 }
 
+
+// Greeting
+
 function getTimeOfDay() {
   const date = new Date()
   const hours = date.getHours()
@@ -65,6 +70,7 @@ function showGreeting() {
 showGreeting()
 
 
+// localStorage name, sity
 
 function setLocalStorage() {
   localStorage.setItem('name', name.value)
@@ -85,14 +91,11 @@ window.addEventListener('beforeunload', setLocalStorage)
 window.addEventListener('load', getLocalStorage)
 
 
-
-
-
+// Bg from github
 
 function getRandomNum(num) {
   return Math.ceil(Math.random() * num)
 }
-
 
 function setBg() {
   let timeOfDay = getTimeOfDay()
@@ -108,9 +111,8 @@ function setBg() {
     body.style.backgroundImage = `url('https://raw.githubusercontent.com/rolling-scopes-school/stage1-tasks/assets/images/${timeOfDay}/${bgNum}.jpg')`
   }
 }
-setBg()
 
-function changeImageGithub() {
+function changeImage() {
   function getSlideNext() {
     if (randomNumber < 20) {
       randomNumber++
@@ -118,7 +120,14 @@ function changeImageGithub() {
       randomNumber = 1
     }
 
-    setBg()
+    if (github.classList.contains('photo-from-active')) {
+      setBg()
+    } else if (unsplash.classList.contains('photo-from-active')) {
+      getLinkToImageUnsplah()
+    } else if (flickr.classList.contains('photo-from-active')) {
+      getLinkToImageFlickr()
+    }
+
   }
 
   function getSlidePrev() {
@@ -128,15 +137,20 @@ function changeImageGithub() {
       randomNumber = 20
     }
 
-    setBg()
+    if (github.classList.contains('photo-from-active')) {
+      setBg()
+    } else if (unsplash.classList.contains('photo-from-active')) {
+      getLinkToImageUnsplah()
+    } else if (flickr.classList.contains('photo-from-active')) {
+      getLinkToImageFlickr()
+    }
   }
   slidePrev.addEventListener('click', getSlidePrev)
   slideNext.addEventListener('click', getSlideNext)
 }
-changeImageGithub()
 
 
-
+// Weather
 
 const weatherIcon = document.querySelector('.weather-icon')
 const temperature = document.querySelector('.temperature')
@@ -177,9 +191,7 @@ window.addEventListener('load', getWeather)
 city.addEventListener('change', getWeather)
 
 
-
-
-
+// Quotes
 
 const changeQuote = document.querySelector('.change-quote')
 const quoteField = document.querySelector('.quote')
@@ -216,11 +228,10 @@ changeQuote.addEventListener('click', getQuotes)
 window.addEventListener('load', getQuotes)
 
 
-
-
+// Player
 
 import playList from './playList.js'
-function asfasf() {
+function audioPlayer() {
   const playPrevBtn = document.querySelector('.play-prev')
   const play = document.querySelector('.play')
   const playNextBtn = document.querySelector('.play-next')
@@ -303,16 +314,11 @@ function asfasf() {
 
   const list = document.querySelectorAll('.play-item')
 
-
-
-
   audio.addEventListener('ended', playNext)
   playPrevBtn.addEventListener('click', playPrev)
   playNextBtn.addEventListener('click', playNext)
   play.addEventListener('click', playAudio)
   play.addEventListener('click', toggleBtn)
-
-
 
 
   const length = document.querySelector('.length')
@@ -373,82 +379,10 @@ function asfasf() {
   timeline.addEventListener('click', changeTime)
   volumeLine.addEventListener('click', changeVolume)
 }
-asfasf()
+audioPlayer()
 
 
-
-
-
-
-
-
-
-
-
-
-const greetingTranslation = {
-  ['en']: ['Good morning', 'Good afternoon', 'Good evening', 'Good night'],
-  ['ru']: ['Доброе утро', 'Добрый день', 'Добрый вечер', 'Доброй ночи'],
-}
-
-const weatherObj = {
-  ['en']: {
-    error: 'Error! Nothing to geocode for',
-    humidity: 'Humidity',
-    speed: 'm/s'
-  },
-  ['ru']: {
-    error: 'Ошибка! Нечего геокодировать для',
-    humidity: 'Влажность',
-    speed: 'м/с'
-  }
-}
-
-function trtanslateLang(lang = 'en') {
-  greeting.textContent = greetingTranslation[lang][day]
-}
-
-
-
-
-
-
-
-
-const gearBtn = document.querySelector('.gear')
-const settings = document.querySelector('.settings')
-
-function showSettings() {
-  settings.classList.toggle('settings-active')
-  gearBtn.classList.toggle('gear-rotate')
-}
-
-function enClick() {
-  ru.classList.remove('active-lang')
-  en.classList.add('active-lang')
-  language = 'en'
-  getWeather()
-  showDate()
-  trtanslateLang(language)
-  getQuotes()
-}
-
-function ruClick() {
-  en.classList.remove('active-lang')
-  ru.classList.add('active-lang')
-  language = 'ru'
-  getWeather()
-  showDate()
-  trtanslateLang(language)
-  getQuotes()
-}
-
-en.addEventListener('click', enClick)
-ru.addEventListener('click', ruClick)
-gearBtn.addEventListener('click', showSettings)
-
-
-
+// Setting show/hide
 
 const player = document.querySelector('.player')
 const weather = document.querySelector('.weather')
@@ -466,6 +400,16 @@ const weatherShow = document.querySelector('.weather-show')
 const weatherHide = document.querySelector('.weather-hide')
 const playerShow = document.querySelector('.player-show')
 const playerHide = document.querySelector('.player-hide')
+const settingsLangText = document.querySelector('.settings-lang_text')
+const showHideText = document.querySelector('.show-hide-text')
+const showTimeText = document.querySelector('.show-time-text')
+const showDateText = document.querySelector('.show-date-text')
+const showGreetingText = document.querySelector('.show-greeting-text')
+const showQuoteText = document.querySelector('.show-quote-text')
+const showWeatherText = document.querySelector('.show-weather-text')
+const showPlayerText = document.querySelector('.show-player-text')
+const photoFromTitle = document.querySelector('.photo-from-title')
+const tagTitle = document.querySelector('.tag-title')
 
 function showElement(e) {
   if (e.target === timeShow) {
@@ -521,7 +465,6 @@ function hideElement(e) {
     playerHide.classList.add('active-show')
     player.classList.add('hidden')
   }
-
 }
 
 timeShow.addEventListener('click', showElement)
@@ -538,26 +481,33 @@ playerShow.addEventListener('click', showElement)
 playerHide.addEventListener('click', hideElement)
 
 
+// Unsplah, Flickr
+
 const github = document.querySelector('.github')
 const unsplash = document.querySelector('.unsplash')
 const flickr = document.querySelector('.flickr')
+const tagInput = document.querySelector('.tag-input')
 
 function choiceImageFrom(e) {
+  console.log(e.target)
   if (e.target === github) {
     unsplash.classList.remove('photo-from-active')
     flickr.classList.remove('photo-from-active')
     github.classList.add('photo-from-active')
     setBg()
+    changeImage()
   } else if (e.target === unsplash) {
     github.classList.remove('photo-from-active')
     flickr.classList.remove('photo-from-active')
     unsplash.classList.add('photo-from-active')
     getLinkToImageUnsplah()
+    changeImage()
   } else if (e.target === flickr) {
     unsplash.classList.remove('photo-from-active')
     github.classList.remove('photo-from-active')
     flickr.classList.add('photo-from-active')
     getLinkToImageFlickr()
+    changeImage()
   }
 }
 
@@ -565,16 +515,22 @@ github.addEventListener('click', choiceImageFrom)
 unsplash.addEventListener('click', choiceImageFrom)
 flickr.addEventListener('click', choiceImageFrom)
 
-
 async function getLinkToImageUnsplah() {
+  let url
+  let input = tagInput.value
   let timeOfDayUnsplah = getTimeOfDay()
-  const url = `https://api.unsplash.com/photos/random?orientation=landscape&query=${timeOfDayUnsplah}&client_id=VywgysqUDvbbK0P7RQ21ln0LJgopoS8O7LJSgX_2tyA`
+
+  if (input) {
+    url = `https://api.unsplash.com/photos/random?orientation=landscape&query=${tagInput.value}&client_id=_hLfdnF5tYP0XnH5dq5krK8I3WW72RPxCOq9--51urI`
+  } else if (!input) {
+    url = `https://api.unsplash.com/photos/random?orientation=landscape&query=${timeOfDayUnsplah}&client_id=_hLfdnF5tYP0XnH5dq5krK8I3WW72RPxCOq9--51urI`
+  }
 
   try {
     const res = await fetch(url)
     const data = await res.json()
-    console.log(data.urls.regular)
     body.style.backgroundImage = `url('${data.urls.regular}')`
+
   } catch (error) {
     console.log('Error!')
   }
@@ -582,16 +538,294 @@ async function getLinkToImageUnsplah() {
 }
 
 async function getLinkToImageFlickr() {
+  let url
   let timeOfDayFlickr = getTimeOfDay()
-  const url = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=0f15ff623f1198a1f7f52550f8c36057&tags=${timeOfDayFlickr}&extras=url_l&format=json&nojsoncallback=1`
+  let input = tagInput.value
+
+  if (input) {
+    url = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=0f15ff623f1198a1f7f52550f8c36057&tags=${input}&extras=url_l&format=json&nojsoncallback=1`
+  } else if (!input) {
+    url = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=0f15ff623f1198a1f7f52550f8c36057&tags=${timeOfDayFlickr}&extras=url_l&format=json&nojsoncallback=1`
+  }
 
   try {
     const res = await fetch(url)
     const data = await res.json()
     let randomNum = getRandomNum(data.photos.photo.length)
     body.style.backgroundImage = `url('${data.photos.photo[randomNum].url_l}')`
+
   } catch (error) {
     console.log('Error!')
   }
 
 }
+
+
+// Language
+
+const greetingTranslation = {
+  ['en']: ['Good morning', 'Good afternoon', 'Good evening', 'Good night'],
+  ['ru']: ['Доброе утро', 'Добрый день', 'Добрый вечер', 'Доброй ночи'],
+}
+
+const weatherObj = {
+  ['en']: {
+    error: 'Error! Nothing to geocode for',
+    humidity: 'Humidity',
+    speed: 'm/s'
+  },
+  ['ru']: {
+    error: 'Ошибка! Нечего геокодировать для',
+    humidity: 'Влажность',
+    speed: 'м/с'
+  }
+}
+
+const settingsObj = {
+  ['en']: {
+    show: 'Show',
+    hide: 'Hide',
+    lang: 'Choose language',
+    showHide: 'Show/Hide',
+    time: 'Time',
+    date: 'Date',
+    greeting: 'Greeting',
+    quote: 'Quote',
+    weather: 'Weather',
+    player: 'Audo player',
+    bgInmg: 'Background image from',
+    tag: 'Enter your tag for API',
+    tagPlaceholder: '[Enter tag]',
+    cityPlaceholder: '[Enter sity]',
+    namePlaceholder: '[Enter name]',
+  },
+  ['ru']: {
+    show: 'Показать',
+    hide: 'Спрятать',
+    lang: 'Выберите язык',
+    showHide: 'Показать/Спрятать',
+    time: 'Время',
+    date: 'Дата',
+    greeting: 'Приветствие',
+    quote: 'Цитата',
+    weather: 'Погода',
+    player: 'Аудио проигрыватель',
+    bgInmg: 'Фон страницы',
+    tag: 'Введите ваш тег для API',
+    tagPlaceholder: '[Введите тег]',
+    cityPlaceholder: '[Введите город]',
+    namePlaceholder: '[Введите имя]',
+  }
+}
+
+function trtanslateLang(lang = 'en') {
+  greeting.textContent = greetingTranslation[lang][day]
+  timeShow.textContent = settingsObj[lang].show
+  timeHide.textContent = settingsObj[lang].hide
+  dateShow.textContent = settingsObj[lang].show
+  dateHide.textContent = settingsObj[lang].hide
+  greetingShow.textContent = settingsObj[lang].show
+  greetingHide.textContent = settingsObj[lang].hide
+  quoteShow.textContent = settingsObj[lang].show
+  quoteHide.textContent = settingsObj[lang].hide
+  weatherShow.textContent = settingsObj[lang].show
+  weatherHide.textContent = settingsObj[lang].hide
+  playerShow.textContent = settingsObj[lang].show
+  playerHide.textContent = settingsObj[lang].hide
+  settingsLangText.textContent = settingsObj[lang].lang
+  showHideText.textContent = settingsObj[lang].showHide
+  showTimeText.textContent = settingsObj[lang].time
+  showDateText.textContent = settingsObj[lang].date
+  showGreetingText.textContent = settingsObj[lang].greeting
+  showQuoteText.textContent = settingsObj[lang].quote
+  showWeatherText.textContent = settingsObj[lang].weather
+  showPlayerText.textContent = settingsObj[lang].player
+  photoFromTitle.textContent = settingsObj[lang].bgInmg
+  tagTitle.textContent = settingsObj[lang].tag
+  tagInput.placeholder = settingsObj[lang].tagPlaceholder
+  name.placeholder = settingsObj[lang].namePlaceholder
+  city.placeholder = settingsObj[lang].cityPlaceholder
+}
+
+const gearBtn = document.querySelector('.gear')
+const settings = document.querySelector('.settings')
+
+function showSettings() {
+  settings.classList.toggle('settings-active')
+  gearBtn.classList.toggle('gear-rotate')
+}
+
+function enClick() {
+  ru.classList.remove('active-lang')
+  en.classList.add('active-lang')
+  language = 'en'
+  getWeather()
+  showDate()
+  trtanslateLang(language)
+  getQuotes()
+}
+
+function ruClick() {
+  en.classList.remove('active-lang')
+  ru.classList.add('active-lang')
+  language = 'ru'
+  getWeather()
+  showDate()
+  trtanslateLang(language)
+  getQuotes()
+}
+
+en.addEventListener('click', enClick)
+ru.addEventListener('click', ruClick)
+gearBtn.addEventListener('click', showSettings)
+
+
+// localStorage settings
+
+function setNewLocalStorage() {
+  localStorage.setItem('tag', tagInput.value)
+  localStorage.setItem('ru', ru.classList.contains('active-lang'))
+  localStorage.setItem('en', en.classList.contains('active-lang'))
+  localStorage.setItem('weatherDescription', weatherDescription.textContent)
+  localStorage.setItem('github', github.classList.contains('photo-from-active'))
+  localStorage.setItem('unsplash', unsplash.classList.contains('photo-from-active'))
+  localStorage.setItem('flickr', flickr.classList.contains('photo-from-active'))
+  localStorage.setItem('timeShow', timeShow.classList.contains('active-show'))
+  localStorage.setItem('timeHide', timeHide.classList.contains('active-show'))
+  localStorage.setItem('dateShow', dateShow.classList.contains('active-show'))
+  localStorage.setItem('dateHide', dateHide.classList.contains('active-show'))
+  localStorage.setItem('greetingShow', greetingShow.classList.contains('active-show'))
+  localStorage.setItem('greetingHide', greetingHide.classList.contains('active-show'))
+  localStorage.setItem('quoteShow', quoteShow.classList.contains('active-show'))
+  localStorage.setItem('quoteHide', quoteHide.classList.contains('active-show'))
+  localStorage.setItem('weatherShow', weatherShow.classList.contains('active-show'))
+  localStorage.setItem('weatherHide', weatherHide.classList.contains('active-show'))
+  localStorage.setItem('playerShow', playerShow.classList.contains('active-show'))
+  localStorage.setItem('playerHide', playerHide.classList.contains('active-show'))
+}
+
+function getNewLocalStorage() {
+  if (localStorage.getItem('tag')) {
+    tagInput.value = localStorage.getItem('tag')
+  }
+
+  if (localStorage.ru === 'true') {
+    ruClick()
+  }
+
+  if (localStorage.en === 'true') {
+    enClick()
+  }
+
+  if (localStorage.timeShow === 'true') {
+    time.style.transition = 'all .8s'
+    timeHide.classList.remove('active-show')
+    timeShow.classList.add('active-show')
+    time.classList.remove('hidden')
+  }
+
+  if (localStorage.timeHide === 'true') {
+    time.style.transition = 'all 0s'
+    timeShow.classList.remove('active-show')
+    timeHide.classList.add('active-show')
+    time.classList.add('hidden')
+  }
+
+  if (localStorage.dateShow === 'true') {
+    dateElement.style.transition = 'all .8s'
+    dateHide.classList.remove('active-show')
+    dateShow.classList.add('active-show')
+    dateElement.classList.remove('hidden')
+  }
+
+  if (localStorage.dateHide === 'true') {
+    dateElement.style.transition = 'all 0s'
+    dateShow.classList.remove('active-show')
+    dateHide.classList.add('active-show')
+    dateElement.classList.add('hidden')
+  }
+
+  if (localStorage.greetingShow === 'true') {
+    greetingContainer.style.transition = 'all .8s'
+    greetingHide.classList.remove('active-show')
+    greetingShow.classList.add('active-show')
+    greetingContainer.classList.remove('hidden')
+  }
+
+  if (localStorage.greetingHide === 'true') {
+    greetingContainer.style.transition = 'all 0s'
+    greetingShow.classList.remove('active-show')
+    greetingHide.classList.add('active-show')
+    greetingContainer.classList.add('hidden')
+  }
+
+  if (localStorage.quoteShow === 'true') {
+    footerQuote.style.transition = 'all .8s'
+    quoteHide.classList.remove('active-show')
+    quoteShow.classList.add('active-show')
+    footerQuote.classList.remove('hidden')
+  }
+
+  if (localStorage.quoteHide === 'true') {
+    footerQuote.style.transition = 'all 0s'
+    quoteShow.classList.remove('active-show')
+    quoteHide.classList.add('active-show')
+    footerQuote.classList.add('hidden')
+  }
+
+  if (localStorage.weatherShow === 'true') {
+    weather.style.transition = 'all .8s'
+    weatherHide.classList.remove('active-show')
+    weatherShow.classList.add('active-show')
+    weather.classList.remove('hidden')
+  }
+
+  if (localStorage.weatherHide === 'true') {
+    weather.style.transition = 'all 0s'
+    weatherShow.classList.remove('active-show')
+    weatherHide.classList.add('active-show')
+    weather.classList.add('hidden')
+  }
+
+  if (localStorage.playerShow === 'true') {
+    player.style.transition = 'all .8s'
+    playerHide.classList.remove('active-show')
+    playerShow.classList.add('active-show')
+    player.classList.remove('hidden')
+  }
+
+  if (localStorage.playerHide === 'true') {
+    player.style.transition = 'all 0s'
+    playerShow.classList.remove('active-show')
+    playerHide.classList.add('active-show')
+    player.classList.add('hidden')
+  }
+
+  if (localStorage.github === 'true') {
+    setBg()
+    changeImage()
+    github.classList.add('photo-from-active')
+    unsplash.classList.remove('photo-from-active')
+    flickr.classList.remove('photo-from-active')
+  }
+
+  if (localStorage.unsplash === 'true') {
+    getLinkToImageUnsplah()
+    changeImage()
+    github.classList.remove('photo-from-active')
+    unsplash.classList.add('photo-from-active')
+    flickr.classList.remove('photo-from-active')
+  }
+
+  if (localStorage.flickr === 'true') {
+    getLinkToImageFlickr()
+    changeImage()
+    github.classList.remove('photo-from-active')
+    unsplash.classList.remove('photo-from-active')
+    flickr.classList.add('photo-from-active')
+  }
+
+}
+
+window.addEventListener('beforeunload', setNewLocalStorage)
+window.addEventListener('load', getNewLocalStorage)
