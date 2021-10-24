@@ -344,9 +344,8 @@ body {
 
 .footer {
   display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: center;
+  justify-content: space-between;
+  align-items: flex-end;
   width: 100%;
   height: 30vh;
   min-height: 160px;  
@@ -354,19 +353,37 @@ body {
   position: relative;
 }
 
+.footer-school img,
+.footer-school a{
+  display: block;
+ 
+}
+
+.footer-school img{
+  background-size: 80px 40px;
+  width: 80px;
+  height: 40px;
+}
+
 .footer-quote{
   transition: all .8s;
 }
 
+.footer-git-link{
+  display: block;
+  text-decoration: none;
+  color: #fff;
+  font-size: 20px;
+  opacity: .8s;
+  margin-bottom: 10px;
+}
+
 .gear{
-  position: absolute;
   background-image: url('../assets/svg/shesternya.svg');
   background-repeat: no-repeat;
   background-size: cover;
   width: 40px;
   height: 40px;
-  left: 20px;
-  bottom: 20px;
   cursor: pointer;
   transition: all .3s;
 }
@@ -390,7 +407,6 @@ body {
 
 .settings{
   width: 500px;
-  height: 500px;
   position: absolute;
   background-color: #fff;
   left: 20px;
@@ -535,7 +551,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 5px 0;
+  padding-top: 5px;
 }
 
 .tag-title{
