@@ -410,6 +410,9 @@ const showWeatherText = document.querySelector('.show-weather-text')
 const showPlayerText = document.querySelector('.show-player-text')
 const photoFromTitle = document.querySelector('.photo-from-title')
 const tagTitle = document.querySelector('.tag-title')
+const todoShow = document.querySelector('.todo-show')
+const todoHide = document.querySelector('.todo-hide')
+const showTodoText = document.querySelector('.show-todo-text')
 
 function showElement(e) {
   if (e.target === timeShow) {
@@ -436,6 +439,11 @@ function showElement(e) {
     playerHide.classList.remove('active-show')
     playerShow.classList.add('active-show')
     player.classList.remove('hidden')
+  } else if (e.target === todoShow) {
+    todoHide.classList.remove('active-show')
+    todoShow.classList.add('active-show')
+    todoList.classList.add('todo-list-show')
+    todoListTitle.classList.remove('hidden')
   }
 }
 
@@ -464,6 +472,11 @@ function hideElement(e) {
     playerShow.classList.remove('active-show')
     playerHide.classList.add('active-show')
     player.classList.add('hidden')
+  } else if (e.target === todoHide) {
+    todoShow.classList.remove('active-show')
+    todoHide.classList.add('active-show')
+    todoList.classList.remove('todo-list-show')
+    todoListTitle.classList.add('hidden')
   }
 }
 
@@ -479,7 +492,8 @@ weatherShow.addEventListener('click', showElement)
 weatherHide.addEventListener('click', hideElement)
 playerShow.addEventListener('click', showElement)
 playerHide.addEventListener('click', hideElement)
-
+todoShow.addEventListener('click', showElement)
+todoHide.addEventListener('click', hideElement)
 
 // Unsplah, Flickr
 
@@ -561,6 +575,78 @@ async function getLinkToImageFlickr() {
 }
 
 
+// ToDo List
+
+const todoListBtn = document.querySelector('.todo-list-btn')
+const todoListInput = document.querySelector('.todo-list-input')
+const todoListMain = document.querySelector('.todo-list-main')
+const inputImportant = document.querySelector('.input-important')
+const todoListTitle = document.querySelector('.todo-list-title')
+const todoList = document.querySelector('.todo-list')
+const label = document.querySelector('.todo-list-important label')
+
+let counter = 1
+
+function addToDo() {
+  if (counter > 10) return
+  if (todoListInput.value === '') return
+
+  const divTodoListTask = document.createElement('div')
+  const todoListText = document.createElement('div')
+  const todoListBtns = document.createElement('div')
+  const todoListDone = document.createElement('div')
+  const todoListDelete = document.createElement('div')
+
+  divTodoListTask.classList.add('todo-list-task')
+
+  if (inputImportant.checked) {
+    divTodoListTask.classList.add('imporatant')
+    todoListText.textContent = todoListInput.value
+    todoListMain.prepend(divTodoListTask)
+
+  } else {
+    todoListText.textContent = todoListInput.value
+    todoListMain.append(divTodoListTask)
+  }
+
+  todoListText.classList.add('todo-list-text')
+  divTodoListTask.append(todoListText)
+
+  todoListBtns.classList.add('todo-list-btns')
+  divTodoListTask.append(todoListBtns)
+
+  todoListDone.classList.add('todo-list-done')
+  todoListDone.textContent = settingsObj[language].done
+  todoListBtns.append(todoListDone)
+
+  todoListDelete.classList.add('todo-list-delete')
+  todoListDelete.textContent = settingsObj[language].delte
+  todoListBtns.append(todoListDelete)
+
+  function deleteRow() {
+    counter--
+    divTodoListTask.remove()
+  }
+
+  function doneRow() {
+    todoListText.classList.toggle('todo-list-all-done')
+  }
+
+  todoListInput.value = ''
+  counter++
+
+  todoListDone.addEventListener('click', doneRow)
+  todoListDelete.addEventListener('click', deleteRow)
+}
+
+function toggleTodo() {
+  todoList.classList.toggle('todo-list-show')
+}
+
+todoListTitle.addEventListener('click', toggleTodo)
+todoListBtn.addEventListener('click', addToDo)
+
+
 // Language
 
 const greetingTranslation = {
@@ -598,6 +684,11 @@ const settingsObj = {
     tagPlaceholder: '[Enter tag]',
     cityPlaceholder: '[Enter sity]',
     namePlaceholder: '[Enter name]',
+    todoText: 'ToDo List',
+    todoListBtn: 'Add',
+    label: 'Important',
+    done: 'Done',
+    delte: 'Delete',
   },
   ['ru']: {
     show: 'Показать',
@@ -615,6 +706,11 @@ const settingsObj = {
     tagPlaceholder: '[Введите тег]',
     cityPlaceholder: '[Введите город]',
     namePlaceholder: '[Введите имя]',
+    todoText: 'Список дел',
+    todoListBtn: 'Добавить',
+    label: 'Важно',
+    done: 'Выполнено',
+    delte: 'Удалить',
   }
 }
 
@@ -632,6 +728,8 @@ function trtanslateLang(lang = 'en') {
   weatherHide.textContent = settingsObj[lang].hide
   playerShow.textContent = settingsObj[lang].show
   playerHide.textContent = settingsObj[lang].hide
+  todoShow.textContent = settingsObj[lang].show
+  todoHide.textContent = settingsObj[lang].hide
   settingsLangText.textContent = settingsObj[lang].lang
   showHideText.textContent = settingsObj[lang].showHide
   showTimeText.textContent = settingsObj[lang].time
@@ -645,6 +743,15 @@ function trtanslateLang(lang = 'en') {
   tagInput.placeholder = settingsObj[lang].tagPlaceholder
   name.placeholder = settingsObj[lang].namePlaceholder
   city.placeholder = settingsObj[lang].cityPlaceholder
+  showTodoText.textContent = settingsObj[lang].todoText
+  todoListTitle.textContent = settingsObj[lang].todoText
+  todoListBtn.textContent = settingsObj[lang].todoListBtn
+  label.textContent = settingsObj[lang].label
+
+  const todoListDones = document.querySelectorAll('.todo-list-done')
+  const todoListDeletes = document.querySelectorAll('.todo-list-delete')
+  todoListDones.forEach(todoListDone => todoListDone.textContent = settingsObj[lang].done)
+  todoListDeletes.forEach(todoListDelete => todoListDelete.textContent = settingsObj[lang].delte)
 }
 
 const gearBtn = document.querySelector('.gear')
@@ -680,77 +787,6 @@ ru.addEventListener('click', ruClick)
 gearBtn.addEventListener('click', showSettings)
 
 
-// ToDo List
-
-const todoListBtn = document.querySelector('.todo-list-btn')
-const todoListInput = document.querySelector('.todo-list-input')
-const todoListMain = document.querySelector('.todo-list-main')
-const inputImportant = document.querySelector('.input-important')
-const todoListTitle = document.querySelector('.todo-list-title')
-const todoList = document.querySelector('.todo-list')
-
-let counter = 1
-
-function addToDo() {
-  if (counter > 10) return
-  if (todoListInput.value === '') return
-
-  const divTodoListTask = document.createElement('div')
-  const todoListText = document.createElement('div')
-  const todoListBtns = document.createElement('div')
-  const todoListDone = document.createElement('div')
-  const todoListDelete = document.createElement('div')
-
-  divTodoListTask.classList.add('todo-list-task')
-
-  if (inputImportant.checked) {
-    divTodoListTask.classList.add('imporatant')
-    todoListText.textContent = todoListInput.value
-    todoListMain.prepend(divTodoListTask)
-
-  } else {
-    todoListText.textContent = todoListInput.value
-    todoListMain.append(divTodoListTask)
-  }
-
-  todoListText.classList.add('todo-list-text')
-  divTodoListTask.append(todoListText)
-
-  todoListBtns.classList.add('todo-list-btns')
-  divTodoListTask.append(todoListBtns)
-
-  todoListDone.classList.add('todo-list-done')
-  todoListDone.textContent = 'Done'
-  todoListBtns.append(todoListDone)
-
-  todoListDelete.classList.add('todo-list-delete')
-  todoListDelete.textContent = 'Delete'
-  todoListBtns.append(todoListDelete)
-
-  function deleteRow() {
-    counter--
-    divTodoListTask.remove()
-  }
-
-  function doneRow() {
-    todoListText.classList.toggle('todo-list-all-done')
-  }
-
-  todoListInput.value = ''
-  counter++
-
-  todoListDone.addEventListener('click', doneRow)
-  todoListDelete.addEventListener('click', deleteRow)
-}
-
-function toggleTodo() {
-  todoList.classList.toggle('todo-list-show')
-}
-
-todoListTitle.addEventListener('click', toggleTodo)
-todoListInput.addEventListener('change', addToDo)
-todoListBtn.addEventListener('click', addToDo)
-
 // localStorage settings
 
 function setNewLocalStorage() {
@@ -773,6 +809,7 @@ function setNewLocalStorage() {
   localStorage.setItem('weatherHide', weatherHide.classList.contains('active-show'))
   localStorage.setItem('playerShow', playerShow.classList.contains('active-show'))
   localStorage.setItem('playerHide', playerHide.classList.contains('active-show'))
+  localStorage.setItem('todo', playerHide.classList.contains('active-show'))
 }
 
 function getNewLocalStorage() {
@@ -895,7 +932,6 @@ function getNewLocalStorage() {
     unsplash.classList.remove('photo-from-active')
     flickr.classList.add('photo-from-active')
   }
-
 }
 
 window.addEventListener('beforeunload', setNewLocalStorage)
