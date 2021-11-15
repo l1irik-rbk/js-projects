@@ -18,6 +18,10 @@ button{
   display: block;
 }
 
+li{
+  list-style: none;
+}
+
 body{
   font-family: 'Montserrat', sans-serif;
   font-weight: 500;
@@ -26,8 +30,6 @@ body{
   letter-spacing: -0.62766px;
   color: #fff;
 }
-
-
 
 .wrapper{
   background-image: url('../assets/images/bg.jpg');
@@ -168,13 +170,42 @@ body{
 }
 
 .category__img{
-  /* background-image: url('../assets/images/test.jpg'); */
+  background-image: url('../assets/images/test.jpg');
   background-repeat: no-repeat;
   background-position: center 30%;
   width: 825px;
   height: 498px;
   border-radius: 22px;
   margin-bottom: 40px;
+  position: relative;
+}
+
+.points{
+  position: absolute;
+  display: flex;
+  text-align: center;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.point{
+  background-color: #C4C4C4;
+  border-radius: 50%;
+  width: 15px;
+  height: 15px;
+}
+
+.point + .point{
+  margin-left: 20px;
+}
+
+.point__correct{
+  background-color: #3DDA69;
+}
+
+.point__wrong{
+  background-color: #FFBCA2;
 }
 
 .category__answers{
@@ -225,7 +256,7 @@ body{
 
 .popup__answer,
 .popup__final{
-  display: none;
+  display: block;
   position: fixed;
   width: 100%;
   height: 100%;
@@ -233,11 +264,6 @@ body{
   top: 0;
   left: 0;
 }
-
-.popup__final{
-  background-color: rgba(0, 0, 0, 1);
-}
-
 
 .popup--active{
   display: block;
@@ -361,19 +387,19 @@ body{
   border: 1.5px solid #FFBCA2;
 }
 
-
-
-
-
-
-
-
-
-.artis__quiz{
+.popup{
   display: none;
 }
 
-.pictures__quiz{
+
+
+
+
+.quiz__questions{
+  display: none;
+}
+
+.quiz{
   display: none;
 }
 
@@ -439,7 +465,7 @@ body{
   row-gap: 48px;
 }
 
-.quiz__categorie{
+.quiz__category{
   display: flex;
   flex-direction: column;
   max-width: 195px;
@@ -447,23 +473,25 @@ body{
   cursor: pointer;
 }
 
-.quiz__categorie:nth-child(6n){
+.quiz__category:nth-child(6n){
   margin-right: 0;
 }
 
-.quiz__categorie-top{
+.quiz__category-top{
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 10px;
 }
 
-.quiz__categorie-score{
+.quiz__category-score{
   color: #FFBCA2;
 }
 
-.quiz__categorie-img{
-  background-image: url('../assets/images/cat-test.jpg');
+.quiz__category-img{
+  /* background-image: url('../assets/images/cat-test.jpg'); */
+  background-size: 110%;
+  background-repeat: no-repeat;
   width: 195px;
   height: 206px;
   border-radius: 24px;

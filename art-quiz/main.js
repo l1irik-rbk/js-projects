@@ -1,126 +1,299 @@
-// class mainPage {
-//   constructor() {
-//     this.mainPpageArtistsBtn = document.querySelector('.main__page-quiz__artists')
-//     this.mainPpagePicturesBtn = document.querySelector('.main__page-quiz__pictures')
-//     this.wrapper = document.querySelector('.wrapper')
-//     this.mainPageElement = document.querySelector('.main__page')
-//     this.artisQuiz = document.querySelector('.artis__quiz')
-//     this.picturesQuiz = document.querySelector('.pictures__quiz')
-//     this.categorie = ''
+class mainPage {
+  constructor() {
+    this.mainPpageArtistsBtn = document.querySelector('.main__page-quiz__artists')
+    this.mainPpagePicturesBtn = document.querySelector('.main__page-quiz__pictures')
+    this.wrapper = document.querySelector('.wrapper')
+    this.mainPageElement = document.querySelector('.main__page')
+    this.artisQuiz = document.querySelector('.artis__quiz')
+    this.picturesQuiz = document.querySelector('.pictures__quiz')
+    this.isArtist = false
 
-//     this.headerHomeBtn = document.querySelector(`.${this.categorie}__quiz .quiz__header-home__btn`)
-//     this.headerHomeBtn.addEventListener('click', this.goHome.bind(this))
+    // this.headerHomeBtn = document.querySelector(`.quiz__header-home__btn`)
+    // this.headerHomeBtn.addEventListener('click', this.goHome.bind(this))
 
-//     this.mainPpageArtistsBtn.addEventListener('click', this.switchCategorie.bind(this))
-//     this.mainPpagePicturesBtn.addEventListener('click', this.switchCategorie.bind(this))
-//   }
+    this.mainPpageArtistsBtn.addEventListener('click', this.switchCategorie.bind(this))
+    this.mainPpagePicturesBtn.addEventListener('click', this.switchCategorie.bind(this))
+  }
 
-//   switchCategorie(e) {
-//     if (e.target === this.mainPpageArtistsBtn) {
-//       this.wrapper.classList.add('wrapper__bg')
-//       this.mainPageElement.classList.remove('active')
-//       this.artisQuiz.classList.add('active')
-//       this.categorie = e.target.textContent.toLowerCase().split(' ')[0]
-//     } else if (e.target === this.mainPpagePicturesBtn) {
-//       this.wrapper.classList.add('wrapper__bg')
-//       this.mainPageElement.classList.remove('active')
-//       this.picturesQuiz.classList.add('active')
-//       this.categorie = e.target.textContent.toLowerCase().split(' ')[0]
-//     }
-//   }
+  switchCategorie(e) {
+
+    if (e.target === this.mainPpageArtistsBtn) {
+      this.wrapper.classList.add('wrapper__bg')
+      this.mainPageElement.classList.remove('active')
+      this.isArtist = true
+      new Category(this.isArtist).setCategory()
+
+    } else if (e.target === this.mainPpagePicturesBtn) {
+      this.wrapper.classList.add('wrapper__bg')
+      this.mainPageElement.classList.remove('active')
+      this.isArtist = false
+      new Category(this.isArtist).setCategory()
+    }
+  }
 
 
-//   goHome(e) {
-//     if (e.target === this.headerHomeBtn) {
-//       this.wrapper.classList.remove('wrapper__bg')
-//       this.mainPageElement.classList.add('active')
-//       this.artisQuiz.classList.remove('active')
-//       this.picturesQuiz.classList.remove('active')
-//     }
-//   }
-// }
+  // goHome(e) {
+  //   if (e.target === this.headerHomeBtn) {
+  //     this.wrapper.classList.remove('wrapper__bg')
+  //     this.mainPageElement.classList.add('active')
+  //     this.artisQuiz.classList.remove('active')
+  //     this.picturesQuiz.classList.remove('active')
+  //   }
+  // }
+}
 // new mainPage()
 
-// class Categorie{
-//   constructor(categorie) {
-//     this.categorie = new mainPage(categorie)
-//     this.headerHomeBtn = document.querySelector(`.${this.categorie}__quiz .quiz__header-home__btn`)
-//     console.log(this.categorie)
-//     this.headerHomeBtn.addEventListener('click', this.goHome.bind(this))
-//   }
 
-//   goHome(e) {
-//     if (e.target === this.headerHomeBtn) {
-//       this.wrapper.classList.remove('wrapper__bg')
-//       this.mainPageElement.classList.add('active')
-//       this.artisQuiz.classList.remove('active')
-//       this.picturesQuiz.classList.remove('active')
-//     }
-//   }
+class Category {
+  constructor(isArtist) {
+    this.quiz = document.querySelector('.quiz')
+    this.isArtist = true
+  }
 
-// }
-// // console.log(new Categorie())
-// new Categorie()
+  async setCategory() {
+    this.quiz.classList.add('active')
 
+    let quizTitle
 
+    if (this.isArtist) {
+      quizTitle = 'Artist quiz'
+    } else {
+      quizTitle = 'Pictures quiz'
+    }
 
+    this.quiz.innerHTML = `
+    <div class="new__quiz">
+          <div class="container">
+            <div class="quiz-wrapper">
+              <div class="quiz__header">
+                <div class="quiz__header-wrapper">
+                  <div class="quiz__header-logo"><img class="quiz__logo-img" src="assets/svg/new-logo.svg" alt="logo">
+                  </div>
+                  <div class="quiz__header-home__btn">Home</div>
+                  <div class="quiz__header-categories">Categories</div>
+                </div>
+                <div class="quiz__header-settings"></div>
+              </div>
+              <h2 class="quiz__title">${quizTitle}</h2>
+              <ul class="quiz__categories">
+                <li class="quiz__category">
+                  <div class="quiz__category-top">
+                    <div class="quiz__category-header">Realism</div>
+                    <div class="quiz__category-score"> <span class="quiz__category-counter">0</span>/10</div>
+                  </div>
+                  <div class="quiz__category-img">
+                    <div class="quiz__reload">
+                      <img class="quiz__reload-img" src="assets/svg/reload.svg" alt="reload">
+                      <div class="quiz__reload-text">Play again</div>
+                    </div>
+                  </div>
+                </li>
 
+                <li class="quiz__category">
+                  <div class="quiz__category-top">
+                    <div class="quiz__category-header">Impressionism</div>
+                    <div class="quiz__category-score"> <span class="quiz__category-counter">0</span>/10</div>
+                  </div>
+                  <div class="quiz__category-img">
+                    <div class="quiz__reload">
+                      <img class="quiz__reload-img" src="assets/svg/reload.svg" alt="reload">
+                      <div class="quiz__reload-text">Play again</div>
+                    </div>
+                  </div>
+                </li>
 
+                <li class="quiz__category">
+                  <div class="quiz__category-top">
+                    <div class="quiz__category-header">Religion</div>
+                    <div class="quiz__category-score"> <span class="quiz__category-counter">0</span>/10</div>
+                  </div>
+                  <div class="quiz__category-img">
+                    <div class="quiz__reload">
+                      <img class="quiz__reload-img" src="assets/svg/reload.svg" alt="reload">
+                      <div class="quiz__reload-text">Play again</div>
+                    </div>
+                  </div>
+                </li>
 
+                <li class="quiz__category">
+                  <div class="quiz__category-top">
+                    <div class="quiz__category-header">Portrait</div>
+                    <div class="quiz__category-score"> <span class="quiz__category-counter">0</span>/10</div>
+                  </div>
+                  <div class="quiz__category-img">
+                    <div class="quiz__reload">
+                      <img class="quiz__reload-img" src="assets/svg/reload.svg" alt="reload">
+                      <div class="quiz__reload-text">Play again</div>
+                    </div>
+                  </div>
+                </li>
 
+                <li class="quiz__category">
+                  <div class="quiz__category-top">
+                    <div class="quiz__category-header">Renaissance</div>
+                    <div class="quiz__category-score"> <span class="quiz__category-counter">0</span>/10</div>
+                  </div>
+                  <div class="quiz__category-img">
+                    <div class="quiz__reload">
+                      <img class="quiz__reload-img" src="assets/svg/reload.svg" alt="reload">
+                      <div class="quiz__reload-text">Play again</div>
+                    </div>
+                  </div>
+                </li>
 
+                <li class="quiz__category">
+                  <div class="quiz__category-top">
+                    <div class="quiz__category-header">Painting</div>
+                    <div class="quiz__category-score"> <span class="quiz__category-counter">0</span>/10</div>
+                  </div>
+                  <div class="quiz__category-img">
+                    <div class="quiz__reload">
+                      <img class="quiz__reload-img" src="assets/svg/reload.svg" alt="reload">
+                      <div class="quiz__reload-text">Play again</div>
+                    </div>
+                  </div>
+                </li>
 
+                <li class="quiz__category">
+                  <div class="quiz__category-top">
+                    <div class="quiz__category-header">Landscape</div>
+                    <div class="quiz__category-score"> <span class="quiz__category-counter">0</span>/10</div>
+                  </div>
+                  <div class="quiz__category-img">
+                    <div class="quiz__reload">
+                      <img class="quiz__reload-img" src="assets/svg/reload.svg" alt="reload">
+                      <div class="quiz__reload-text">Play again</div>
+                    </div>
+                  </div>
+                </li>
 
+                <li class="quiz__category">
+                  <div class="quiz__category-top">
+                    <div class="quiz__category-header">Marine</div>
+                    <div class="quiz__category-score"> <span class="quiz__category-counter">0</span>/10</div>
+                  </div>
+                  <div class="quiz__category-img">
+                    <div class="quiz__reload">
+                      <img class="quiz__reload-img" src="assets/svg/reload.svg" alt="reload">
+                      <div class="quiz__reload-text">Play again</div>
+                    </div>
+                  </div>
+                </li>
 
+                <li class="quiz__category">
+                  <div class="quiz__category-top">
+                    <div class="quiz__category-header">Avant-garde</div>
+                    <div class="quiz__category-score"> <span class="quiz__category-counter">0</span>/10</div>
+                  </div>
+                  <div class="quiz__category-img">
+                    <div class="quiz__reload">
+                      <img class="quiz__reload-img" src="assets/svg/reload.svg" alt="reload">
+                      <div class="quiz__reload-text">Play again</div>
+                    </div>
+                  </div>
+                </li>
 
-// const mainPpageArtistsBtn = document.querySelector('.main__page-quiz__artists')
-// const mainPpagePicturesBtn = document.querySelector('.main__page-quiz__pictures')
-// const wrapper = document.querySelector('.wrapper')
-// const mainPageElement = document.querySelector('.main__page')
-// const artisQuiz = document.querySelector('.artis__quiz')
-// const picturesQuiz = document.querySelector('.pictures__quiz')
+                <li class="quiz__category">
+                  <div class="quiz__category-top">
+                    <div class="quiz__category-header">Surrealism</div>
+                    <div class="quiz__category-score"> <span class="quiz__category-counter">0</span>/10</div>
+                  </div>
+                  <div class="quiz__category-img">
+                    <div class="quiz__reload">
+                      <img class="quiz__reload-img" src="assets/svg/reload.svg" alt="reload">
+                      <div class="quiz__reload-text">Play again</div>
+                    </div>
+                  </div>
+                </li>
 
-// let category = ''
+                <li class="quiz__category">
+                  <div class="quiz__category-top">
+                    <div class="quiz__category-header">Romanticism</div>
+                    <div class="quiz__category-score"> <span class="quiz__category-counter">0</span>/10</div>
+                  </div>
+                  <div class="quiz__category-img">
+                    <div class="quiz__reload">
+                      <div src="assets/svg/reload.svg" alt="reload">
+                        <div class="quiz__reload-text">Play again</div>
+                      </div>
+                    </div>
+                </li>
 
-// function switchCategorie(e) {
-//   if (e.target === mainPpageArtistsBtn) {
-//     wrapper.classList.add('wrapper__bg')
-//     mainPageElement.classList.remove('active')
-//     artisQuiz.classList.add('active')
-//     category = e.target.textContent.toLowerCase().split(' ')[0]
-//   } else if (e.target === mainPpagePicturesBtn) {
-//     wrapper.classList.add('wrapper__bg')
-//     mainPageElement.classList.remove('active')
-//     picturesQuiz.classList.add('active')
-//     category = e.target.textContent.toLowerCase().split(' ')[0]
-//   }
-// }
+                <li class="quiz__category">
+                  <div class="quiz__category-top">
+                    <div class="quiz__category-header">Expressionism</div>
+                    <div class="quiz__category-score"> <span class="quiz__category-counter">0</span>/10</div>
+                  </div>
+                  <div class="quiz__category-img">
+                    <div class="quiz__reload">
+                      <img class="quiz__reload-img" src="assets/svg/reload.svg" alt="reload">
+                      <div class="quiz__reload-text">Play again</div>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+    `
 
-// mainPpageArtistsBtn.addEventListener('click', switchCategorie)
-// mainPpagePicturesBtn.addEventListener('click', switchCategorie)
+    const quizCategories = document.querySelectorAll('.quiz__category')
+    const quizCategoryImg = document.querySelectorAll('.quiz__category-img')
 
-// function newCategory() {
-//   // console.log(category)
-//   // const headerHomeBtn = document.querySelector(`.${category}__quiz .quiz__header-home__btn`)
-//   const headerHomeBtn = document.querySelector(`.quiz__header-home__btn`)
-//   headerHomeBtn.addEventListener('click', goHome) 
+    let numArr = await this.getPictures()
 
-//   function goHome(e) {
-//     if (e.target === headerHomeBtn) {
-//       wrapper.classList.remove('wrapper__bg')
-//       mainPageElement.classList.add('active')
-//       artisQuiz.classList.remove('active')
-//       picturesQuiz.classList.remove('active')
-//     }
-//   }
-// // }
-// newCategory()
+    for (let i = 0; i < numArr.length; i++) {
+      quizCategoryImg[i].style.backgroundImage = `url('assets/image-data/img/${numArr[i]}.jpg')`
+    }
 
+    quizCategories.forEach(quizCategory => {
+      quizCategory.addEventListener('click', (e) => {
+        if (e.currentTarget === quizCategory) {
+          let raund = quizCategory.querySelector('.quiz__category-header').textContent.toLowerCase()
+          new Question(raund, this.isArtist, 0).setQuestion()
+          this.quiz.classList.remove('active')
+        }
 
+      })
+    })
+  }
 
+  async getPictures() {
+    const res = await fetch('data.json')
+    const data = await res.json()
+    let categories = []
+    let numArr = []
 
+    data.forEach(el => {
+      if (!categories.includes(el.category)) {
+        categories.push(el.category)
+      }
+    })
 
+    if (this.isArtist) {
+      for (let i = 0; i < categories.length; i++) {
+        for (let j = data.length / 2; j < data.length; j++) {
+          if (categories[i] === data[j].category) {
+            numArr.push(data[j].imageNum)
+            break
+          }
+        }
+      }
+    } else {
+      for (let i = 0; i < categories.length; i++) {
+        for (let j = data.length - 1; j > 0; j--) {
+          if (categories[i] === data[j].category) {
+            numArr.push(data[j].imageNum)
+            break
+          }
+        }
+      }
+    }
 
+    return numArr
+  }
+}
+new Category().setCategory()
 
 
 
@@ -129,39 +302,43 @@
 
 
 class Question {
-  constructor(category) {
+  constructor(category, isArtist, counter) {
     this.category = category
     this.questions = document.querySelector('.quiz__questions')
-    this.popup = document.querySelector('.popup__answer')
-    this.popupNextBtn = document.querySelector('.popup__answer-next')
-    this.popupAnswerImg = document.querySelector('.popup__answer-img')
-    this.popupAnswerResult = document.querySelector('.popup__answer-img__result')
-    this.popupAnswerTitle = document.querySelector('.popup__answer-title')
-    this.popupAnswerAuthor = document.querySelector('.popup__answer-author')
-    this.popupAnswerYear = document.querySelector('.popup__answer-year')
-    this.popupFinal = document.querySelector('.popup__final')
-    this.popupChangedScore = document.querySelector('.popup__change-score')
-    this.counter = 0
+    this.quizQuestions = document.querySelector('.quiz__questions')
+    this.isArtist = isArtist
+    this.counter = counter
     this.score = 0
-
-    this.popupNextBtn.addEventListener('click', this.setQuestion.bind(this))
   }
 
   async setQuestion() {
     try {
-
-
       const authorsArr = await this.getRandomAutors()
       const raundObj = await this.getRaund()
       let countAuthorsArr = 0
-      console.log(raundObj)
+
+      this.quizQuestions.classList.add('active')
+      
       this.questions.innerHTML = `
           <div class="quiz__pictures-category">
           <div class="container">
             <div class="category">
               <div class="line"></div>
               <div class="category__question">Кто автор этой картины?</div>
-              <div class="category__img" ></div>
+              <div class="category__img">
+                <ul class="points">
+                    <li class="point"></li>
+                    <li class="point"></li>
+                    <li class="point"></li>
+                    <li class="point"></li>
+                    <li class="point"></li>
+                    <li class="point"></li>
+                    <li class="point"></li>
+                    <li class="point"></li>
+                    <li class="point"></li>
+                    <li class="point"></li>
+                  </ul>
+              </div>
               <div class="category__answers">
                 <div class="category__answer" id="a1"></div>
                 <div class="category__answer" id="a2"></div>
@@ -174,49 +351,35 @@ class Question {
       `
       const categoryImg = document.querySelector('.category__img')
       const answers = [document.querySelector('#a1'), document.querySelector('#a2'), document.querySelector('#a3'), document.querySelector('#a4')]
+      const points = document.querySelectorAll('.point')
+
+      for (let i = 0; i < pointsArr.length; i++) {
+        points[i].classList.add(pointsArr[i])
+      }
 
       categoryImg.style.backgroundImage = `url('assets/image-data/full/${raundObj.imageNum}full.jpg')`
-      this.counter++
 
       answers.forEach(answer => {
         answer.textContent = authorsArr[countAuthorsArr++]
         answer.addEventListener('click', (e) => {
-          this.popupAnswerImg.style.backgroundImage = `url('assets/image-data/img/${raundObj.imageNum}.jpg')`
-          this.popupAnswerTitle.textContent = raundObj.name
-          this.popupAnswerAuthor.textContent = raundObj.author
-          this.popupAnswerYear.textContent = raundObj.year
-          this.popup.classList.add('popup--active')
-
           if (e.target === answer && e.target.textContent === raundObj.author) {
-            answer.classList.add('correct-answer')
-            this.popupAnswerResult.style.backgroundImage = `url('assets/svg/true.svg')`
             this.score++
+            answer.classList.add('correct-answer')
+            pointsArr.push('point__correct')
+            points[this.counter].classList.add('point__correct')
+            new Popup(this.score, raundObj, true, this.category, this.isArtist, this.counter, this.quizQuestions).setPopup()
           } else {
             answer.classList.add('wrong-answer')
-            this.popupAnswerResult.style.backgroundImage = `url('assets/svg/false.svg')`
+            pointsArr.push('point__wrong')
+            points[this.counter].classList.add('point__wrong')
+            new Popup(this.score, raundObj, false, this.category, this.isArtist, this.counter, this.quizQuestions).setPopup()
           }
-
-          if (this.counter === 10) {
-            this.popupNextBtn.addEventListener('click', this.showFinalPopup.bind(this))
-            this.counter--
-            // this.popupNextBtn = document.querySelector('.popup__next-btn').addEventListener('click', () => {
-            //   this.popupFinal.classList.remove('popup--active')
-            // })
-          }
-          console.log(this.score)
-          console.log(this.counter)
         })
       })
-
-      this.popup.classList.remove('popup--active')
+      console.log(this.counter)
     } catch (error) {
       console.log(error)
     }
-  }
-
-  showFinalPopup() {
-    this.popupFinal.classList.add('popup--active')
-    this.popupChangedScore.textContent = this.score 
   }
 
   async getData() {
@@ -236,6 +399,7 @@ class Question {
       if (this.counter === 10) {
         this.counter = 0
         this.score = 0
+        this.pointsAnswers = []
       }
 
       const data = await this.getData()
@@ -289,8 +453,100 @@ class Question {
 
   }
 }
-let asd = new Question('portrait')
-asd.setQuestion()
+
+let pointsArr = []
+
+
+class Popup {
+  constructor(score, raundObj, marker, category, isArtist, counter, quizQuestions) {
+    this.popup = document.querySelector('.popup')
+    this.score = score
+    this.raundObj = raundObj
+    this.marker = marker
+    this.counter = counter
+    this.category = category
+    this.isArtist = isArtist
+    this.quizQuestions = quizQuestions
+  }
+
+  setPopup() {
+    this.popup.classList.add('active')
+    this.counter++
+
+    this.popup.innerHTML = `
+        <div class="popup__answer">
+          <div class="popup__container">
+            <div class="popup__content">
+              <div class="popup__answer-img">
+                <div class="popup__answer-img__result"></div>
+              </div>
+              <div class="popup__answer-wrapper">
+                <div class="popup__answer-title"></div>
+                <div class="popup__answer-text"><span class="popup__answer-author"></span>, <span
+                    class="popup__answer-year"></span></div>
+              </div>
+              <div class="popup__answer-next">Next</div>
+            </div>
+          </div>
+        </div>
+      `
+
+    const popupNextBtn = document.querySelector('.popup__answer-next')
+    const popupAnswerImg = document.querySelector('.popup__answer-img')
+    const popupAnswerResult = document.querySelector('.popup__answer-img__result')
+    const popupAnswerTitle = document.querySelector('.popup__answer-title')
+    const popupAnswerAuthor = document.querySelector('.popup__answer-author')
+    const popupAnswerYear = document.querySelector('.popup__answer-year')
+
+    if (this.marker) {
+      popupAnswerResult.style.backgroundImage = `url('assets/svg/true.svg')`
+    } else {
+      popupAnswerResult.style.backgroundImage = `url('assets/svg/false.svg')`
+    }
+
+    popupAnswerImg.style.backgroundImage = `url('assets/image-data/img/${this.raundObj.imageNum}.jpg')`
+    popupAnswerTitle.textContent = this.raundObj.name
+    popupAnswerAuthor.textContent = this.raundObj.author
+    popupAnswerYear.textContent = this.raundObj.year
+    
+    if (this.counter < 10) {
+      popupNextBtn.addEventListener('click', () => {
+        this.popup.classList.remove('active')
+        new Question(this.category, this.isArtist, this.counter).setQuestion()
+      })
+    } else {
+      popupNextBtn.addEventListener('click', () => {
+        this.popup.innerHTML = `
+          <div class="popup__final">
+            <div class="popup__container">
+              <div class="popup__content">
+                <div class="popup__final-img"></div>
+                <div class="popup__final-text">Congratulations!</div>
+                <div class="popup__final-score"><span class="popup__change-score">0</span>/10</div>
+                <div class="popup__buttons">
+                  <button class="popup__final-btn popup__home-btn">Home</button>
+                  <button class="popup__final-btn popup__next-btn">Next Quiz</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        `
+
+        const popupChangedScore = document.querySelector('.popup__change-score')
+        const popupNextQuizBtn = document.querySelector('.popup__next-btn')
+
+        popupChangedScore.textContent = this.score
+        popupNextQuizBtn.addEventListener('click', () => {
+          this.quizQuestions.classList.remove('active')
+          this.popup.classList.remove('active')
+          new Category(this.isArtist).setCategory()
+        })
+        
+      })
+    }
+
+  }
+}
 
 
 
@@ -301,81 +557,26 @@ asd.setQuestion()
 
 
 
-// const categoryImg = document.querySelector('.category__img')
-// const categoryAnswer = document.querySelectorAll('.category__answers .category__answer')
-// const answer1 = document.querySelector('#a1')
-// const answer2 = document.querySelector('#a2')
-// const answer3 = document.querySelector('#a3')
-// const answer4 = document.querySelector('#a4')
-
-// const category = 'portrait'
-
-// const result = ''
-
-// async function setQuestion(category) {
-//   const authorsArr = []
-//   const res = await fetch('data.json')
-//   const data = await res.json()
-
-//   const arrСategory = data.filter(pic => pic.category === category)
 
 
-//   const imageNum = arrСategory[0].imageNum
-//   const imageAuthor = arrСategory[0].author
-//   // const imageNum = 127
-//   categoryImg.style.backgroundImage = `url('assets/image-data/full/${imageNum}full.jpg')`
 
+// const answers = [
+//   null, null
+// ]
 
-//   let counter = 0
+// function setLocalStorage() {
+//   localStorage.setItem('answers', answers)
+// }
+// window.addEventListener('beforeunload', setLocalStorage)
 
-//   for (let i = 0; i < 4 + counter; i++) {
-//     let randomAuthor = data[getRandomNumber(data.length)].author
-
-//     if (!authorsArr.includes(randomAuthor)) {
-//       authorsArr.push(randomAuthor)
-//     } else {
-//       counter++
-//     }
+// function getLocalStorage() {
+//   if (localStorage.getItem('answers')) {
+//     console.log('adsdas')
 //   }
-//   authorsArr[getRandomNumber(authorsArr.length)] = imageAuthor
-//   console.log(authorsArr)
-
-//   answer1.textContent = authorsArr[0]
-//   answer2.textContent = authorsArr[1]
-//   answer3.textContent = authorsArr[2]
-//   answer4.textContent = authorsArr[3]
 // }
-
-// setQuestion(category)
-
-
-// categoryAnswer.forEach(answer => answer.addEventListener('click', ))
-
-
-
-// function popup() {
-
-// }
-
-
-
+// window.addEventListener('load', getLocalStorage)
 
 function getRandomNumber(num) {
   return Math.floor(Math.random() * num)
 }
-// console.log(getRandomNumber(2))
-
-
-// console.log('portrait', 29)
-// console.log('realism', 24)
-// console.log('renaissance', 45)
-// console.log('impressionism', 16)
-// console.log('painting', 24)
-// console.log('landscape', 19)
-// console.log('marine', 10)
-// console.log('avant-garde', 11)
-// console.log('surrealism', 10)
-// console.log('romanticism', 17)
-// console.log('expressionism', 19)
-// console.log('religion', 16)
 
