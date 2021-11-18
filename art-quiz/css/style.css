@@ -32,14 +32,15 @@ body{
 }
 
 .wrapper{
-  background-image: url('../assets/images/bg.jpg');
+  /* background-image: url('../assets/images/bg.jpg');
   background-repeat: no-repeat;
   background-position: center bottom;
-  height: 100vh;
-  background-color: #010101;
+  height: 100vh;*/
+  background-color: #010101; 
   display: flex;
   justify-content: space-between;
   flex-direction: column;
+  position: relative;
 }
 
 .container{
@@ -49,6 +50,11 @@ body{
 }
 
 .main__page{
+  background-image: url('../assets/images/bg.jpg');
+  background-repeat: no-repeat;
+  background-position: center top;
+  height: 100vh;
+  background-color: #010101;
   display: none;
 }
 
@@ -83,6 +89,12 @@ body{
   width: 440px;
   height: 164px;
   margin-bottom: 165px;
+}
+
+.quiz,
+.quiz__questions,
+.result{
+  height: 100vh;
 }
 
 .main__page-quiz{
@@ -120,13 +132,20 @@ body{
   margin-right: 40px;
 }
 
+.footer{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
 .footer__wrapper{
   display: flex;
   align-items: center;
   justify-content: space-between;
   max-width: 1520px;
-  padding: 30px 80px 18px 80px;
-  margin: 0 auto; 
+  padding: 30px 80px;
+  margin: 0 auto;
 }
 
 .footer__container{
@@ -135,10 +154,13 @@ body{
   align-items: center;
 }
 
+.footer__school-link{
+  display: block;
+}
+
 .footer__year{
   padding-left: 60px;
 }
-
 
 .wrapper__bg{
   background-image: none;
@@ -541,9 +563,9 @@ body{
   display: none;
 }
 
-
-
-
+.result{
+  display: none;
+}
 
 .result__header{
   display: flex;
