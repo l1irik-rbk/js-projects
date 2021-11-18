@@ -1,5 +1,29 @@
+let answersArr = [
+  [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [],
+]
+
+function setLocalStorage() {
+  localStorage.setItem('answers', JSON.stringify(answersArr))
+}
+window.addEventListener('beforeunload', setLocalStorage)
+
+function getLocalStorage() {
+  if (localStorage.getItem('answers')) {
+    answersArr = JSON.parse(localStorage.getItem('answers'))
+    console.log(answersArr)
+  }
+}
+window.addEventListener('load', getLocalStorage)
+getLocalStorage()
+
+
+
+
+
 class mainPage {
   constructor() {
+    this.mainPage = document.querySelector('.main__page')
+    
     this.mainPpageArtistsBtn = document.querySelector('.main__page-quiz__artists')
     this.mainPpagePicturesBtn = document.querySelector('.main__page-quiz__pictures')
     this.wrapper = document.querySelector('.wrapper')
@@ -7,47 +31,40 @@ class mainPage {
     this.artisQuiz = document.querySelector('.artis__quiz')
     this.picturesQuiz = document.querySelector('.pictures__quiz')
     this.isArtist = false
+    this.counter = 0
 
-    // this.headerHomeBtn = document.querySelector(`.quiz__header-home__btn`)
-    // this.headerHomeBtn.addEventListener('click', this.goHome.bind(this))
 
     this.mainPpageArtistsBtn.addEventListener('click', this.switchCategorie.bind(this))
     this.mainPpagePicturesBtn.addEventListener('click', this.switchCategorie.bind(this))
   }
 
   switchCategorie(e) {
-
     if (e.target === this.mainPpageArtistsBtn) {
       this.wrapper.classList.add('wrapper__bg')
       this.mainPageElement.classList.remove('active')
       this.isArtist = true
-      new Category(this.isArtist).setCategory()
+      new Category(this.isArtist, this.counter).setCategory()
 
     } else if (e.target === this.mainPpagePicturesBtn) {
       this.wrapper.classList.add('wrapper__bg')
       this.mainPageElement.classList.remove('active')
       this.isArtist = false
-      new Category(this.isArtist).setCategory()
+      new Category(this.isArtist, this.counter).setCategory()
     }
   }
-
-
-  // goHome(e) {
-  //   if (e.target === this.headerHomeBtn) {
-  //     this.wrapper.classList.remove('wrapper__bg')
-  //     this.mainPageElement.classList.add('active')
-  //     this.artisQuiz.classList.remove('active')
-  //     this.picturesQuiz.classList.remove('active')
-  //   }
-  // }
 }
-// new mainPage()
+new mainPage()
+
+
+
+
 
 
 class Category {
-  constructor(isArtist) {
+  constructor(isArtist, counter) {
     this.quiz = document.querySelector('.quiz')
-    this.isArtist = true
+    this.isArtist = isArtist
+    this.counter = counter
   }
 
   async setCategory() {
@@ -76,158 +93,145 @@ class Category {
               </div>
               <h2 class="quiz__title">${quizTitle}</h2>
               <ul class="quiz__categories">
-                <li class="quiz__category">
+                <li class="quiz__category" id="0">
                   <div class="quiz__category-top">
                     <div class="quiz__category-header">Realism</div>
                     <div class="quiz__category-score"> <span class="quiz__category-counter">0</span>/10</div>
                   </div>
                   <div class="quiz__category-img">
-                    <div class="quiz__reload">
-                      <img class="quiz__reload-img" src="assets/svg/reload.svg" alt="reload">
-                      <div class="quiz__reload-text">Play again</div>
+                    <div class="quiz__reload hidden">
+                      <div class="quiz__reload-text">SCORE</div>
                     </div>
                   </div>
                 </li>
 
-                <li class="quiz__category">
+                <li class="quiz__category" id="1">
                   <div class="quiz__category-top">
                     <div class="quiz__category-header">Impressionism</div>
                     <div class="quiz__category-score"> <span class="quiz__category-counter">0</span>/10</div>
                   </div>
                   <div class="quiz__category-img">
-                    <div class="quiz__reload">
-                      <img class="quiz__reload-img" src="assets/svg/reload.svg" alt="reload">
-                      <div class="quiz__reload-text">Play again</div>
+                    <div class="quiz__reload hidden">
+                      <div class="quiz__reload-text">SCORE</div>
                     </div>
                   </div>
                 </li>
 
-                <li class="quiz__category">
+                <li class="quiz__category" id="2">
                   <div class="quiz__category-top">
                     <div class="quiz__category-header">Religion</div>
                     <div class="quiz__category-score"> <span class="quiz__category-counter">0</span>/10</div>
                   </div>
                   <div class="quiz__category-img">
-                    <div class="quiz__reload">
-                      <img class="quiz__reload-img" src="assets/svg/reload.svg" alt="reload">
-                      <div class="quiz__reload-text">Play again</div>
+                    <div class="quiz__reload hidden">
+                      <div class="quiz__reload-text">SCORE</div>
                     </div>
                   </div>
                 </li>
 
-                <li class="quiz__category">
+                <li class="quiz__category" id="3">
                   <div class="quiz__category-top">
                     <div class="quiz__category-header">Portrait</div>
                     <div class="quiz__category-score"> <span class="quiz__category-counter">0</span>/10</div>
                   </div>
                   <div class="quiz__category-img">
-                    <div class="quiz__reload">
-                      <img class="quiz__reload-img" src="assets/svg/reload.svg" alt="reload">
-                      <div class="quiz__reload-text">Play again</div>
+                    <div class="quiz__reload hidden">
+                      <div class="quiz__reload-text">SCORE</div>
                     </div>
                   </div>
                 </li>
 
-                <li class="quiz__category">
+                <li class="quiz__category" id="4">
                   <div class="quiz__category-top">
                     <div class="quiz__category-header">Renaissance</div>
                     <div class="quiz__category-score"> <span class="quiz__category-counter">0</span>/10</div>
                   </div>
                   <div class="quiz__category-img">
-                    <div class="quiz__reload">
-                      <img class="quiz__reload-img" src="assets/svg/reload.svg" alt="reload">
-                      <div class="quiz__reload-text">Play again</div>
+                    <div class="quiz__reload hidden">
+                      <div class="quiz__reload-text">SCORE</div>
                     </div>
                   </div>
                 </li>
 
-                <li class="quiz__category">
+                <li class="quiz__category" id="5">
                   <div class="quiz__category-top">
                     <div class="quiz__category-header">Painting</div>
                     <div class="quiz__category-score"> <span class="quiz__category-counter">0</span>/10</div>
                   </div>
                   <div class="quiz__category-img">
-                    <div class="quiz__reload">
-                      <img class="quiz__reload-img" src="assets/svg/reload.svg" alt="reload">
-                      <div class="quiz__reload-text">Play again</div>
+                    <div class="quiz__reload hidden">
+                      <div class="quiz__reload-text">SCORE</div>
                     </div>
                   </div>
                 </li>
 
-                <li class="quiz__category">
+                <li class="quiz__category" id="6">
                   <div class="quiz__category-top">
                     <div class="quiz__category-header">Landscape</div>
                     <div class="quiz__category-score"> <span class="quiz__category-counter">0</span>/10</div>
                   </div>
                   <div class="quiz__category-img">
-                    <div class="quiz__reload">
-                      <img class="quiz__reload-img" src="assets/svg/reload.svg" alt="reload">
-                      <div class="quiz__reload-text">Play again</div>
+                    <div class="quiz__reload hidden">
+                      <div class="quiz__reload-text">SCORE</div>
                     </div>
                   </div>
                 </li>
 
-                <li class="quiz__category">
+                <li class="quiz__category" id="7">
                   <div class="quiz__category-top">
                     <div class="quiz__category-header">Marine</div>
                     <div class="quiz__category-score"> <span class="quiz__category-counter">0</span>/10</div>
                   </div>
                   <div class="quiz__category-img">
-                    <div class="quiz__reload">
-                      <img class="quiz__reload-img" src="assets/svg/reload.svg" alt="reload">
-                      <div class="quiz__reload-text">Play again</div>
+                    <div class="quiz__reload hidden">
+                      <div class="quiz__reload-text">SCORE</div>
                     </div>
                   </div>
                 </li>
 
-                <li class="quiz__category">
+                <li class="quiz__category" id="8">
                   <div class="quiz__category-top">
                     <div class="quiz__category-header">Avant-garde</div>
                     <div class="quiz__category-score"> <span class="quiz__category-counter">0</span>/10</div>
                   </div>
                   <div class="quiz__category-img">
-                    <div class="quiz__reload">
-                      <img class="quiz__reload-img" src="assets/svg/reload.svg" alt="reload">
-                      <div class="quiz__reload-text">Play again</div>
+                    <div class="quiz__reload hidden">
+                      <div class="quiz__reload-text">SCORE</div>
                     </div>
                   </div>
                 </li>
 
-                <li class="quiz__category">
+                <li class="quiz__category" id="9">
                   <div class="quiz__category-top">
                     <div class="quiz__category-header">Surrealism</div>
-                    <div class="quiz__category-score"> <span class="quiz__category-counter">0</span>/10</div>
+                    <div class="quiz__category-score"><span class="quiz__category-counter">0</span>/10</div>
                   </div>
                   <div class="quiz__category-img">
-                    <div class="quiz__reload">
-                      <img class="quiz__reload-img" src="assets/svg/reload.svg" alt="reload">
-                      <div class="quiz__reload-text">Play again</div>
+                    <div class="quiz__reload hidden">
+                      <div class="quiz__reload-text">SCORE</div>
                     </div>
                   </div>
                 </li>
 
-                <li class="quiz__category">
+                <li class="quiz__category" id="10">
                   <div class="quiz__category-top">
-                    <div class="quiz__category-header">Romanticism</div>
-                    <div class="quiz__category-score"> <span class="quiz__category-counter">0</span>/10</div>
+                    <div class="quiz__category-header">Surrealism</div>
+                    <div class="quiz__category-score"><span class="quiz__category-counter">0</span>/10</div>
                   </div>
                   <div class="quiz__category-img">
-                    <div class="quiz__reload">
-                      <div src="assets/svg/reload.svg" alt="reload">
-                        <div class="quiz__reload-text">Play again</div>
-                      </div>
+                    <div class="quiz__reload hidden">
+                      <div class="quiz__reload-text">SCORE</div>
                     </div>
                 </li>
 
-                <li class="quiz__category">
+                <li class="quiz__category" id="11">
                   <div class="quiz__category-top">
                     <div class="quiz__category-header">Expressionism</div>
-                    <div class="quiz__category-score"> <span class="quiz__category-counter">0</span>/10</div>
+                    <div class="quiz__category-score"><span class="quiz__category-counter">0</span>/10</div>
                   </div>
                   <div class="quiz__category-img">
-                    <div class="quiz__reload">
-                      <img class="quiz__reload-img" src="assets/svg/reload.svg" alt="reload">
-                      <div class="quiz__reload-text">Play again</div>
+                    <div class="quiz__reload hidden">
+                      <div class="quiz__reload-text">SCORE</div>
                     </div>
                   </div>
                 </li>
@@ -236,6 +240,7 @@ class Category {
           </div>
         </div>
     `
+    const scoreRaunds = getScore()
 
     const quizCategories = document.querySelectorAll('.quiz__category')
     const quizCategoryImg = document.querySelectorAll('.quiz__category-img')
@@ -246,11 +251,32 @@ class Category {
       quizCategoryImg[i].style.backgroundImage = `url('assets/image-data/img/${numArr[i]}.jpg')`
     }
 
+    for (let i = 0; i < quizCategories.length; i++) {
+      quizCategories[i].querySelector('.quiz__category-counter').textContent = scoreRaunds[i]
+      if (scoreRaunds[i] !== 0) {
+        quizCategories[i].querySelector('.quiz__category-img').classList.add('quiz__category-img--active')
+        const quizReload = quizCategories[i].querySelector('.quiz__reload')
+        quizReload.classList.remove('hidden')
+
+        quizReload.addEventListener('click', (e) => {
+          e.stopPropagation()
+          if (e.currentTarget === quizReload) {
+            let raund = quizCategories[i].querySelector('.quiz__category-header').textContent.toLowerCase()
+            let number = +quizCategories[i].id
+            new Results(raund, number)
+            this.quiz.classList.remove('active')
+          }
+
+        })
+      }
+    }
+
     quizCategories.forEach(quizCategory => {
       quizCategory.addEventListener('click', (e) => {
         if (e.currentTarget === quizCategory) {
           let raund = quizCategory.querySelector('.quiz__category-header').textContent.toLowerCase()
-          new Question(raund, this.isArtist, 0).setQuestion()
+          let number = +quizCategory.id
+          new Question(raund, this.isArtist, this.counter, 0, number).setQuestion()
           this.quiz.classList.remove('active')
         }
 
@@ -293,7 +319,169 @@ class Category {
     return numArr
   }
 }
-new Category().setCategory()
+// new Category(true, 0).setCategory()
+
+
+class Results {
+  constructor(raund, number) {
+    this.raund = raund
+    this.number = number
+    this.result = document.querySelector('.result')
+    this.screen = `
+    <div class="container">
+      <div class="result__wrapper">
+        <div class="result__header">
+          <div class="result__header-left">
+            <div class="result__header-logo"><img class="quiz__logo-img" src="assets/svg/new-logo.svg" alt="logo"></div>
+            <div class="result__header-category">Portrait categories</div>
+          </div>
+          <div class="result__header-right">
+            <div class="result__header-home__btn">Home</div>
+            <div class="result__header-categories">Categories</div>
+            <div class="result__header-settings"></div>
+          </div>
+        </div>
+        <div class="result__main">
+          <div class="result__main-img">
+            <div class="result__main-img__popup">
+              <div class="result__main-img__title"></div>
+              <div class="result__main-img__name"></div>
+            </div>
+          </div>
+          <div class="result__main-img">
+            <div class="result__main-img__popup">
+              <div class="result__main-img__title"></div>
+              <div class="result__main-img__name"></div>
+            </div>
+          </div>
+          <div class="result__main-img">
+            <div class="result__main-img__popup">
+              <div class="result__main-img__title"></div>
+              <div class="result__main-img__name"></div>
+            </div>
+          </div>
+          <div class="result__main-img">
+            <div class="result__main-img__popup">
+              <div class="result__main-img__title"></div>
+              <div class="result__main-img__name"></div>
+            </div>
+          </div>
+          <div class="result__main-img">
+            <div class="result__main-img__popup">
+              <div class="result__main-img__title"></div>
+              <div class="result__main-img__name"></div>
+            </div>
+          </div>
+          <div class="result__main-img">
+            <div class="result__main-img__popup">
+              <div class="result__main-img__title"></div>
+              <div class="result__main-img__name"></div>
+            </div>
+          </div>
+          <div class="result__main-img">
+            <div class="result__main-img__popup">
+              <div class="result__main-img__title"></div>
+              <div class="result__main-img__name"></div>
+            </div>
+          </div>
+          <div class="result__main-img">
+            <div class="result__main-img__popup">
+              <div class="result__main-img__title"></div>
+              <div class="result__main-img__name"></div>
+            </div>
+          </div>
+          <div class="result__main-img">
+            <div class="result__main-img__popup">
+              <div class="result__main-img__title"></div>
+              <div class="result__main-img__name"></div>
+            </div>
+          </div>
+          <div class="result__main-img">
+            <div class="result__main-img__popup">
+              <div class="result__main-img__title"></div>
+              <div class="result__main-img__name"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> 
+    `
+    let counter = 0
+    this.result.innerHTML = this.screen
+    this.resultsImgs = this.result.querySelectorAll('.result__main-img')
+
+    this.resultsImgs.forEach(async resultsImg => {
+      const imgTitle = resultsImg.querySelector('.result__main-img__title')
+      const imgName = resultsImg.querySelector('.result__main-img__name')
+      const images = await this.getRaundInfo()
+      const answer = answersArr[this.number][counter]
+    
+      if (answer === 'point__correct') {
+        resultsImg.classList.add(`quiz__category-img--active`)  
+      }
+
+      imgTitle.textContent = images[counter].name
+      imgName.textContent = `${images[counter].author}, ${images[counter].year}`
+ 
+      resultsImg.style.backgroundImage = `url('assets/image-data/img/${images[counter].imageNum}.jpg')`
+
+      resultsImg.addEventListener('click', () => {
+        const resultPopup = resultsImg.querySelector('.result__main-img__popup')
+        resultPopup.classList.toggle('result__main-img__popup--active')
+      })
+      counter++
+    })
+  }
+
+  async getRaundInfo() {
+    try {
+      const res = await fetch('data.json')
+      const data = await res.json()
+      const raund = data.filter(pic => pic.category === this.raund).slice(0, 12)
+      return raund
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+function getScore() {
+  let scoreRaund = []
+
+  for (let i = 0; i < answersArr.length; i++) {
+    let counter = 0
+    for (let j = 0; j < answersArr[i].length; j++) {
+      if (answersArr[i].length !== 0 && answersArr[i][j] === 'point__correct') {
+        counter++
+      }
+    }
+    scoreRaund.push(counter)
+  }
+  return scoreRaund
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -302,13 +490,14 @@ new Category().setCategory()
 
 
 class Question {
-  constructor(category, isArtist, counter) {
+  constructor(category, isArtist, counter, score, number) {
     this.category = category
     this.questions = document.querySelector('.quiz__questions')
     this.quizQuestions = document.querySelector('.quiz__questions')
     this.isArtist = isArtist
     this.counter = counter
-    this.score = 0
+    this.score = score
+    this.number = number
   }
 
   async setQuestion() {
@@ -318,7 +507,7 @@ class Question {
       let countAuthorsArr = 0
 
       this.quizQuestions.classList.add('active')
-      
+
       this.questions.innerHTML = `
           <div class="quiz__pictures-category">
           <div class="container">
@@ -349,6 +538,7 @@ class Question {
           </div>
         </div>
       `
+
       const categoryImg = document.querySelector('.category__img')
       const answers = [document.querySelector('#a1'), document.querySelector('#a2'), document.querySelector('#a3'), document.querySelector('#a4')]
       const points = document.querySelectorAll('.point')
@@ -362,17 +552,23 @@ class Question {
       answers.forEach(answer => {
         answer.textContent = authorsArr[countAuthorsArr++]
         answer.addEventListener('click', (e) => {
+          if (answersArr[this.number].length === 10) {
+            answersArr[this.number] = []
+          }
+
           if (e.target === answer && e.target.textContent === raundObj.author) {
             this.score++
             answer.classList.add('correct-answer')
             pointsArr.push('point__correct')
+            answersArr[this.number].push('point__correct')
             points[this.counter].classList.add('point__correct')
-            new Popup(this.score, raundObj, true, this.category, this.isArtist, this.counter, this.quizQuestions).setPopup()
+            new Popup(this.score, raundObj, true, this.category, this.isArtist, this.counter, this.quizQuestions, this.number).setPopup()
           } else {
             answer.classList.add('wrong-answer')
             pointsArr.push('point__wrong')
+            answersArr[this.number].push('point__wrong')
             points[this.counter].classList.add('point__wrong')
-            new Popup(this.score, raundObj, false, this.category, this.isArtist, this.counter, this.quizQuestions).setPopup()
+            new Popup(this.score, raundObj, false, this.category, this.isArtist, this.counter, this.quizQuestions, this.number).setPopup()
           }
         })
       })
@@ -458,7 +654,7 @@ let pointsArr = []
 
 
 class Popup {
-  constructor(score, raundObj, marker, category, isArtist, counter, quizQuestions) {
+  constructor(score, raundObj, marker, category, isArtist, counter, quizQuestions, number) {
     this.popup = document.querySelector('.popup')
     this.score = score
     this.raundObj = raundObj
@@ -467,6 +663,7 @@ class Popup {
     this.category = category
     this.isArtist = isArtist
     this.quizQuestions = quizQuestions
+    this.number = number
   }
 
   setPopup() {
@@ -508,11 +705,11 @@ class Popup {
     popupAnswerTitle.textContent = this.raundObj.name
     popupAnswerAuthor.textContent = this.raundObj.author
     popupAnswerYear.textContent = this.raundObj.year
-    
+
     if (this.counter < 10) {
       popupNextBtn.addEventListener('click', () => {
         this.popup.classList.remove('active')
-        new Question(this.category, this.isArtist, this.counter).setQuestion()
+        new Question(this.category, this.isArtist, this.counter, this.score, this.number).setQuestion()
       })
     } else {
       popupNextBtn.addEventListener('click', () => {
@@ -522,7 +719,7 @@ class Popup {
               <div class="popup__content">
                 <div class="popup__final-img"></div>
                 <div class="popup__final-text">Congratulations!</div>
-                <div class="popup__final-score"><span class="popup__change-score">0</span>/10</div>
+                <div class="popup__final-score"><span class="popup__change-score">${this.score}</span>/10</div>
                 <div class="popup__buttons">
                   <button class="popup__final-btn popup__home-btn">Home</button>
                   <button class="popup__final-btn popup__next-btn">Next Quiz</button>
@@ -539,9 +736,10 @@ class Popup {
         popupNextQuizBtn.addEventListener('click', () => {
           this.quizQuestions.classList.remove('active')
           this.popup.classList.remove('active')
-          new Category(this.isArtist).setCategory()
+          pointsArr = []
+          new Category(this.isArtist, 0).setCategory()
         })
-        
+
       })
     }
 
@@ -554,27 +752,6 @@ class Popup {
 
 
 
-
-
-
-
-
-
-// const answers = [
-//   null, null
-// ]
-
-// function setLocalStorage() {
-//   localStorage.setItem('answers', answers)
-// }
-// window.addEventListener('beforeunload', setLocalStorage)
-
-// function getLocalStorage() {
-//   if (localStorage.getItem('answers')) {
-//     console.log('adsdas')
-//   }
-// }
-// window.addEventListener('load', getLocalStorage)
 
 function getRandomNumber(num) {
   return Math.floor(Math.random() * num)
