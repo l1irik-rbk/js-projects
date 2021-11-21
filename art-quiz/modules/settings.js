@@ -1,21 +1,5 @@
 import mainPage from './mainPage.js'
 
-class Animate {
-  constructor(page) {
-    this.page = page
-  }
-
-  hide() {
-    this.page.style.transition = `all 1s`
-    this.page.style.transform = 'translateX(-200%)'
-  }
-
-  show() {
-    this.page.style.transition = `all 1s`
-    this.page.style.transform = 'translateX(0)'
-  }
-}
-
 class Settings {
   constructor() {
     this.settings = document.querySelector('.settings')

@@ -90,22 +90,7 @@ class Question {
     this.dynamicLine = this.quizQuestions.querySelector('.category__timer-line__dynamic')
     this.line = this.quizQuestions.querySelector('.category__timer-line')
     this.closeBtn = this.quizQuestions.querySelector('.category__timer-close')
-
-    // if (this.quizQuestions.classList.contains('active__page')) {
-    //   // this.quizQuestions.classList.add('deactivate__page')
-    //   this.quizQuestions.classList.remove('active__page')
-
-     
-    // } else {
-    //   this.quizQuestions.classList.add('active__page')
-    // }
     this.quizQuestions.classList.add('active__page')
-    // this.quizQuestions.classList.add('active__page')
-    // setTimeout(() => {
-    //   this.quizQuestions.classList.remove('deactivate__page')
-    //   this.quizQuestions.classList.add('deactivate__page')
-    // }, 1000)
-
     this.quizQuestions.classList.add('active')
 
     this.closeBtn.addEventListener('click', this.closeRaund.bind(this))
@@ -175,8 +160,6 @@ class Question {
             pointsArr.push('point__correct')
             answersArr[this.number].push('point__correct')
             this.points[this.counter].classList.add('point__correct')
-
-            // this.quizQuestions.classList.remove('active__page')
             new Popup(this.score, raundObj, true, this.category, this.isArtist, this.counter, this.quizQuestions, this.number, this.categoryText)
           } else {
             if (!this.isArtist) {
@@ -190,9 +173,6 @@ class Question {
             pointsArr.push('point__wrong')
             answersArr[this.number].push('point__wrong')
             this.points[this.counter].classList.add('point__wrong')
-
-            // this.quizQuestions.classList.add('deactivate__page')
-            // this.quizQuestions.classList.remove('active__page')
             new Popup(this.score, raundObj, false, this.category, this.isArtist, this.counter, this.quizQuestions, this.number, this.categoryText)
           }
         })
@@ -263,7 +243,7 @@ class Question {
       this.quizQuestions.classList.remove('deactivate__page')
       this.quizQuestions.classList.remove('active')
       new mainPage()
-    })
+    }, 1000)
   }
 
   music(url) {
