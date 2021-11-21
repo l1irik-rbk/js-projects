@@ -42,6 +42,7 @@ class Popup {
     this.popup.classList.add('active')
 
     this.setPopup()
+    this.popup.querySelector('.popup__content').classList.add('popup--active')
   }
 
   setPopup() {
@@ -61,8 +62,19 @@ class Popup {
 
     if (this.counter < 10) {
       this.popupNextBtn.addEventListener('click', () => {
-        this.popup.classList.remove('active')
-        new Question(this.category, this.isArtist, this.counter, this.score, this.number, this.categoryText)
+        this.quizQuestions.classList.remove('active__page')
+        this.quizQuestions.classList.add('deactivate__page')
+
+        this.popup.querySelector('.popup__content').classList.remove('popup--active')
+        this.popup.querySelector('.popup__content').classList.add('popup__content-deactivate')
+        setTimeout(() => {
+          this.quizQuestions.classList.remove('deactivate__page')
+
+          this.popup.querySelector('.popup__content').classList.remove('popup__content-deactivate')
+          this.popup.classList.remove('active')
+          new Question(this.category, this.isArtist, this.counter, this.score, this.number, this.categoryText)
+        }, 1000)
+
       })
     } else {
       // если this.counter равен 10 выводим финальный popup и выходим в категорию
@@ -82,7 +94,7 @@ class Popup {
             </div>
           </div>
         `
-        if(!isMuted) {
+        if (!isMuted) {
           const audio = new Audio('./assets/audio/game-over.mp3')
           audio.play()
         }
@@ -93,14 +105,30 @@ class Popup {
         popupChangedScore.textContent = this.score
         popupNextQuizBtn.addEventListener('click', () => {
           this.quizQuestions.classList.remove('active')
-          this.popup.classList.remove('active')
-          new Category(this.isArtist, 0, this.categoryText)
-        })
 
+          this.quizQuestions.classList.remove('active__page')
+          this.quizQuestions.classList.add('deactivate__page')
+
+          this.popup.querySelector('.popup__content').classList.remove('popup--active')
+          this.popup.querySelector('.popup__content').classList.add('popup__content-deactivate')
+          setTimeout(() => {
+            this.quizQuestions.classList.remove('deactivate__page')
+            this.popup.querySelector('.popup__content').classList.remove('popup__content-deactivate')
+            this.popup.classList.remove('active')
+            new Category(this.isArtist, 0, this.categoryText)
+          }, 1000)
+
+        })
         popupHomeBtn.addEventListener('click', () => {
-          this.quizQuestions.classList.remove('active')
-          this.popup.classList.remove('active')
-          new mainPage()
+          this.popup.querySelector('.popup__content').classList.remove('popup--active')
+          this.popup.querySelector('.popup__content').classList.add('popup__content-deactivate')
+          setTimeout(() => {
+            this.quizQuestions.classList.remove('deactivate__page')
+            this.popup.querySelector('.popup__content').classList.remove('popup__content-deactivate')
+            this.quizQuestions.classList.remove('active')
+            this.popup.classList.remove('active')
+            new mainPage()
+          }, 1000)
         })
       })
     }

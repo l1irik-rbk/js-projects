@@ -94,6 +94,7 @@ class Results {
     this.resultsImgs = this.result.querySelectorAll('.result__main-img')
     this.homeBtn = this.result.querySelector('.result__header-home__btn')
     this.headerCategory = this.result.querySelector('.result__header-category')
+    this.result.classList.add('active__page')
 
     this.resultsImgs.forEach(async resultsImg => {
       const imgTitle = resultsImg.querySelector('.result__main-img__title')
@@ -140,13 +141,23 @@ class Results {
   }
 
   goHome() {
-    this.result.classList.remove('active')
-    new mainPage()
+    this.result.classList.add('deactivate__page')
+    this.result.classList.remove('active__page')
+    setTimeout(() => {
+      this.result.classList.remove('deactivate__page')
+      this.result.classList.remove('active')
+      new mainPage()
+    }, 1000)
   }
 
   openCategory() {
-    this.result.classList.remove('active')
-    new Category(this.isArtist, this.counter, this.categoryText)
+    this.result.classList.add('deactivate__page')
+    this.result.classList.remove('active__page')
+    setTimeout(() => {
+      this.result.classList.remove('deactivate__page')
+      this.result.classList.remove('active')
+      new Category(this.isArtist, this.counter, this.categoryText)
+    }, 1000)
   }
 }
 

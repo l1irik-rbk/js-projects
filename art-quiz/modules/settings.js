@@ -1,5 +1,21 @@
 import mainPage from './mainPage.js'
 
+class Animate {
+  constructor(page) {
+    this.page = page
+  }
+
+  hide() {
+    this.page.style.transition = `all 1s`
+    this.page.style.transform = 'translateX(-200%)'
+  }
+
+  show() {
+    this.page.style.transition = `all 1s`
+    this.page.style.transform = 'translateX(0)'
+  }
+}
+
 class Settings {
   constructor() {
     this.settings = document.querySelector('.settings')
@@ -39,7 +55,8 @@ class Settings {
     this.timeNumber = this.settings.querySelector('.settings__main-change__time-number')
     this.minus = this.settings.querySelector('.minus')
     this.plus = this.settings.querySelector('.plus')
-   
+    this.settings.classList.add('active__page')
+
     this.settngsBtn.addEventListener('click', this.goHome.bind(this))
     this.volumeBtn.addEventListener('click', this.toggleSaunds.bind(this))
     this.volume.addEventListener('input', this.saundValue.bind(this))
@@ -50,8 +67,13 @@ class Settings {
   }
 
   goHome() {
-    this.settings.classList.remove('active')
-    new mainPage()
+    this.settings.classList.add('deactivate__page')
+    this.settings.classList.remove('active__page')
+    setTimeout(() => {
+      this.settings.classList.remove('deactivate__page')
+      this.settings.classList.remove('active')
+      new mainPage()
+    }, 1000)
   }
 
   toggleSaunds() {
@@ -108,9 +130,9 @@ class Settings {
 }
 
 export let isMuted = true
-export let saundValue 
+export let saundValue
 export let timeGame = false
-export let timeOfGame = 5  
+export let timeOfGame = 5
 
 function setLocalStorage() {
   localStorage.setItem('isMuted', JSON.stringify(isMuted))

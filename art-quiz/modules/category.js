@@ -1,7 +1,7 @@
 import Question from './question.js'
 import Results from './results.js'
 import mainPage from './mainPage.js'
-import {answersArr} from './question.js'
+import { answersArr } from './question.js'
 
 class Category {
   constructor(isArtist, counter, categoryText) {
@@ -175,6 +175,7 @@ class Category {
     this.quizCategoryImg = this.quiz.querySelectorAll('.quiz__category-img')
     this.homeBtn = this.quiz.querySelector('.quiz__header-home__btn')
     this.quiz.classList.add('active')
+    this.quiz.classList.add('active__page')
 
     this.homeBtn.addEventListener('click', this.goHome.bind(this))
     this.setCategory()
@@ -184,14 +185,14 @@ class Category {
     try {
       const scoreRaunds = getScore()
       const numArr = await this.getPictures()
-      
+
       // Устанавливаем каринки категорий
       for (let i = 0; i < numArr.length; i++) {
         this.quizCategoryImg[i].style.backgroundImage = `url('assets/image-data/img/${numArr[i]}.jpg')`
       }
 
       // Выводим результаты сыгранного раунда и активируем кнопку score для просмотра резултатов раунда
-      for (let i = 0; i < this.quizCategories.length; i++) {      
+      for (let i = 0; i < this.quizCategories.length; i++) {
         if (scoreRaunds[i + this.id] !== 0) {
           this.quizCategories[i].querySelector('.quiz__category-score').classList.add('active')
           this.quizCategories[i].querySelector('.quiz__category-counter').textContent = scoreRaunds[i + this.id]
@@ -204,8 +205,16 @@ class Category {
             if (e.currentTarget === quizReload) {
               let raund = this.quizCategories[i].querySelector('.quiz__category-header').textContent.toLowerCase()
               let number = +this.quizCategories[i].id
-              new Results(raund, number, this.categoryText, this.isArtist, this.counter)
-              this.quiz.classList.remove('active')
+
+              this.quiz.classList.add('deactivate__page')
+              this.quiz.classList.remove('active__page')
+              setTimeout(() => {
+                this.quiz.classList.remove('deactivate__page')
+                this.quiz.classList.remove('active')
+                new Results(raund, number, this.categoryText, this.isArtist, this.counter)
+              }, 1000)
+
+
             }
           })
         }
@@ -217,10 +226,15 @@ class Category {
           if (e.currentTarget === quizCategory) {
             let raund = quizCategory.querySelector('.quiz__category-header').textContent.toLowerCase()
             let number = +quizCategory.id
-           
+
             answersArr[number] = []
-            new Question(raund, this.isArtist, this.counter, 0, number, this.categoryText)
-            this.quiz.classList.remove('active')
+            this.quiz.classList.add('deactivate__page')
+            this.quiz.classList.remove('active__page')
+            setTimeout(() => {
+              this.quiz.classList.remove('deactivate__page')
+              this.quiz.classList.remove('active')
+              new Question(raund, this.isArtist, this.counter, 0, number, this.categoryText)
+            }, 1000)
           }
 
         })
@@ -272,8 +286,13 @@ class Category {
   }
 
   goHome() {
-    this.quiz.classList.remove('active')
-    new mainPage()
+    this.quiz.classList.add('deactivate__page')
+    this.quiz.classList.remove('active__page')
+    setTimeout(() => {
+      this.quiz.classList.remove('deactivate__page')
+      this.quiz.classList.remove('active')
+      new mainPage()
+    }, 1000)
   }
 }
 

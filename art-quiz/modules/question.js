@@ -1,4 +1,5 @@
 import Popup from './popup.js'
+import mainPage from './mainPage.js'
 import { isMuted, saundValue, timeGame, timeOfGame } from './settings.js'
 
 let pointsArr = []
@@ -18,6 +19,7 @@ class Question {
           <div class="container">
             <div class="category">
               <div class="category__timer">
+                <div class="category__timer-close"></div>
                 <div class="category__timer-line"><div class="category__timer-line__dynamic"></div></div>
                 <div class="category__timer-time">0:<span class="corrent__time"></span></div>
               </div>
@@ -52,6 +54,7 @@ class Question {
           <div class="container">
             <div class="category">
               <div class="category__timer">
+                <div class="category__timer-close"></div>
                 <div class="category__timer-line"><div class="category__timer-line__dynamic"></div></div>
                 <div class="category__timer-time">0:<span class="corrent__time"></span></div>
               </div>
@@ -85,10 +88,27 @@ class Question {
     this.points = this.quizQuestions.querySelectorAll('.point')
     this.correntTime = this.quizQuestions.querySelector('.corrent__time')
     this.dynamicLine = this.quizQuestions.querySelector('.category__timer-line__dynamic')
-    this.line = document.querySelector('.category__timer-line')
+    this.line = this.quizQuestions.querySelector('.category__timer-line')
+    this.closeBtn = this.quizQuestions.querySelector('.category__timer-close')
+
+    // if (this.quizQuestions.classList.contains('active__page')) {
+    //   // this.quizQuestions.classList.add('deactivate__page')
+    //   this.quizQuestions.classList.remove('active__page')
+
+     
+    // } else {
+    //   this.quizQuestions.classList.add('active__page')
+    // }
+    this.quizQuestions.classList.add('active__page')
+    // this.quizQuestions.classList.add('active__page')
+    // setTimeout(() => {
+    //   this.quizQuestions.classList.remove('deactivate__page')
+    //   this.quizQuestions.classList.add('deactivate__page')
+    // }, 1000)
 
     this.quizQuestions.classList.add('active')
 
+    this.closeBtn.addEventListener('click', this.closeRaund.bind(this))
     this.setQuestion()
   }
 
@@ -155,6 +175,8 @@ class Question {
             pointsArr.push('point__correct')
             answersArr[this.number].push('point__correct')
             this.points[this.counter].classList.add('point__correct')
+
+            // this.quizQuestions.classList.remove('active__page')
             new Popup(this.score, raundObj, true, this.category, this.isArtist, this.counter, this.quizQuestions, this.number, this.categoryText)
           } else {
             if (!this.isArtist) {
@@ -168,6 +190,9 @@ class Question {
             pointsArr.push('point__wrong')
             answersArr[this.number].push('point__wrong')
             this.points[this.counter].classList.add('point__wrong')
+
+            // this.quizQuestions.classList.add('deactivate__page')
+            // this.quizQuestions.classList.remove('active__page')
             new Popup(this.score, raundObj, false, this.category, this.isArtist, this.counter, this.quizQuestions, this.number, this.categoryText)
           }
         })
@@ -192,14 +217,14 @@ class Question {
       const quizQuestions = this.quizQuestions
       const categoryText = this.categoryText
       const dynamicLine = this.dynamicLine
+      const closeRaundBtn = this.closeBtn
       const line = this.line
       const lineStyle = window.getComputedStyle(line)
       const lineWidth = +lineStyle.width.replace('px', '')
       let currentLength = 0
 
-      answers.forEach(answer => answer.addEventListener('click', () => {
-        clearTimeout(timer)
-      }))
+      closeRaundBtn.addEventListener('click', () => clearTimeout(timer))
+      answers.forEach(answer => answer.addEventListener('click', () => clearTimeout(timer)))
 
       let timer = setTimeout(function timerf() {
         currentTime--
@@ -227,6 +252,18 @@ class Question {
       console.log(error)
     }
 
+  }
+
+  closeRaund() {
+    pointsArr = []
+
+    this.quizQuestions.classList.add('deactivate__page')
+    this.quizQuestions.classList.remove('active__page')
+    setTimeout(() => {
+      this.quizQuestions.classList.remove('deactivate__page')
+      this.quizQuestions.classList.remove('active')
+      new mainPage()
+    })
   }
 
   music(url) {

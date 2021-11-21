@@ -20,6 +20,7 @@ class mainPage {
     this.mainPageArtistsBtn = this.mainPage.querySelector('.main__page-quiz__artists')
     this.mainPagePicturesBtn = this.mainPage.querySelector('.main__page-quiz__pictures')
     this.settings = this.mainPage.querySelector('.main__pag-settings')
+    this.mainPage.classList.add('active__page')
 
     this.isArtist = false
     this.counter = 0
@@ -32,20 +33,32 @@ class mainPage {
 
   switchCategory(e) {
     let categoryText
-    this.mainPage.classList.remove('active')
     if (e.target === this.mainPageArtistsBtn) {
       categoryText = this.mainPageArtistsBtn.textContent
       this.isArtist = true
     } else if (e.target === this.mainPagePicturesBtn) {
-      categoryText = this.mainPagePicturesBtn.textContent 
+      categoryText = this.mainPagePicturesBtn.textContent
       this.isArtist = false
     }
-    new Category(this.isArtist, this.counter, categoryText)
+
+    this.mainPage.classList.add('deactivate__page')
+    this.mainPage.classList.remove('active__page')
+    setTimeout(() => {
+      this.mainPage.classList.remove('deactivate__page')
+      this.mainPage.classList.remove('active')
+      new Category(this.isArtist, this.counter, categoryText)
+    }, 1000)
+
   }
 
   openSettings() {
-    this.mainPage.classList.remove('active')
-    new Settings()
+    this.mainPage.classList.add('deactivate__page')
+    this.mainPage.classList.remove('active__page')
+    setTimeout(() => {
+      this.mainPage.classList.remove('deactivate__page')
+      this.mainPage.classList.remove('active')
+      new Settings()
+    }, 1000)
   }
 }
 
