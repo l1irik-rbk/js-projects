@@ -32,10 +32,6 @@ body{
 }
 
 .wrapper{
-  /* background-image: url('../assets/images/bg.jpg');
-  background-repeat: no-repeat;
-  background-position: center bottom;
-  height: 100vh;*/
   background-color: #010101; 
   display: flex;
   justify-content: space-between;
@@ -53,7 +49,7 @@ body{
   background-image: url('../assets/images/bg.jpg');
   background-repeat: no-repeat;
   background-position: center top;
-  height: 100vh;
+  min-height: 100vh;
   background-color: #010101;
   display: none;
 }
@@ -95,13 +91,14 @@ body{
 .quiz__questions,
 .result,
 .settings{
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .main__page-quiz{
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding-bottom: 40px;
 }
 
 .main__page-quiz__artists,
@@ -114,6 +111,7 @@ body{
   border-radius: 60px;
   cursor: pointer;
   transition: all .5s;
+  position: relative;
 }
 
 .main__page-quiz__artists:hover,
@@ -178,7 +176,6 @@ body{
 .category__timer{
   display: flex;
   align-items: center;
-  justify-content: space-between;
   width: 826px;
   height: 36px;
   margin-top: 40px;
@@ -198,6 +195,7 @@ body{
   background-color: #A4A4A4;
   position: relative;
   border-radius: 2px;
+  margin: 0 15px;
 }
 
 .category__timer-line__dynamic{
@@ -268,6 +266,8 @@ body{
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  row-gap: 15px;
+  column-gap: 25px;
 }
 
 .category__answer{
@@ -276,16 +276,11 @@ body{
   line-height: 22px;
   letter-spacing: -1.14766px;
   padding: 20px 0;
-  margin-bottom: 15px;
   border: 1.5px solid #fff;
   border-radius: 60px;
   text-align: center;
   transition: all .5s;
   cursor: pointer;
-}
-
-.category__answer:nth-child(2n+1) {
-  margin-right: 25px;
 }
 
 .category__answer:hover{
@@ -481,18 +476,8 @@ body{
   border: 1.5px solid #FFBCA2;
 }
 
-.popup{
-  display: none;
-}
-
-
-
-
-
-.quiz__questions{
-  display: none;
-}
-
+.popup,
+.quiz__questions,
 .quiz{
   display: none;
 }
@@ -985,3 +970,405 @@ body{
 .active{
   display: block;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 1440px) {
+  .footer{
+    position: static;
+  }
+}
+
+@media (max-width: 1280px) {
+  .main__page{
+    height: auto;
+  }
+
+  .main__pag-settings{
+    margin-bottom: 235px;
+  }
+
+  .logo{
+    margin-bottom: 90px;
+    width: 391px;
+    height: 146px;
+  }
+
+  .main__page-quiz{
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .footer__wrapper{
+    flex-wrap: wrap;
+  }
+
+  .quiz__reload{
+    opacity: 1;
+  }
+
+  .quiz__categories,
+  .result__main{
+    margin-bottom: 20px;
+  }
+
+  .result__header{
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .result__header-category{
+    margin-right: 40px;
+  }
+
+  .quiz__pictures-category .container{
+    padding: 0 20px;
+  }
+}
+
+@media (max-width: 900px) {
+  .category__img{
+    background-position: center 35%;
+    background-size: 110%;
+    width: 600px;
+    height: 426px;
+  }
+
+  .category__timer{
+    width: 502px;
+    justify-content: center;
+  }
+
+  .category__timer-line{
+    max-width: 400px;
+  }
+
+  .category__question{
+    margin-right: 0;
+  }
+}
+
+@media (max-width: 800px) {
+  .main__page-quiz__artists{
+    margin-right: 0;
+    margin-bottom: 10px;
+    width: 320px;
+    text-align: center;
+  }
+
+  .main__pag-settings{
+    margin-bottom: 40px;
+  }
+
+  .main__page-quiz{
+    flex-direction: column;
+  }
+
+  .settings .container{
+    padding: 0 20px;
+  }
+
+  .quiz__title{
+    margin-bottom: 40px;
+  }
+
+  .quiz__header,
+  .category__answers{
+    margin-bottom: 40px;
+  }
+
+  .quiz__header-home__btn{
+    margin: 0 60px;
+  }
+
+  .quiz__header-wrapper{
+    flex-wrap: wrap;
+  }
+
+  .result__header-category{
+    margin-right: 0;
+  }
+
+  .result__main{
+    justify-content: center;
+  }
+}
+
+@media (max-width: 700px) {
+  .category__img {
+    width: 400px;
+    height: 296px;;
+  }
+
+  .point{
+    width: 10px;
+    height: 10px;
+  }
+
+  .category__answer{
+    width: 300px;
+  }
+
+  .category__timer-line {
+    max-width: 300px;
+  }
+
+  .popup__content{
+    max-width: 350px;
+    padding: 15px;
+  }
+
+  .popup__answer-img{
+    width: 320px;
+    height: 300px;
+    margin-bottom: 20px;
+    background-size: 110%;
+  }
+
+  .popup__answer-title{
+    font-size: 25px;
+    line-height: 30px;
+  }
+
+  .popup__answer-text{
+    font-size: 18px;
+    line-height: 22px;
+    margin-bottom: 20px;
+  }
+
+  .popup__answer-next{
+    padding: 10px 0;
+  }
+
+  .popup__final .popup__content{
+    padding: 15px;
+  }
+
+  .popup__final-text{
+    margin-bottom: 20px;
+  }
+
+  .popup__final-score{
+    margin-bottom: 20px;
+    font-size: 63px;
+    line-height: 80px;
+  }
+
+  .popup__final-text{
+    font-size: 30px;
+    line-height: 40px;
+  }
+
+}
+
+@media (max-width: 590px) {
+  .main__pag-settings {
+    margin-bottom: 212px;
+  } 
+
+  .footer__wrapper{
+    flex-direction: column;
+  }
+
+  .footer__school-link{
+    margin-bottom: 10px;
+  }
+
+  .container{
+    padding: 0 20px;
+  }
+}
+
+@media (max-width: 540px) {
+  .container{
+    padding: 0 20px;
+  }
+
+  .main__pag-settings{
+    margin-bottom: 40px;
+  }
+
+  .settings__header{
+    font-size: 18px;
+    line-height: 24px;
+    margin-bottom: 100px;
+  }
+
+  .settings__main-volume,
+  .settings__main-time,
+  .settings__main-change__time-title{
+    font-size: 28px;
+    margin-bottom: 30px;
+  }
+
+  .settings__main-volume label{
+    padding-right: 20px;
+  }
+
+  .volume__btn{
+    bottom: 50%;
+  }
+
+  #volume{
+    width: 280px;
+  }
+
+ .quiz__header-wrapper{
+   justify-content: center;
+   align-items: center;
+ }
+ 
+  .quiz__title{
+   text-align: center;
+  }
+
+}
+
+@media (max-width: 490px) {
+  .container{
+    padding: 0 10px;
+  }
+
+  .main__page {
+    background-position: center center;
+  }
+
+  .main__pag-settings {
+    margin-bottom: 60px;
+    margin-top: 30px;
+  }
+
+  .footer__year,
+  .footer__school-link{
+    display: none;
+  }
+
+  .footer__wrapper{
+    padding: 20px 40px;
+  }
+
+  .logo {
+    width: 300px;
+    height: 111px;
+  }
+
+  .main__page-quiz{
+    width: 300px;
+  }
+
+  .main__page-quiz__artists, 
+  .main__page-quiz__pictures{
+    font-size: 18px;
+    text-align: center;
+    padding: 20px 57px;
+    width: 300px;
+  }
+
+  .quiz__categories{
+    justify-content: center;
+  }
+
+  .result__header-category{
+    padding-left: 0;
+    margin-left: 40px;
+  }
+  
+  .result__header-category::before{
+    padding-left: 0;
+    background-image: none;
+    width: 0;
+    height: 0;
+  }
+
+  .quiz__pictures-category .container {
+    padding: 0 10px;
+  }
+
+  .category__timer-line {
+    max-width: 200px;
+  }
+
+  .category__timer-time{
+    font-size: 22px;
+  }
+
+  .category__img{
+    width: 280px;
+    height: 220px;;
+  }
+
+  .point + .point{
+    margin-left: 10px;
+  }
+
+  .category__question {
+    font-size: 19px;
+    line-height: 24px;
+    text-align: center;
+  }
+
+  .category__timer{
+    width: 320px;
+    margin-bottom: 20px;
+  }
+
+  .category__answer{
+    width: 280px;
+    font-size: 19px;
+    line-height: 24px;
+  }
+}
+
+@media (max-width: 375px) {
+  .main__pag-settings {
+    margin-bottom: 60px;
+    margin-top: 20px;
+  }
+
+  .logo{
+    margin-bottom: 40px;
+  }
+
+  .category__timer-line{
+    width: 180px;
+  }
+
+  .category__timer{
+    width: 280px;
+  }
+
+  .popup__content {
+    max-width: 310px;
+    padding: 10px;
+  }
+
+  .popup__answer-img{
+    width: 280px;
+    height: 255px;
+    background-size: 104%;
+  }
+} 
+
+@media (max-width: 365px) {
+  .quiz__header-home__btn{
+    margin: 0;
+    margin-left: 40px;
+  }
+
+  .result__header-category{
+    margin-left: 10px;
+  }
+} 
