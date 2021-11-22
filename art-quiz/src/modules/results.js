@@ -1,15 +1,15 @@
-import mainPage from './mainPage.js'
-import Category from './category.js'
-import {answersArr} from './question.js'
+import MainPage from './mainPage';
+import Category from './category';
+import { answersArr } from './question';
 
 class Results {
   constructor(raund, number, categoryText, isArtist, counter) {
-    this.raund = raund
-    this.number = number
-    this.categoryText = categoryText
-    this.isArtist = isArtist
-    this.counter = counter
-    this.result = document.querySelector('.result')
+    this.raund = raund;
+    this.number = number;
+    this.categoryText = categoryText;
+    this.isArtist = isArtist;
+    this.counter = counter;
+    this.result = document.querySelector('.result');
     this.screen = `
     <div class="container">
       <div class="result__wrapper">
@@ -87,78 +87,81 @@ class Results {
         </div>
       </div>
     </div> 
-    `
-    this.result.classList.add('active')
-    this.counterRes = 0
-    this.result.innerHTML = this.screen
-    this.resultsImgs = this.result.querySelectorAll('.result__main-img')
-    this.homeBtn = this.result.querySelector('.result__header-home__btn')
-    this.headerCategory = this.result.querySelector('.result__header-category')
-    this.result.classList.add('active__page')
+    `;
+    this.result.classList.add('active');
+    this.counterRes = 0;
+    this.result.innerHTML = this.screen;
+    this.resultsImgs = this.result.querySelectorAll('.result__main-img');
+    this.homeBtn = this.result.querySelector('.result__header-home__btn');
+    this.headerCategory = this.result.querySelector('.result__header-category');
+    this.result.classList.add('active__page');
 
-    this.resultsImgs.forEach(async resultsImg => {
-      const imgTitle = resultsImg.querySelector('.result__main-img__title')
-      const imgName = resultsImg.querySelector('.result__main-img__name')
-      const images = await this.getRaundInfo()
-      const answer = answersArr[this.number][this.counterRes]
+    this.resultsImgs.forEach(async (resultsImg) => {
+      const imgTitle = resultsImg.querySelector('.result__main-img__title');
+      const imgName = resultsImg.querySelector('.result__main-img__name');
+      const images = await this.getRaundInfo();
+      const answer = answersArr[this.number][this.counterRes];
 
       if (answer === 'point__correct') {
-        resultsImg.classList.add(`quiz__category-img--active`)
+        resultsImg.classList.add('quiz__category-img--active');
       }
 
-      imgTitle.textContent = images[this.counterRes].name
-      imgName.textContent = `${images[this.counterRes].author}, ${images[this.counterRes].year}`
+      imgTitle.textContent = images[this.counterRes].name;
+      imgName.textContent = `${images[this.counterRes].author}, ${images[this.counterRes].year}`;
 
-      resultsImg.style.backgroundImage = `url('assets/image-data/img/${images[this.counterRes].imageNum}.jpg')`
+      resultsImg.style.backgroundImage = `url('assets/image-data/img/${images[this.counterRes].imageNum}.jpg')`;
 
       resultsImg.addEventListener('click', () => {
-        const resultPopup = resultsImg.querySelector('.result__main-img__popup')
-        resultPopup.classList.toggle('result__main-img__popup--active')
-      })
-      this.counterRes++
-    })
+        const resultPopup = resultsImg.querySelector('.result__main-img__popup');
+        resultPopup.classList.toggle('result__main-img__popup--active');
+      });
+      this.counterRes++;
+    });
 
-    this.homeBtn.addEventListener('click', this.goHome.bind(this))
-    this.headerCategory.addEventListener('click', this.openCategory.bind(this))
+    this.homeBtn.addEventListener('click', this.goHome.bind(this));
+    this.headerCategory.addEventListener('click', this.openCategory.bind(this));
   }
 
   async getRaundInfo() {
     try {
-      const res = await fetch('data.json')
-      const data = await res.json()
-      let raund
+      const res = await fetch('data.json');
+      const data = await res.json();
+      let raund;
 
       if (this.isArtist) {
-        raund = data.filter(pic => pic.category === this.raund).slice(0, 12)
+        raund = data.filter((pic) => pic.category === this.raund).slice(0, 12);
       } else {
-        raund = data.filter(pic => pic.category === this.raund).reverse().slice(0, 12)
+        raund = data
+          .filter((pic) => pic.category === this.raund)
+          .reverse()
+          .slice(0, 12);
       }
-      
-      return raund
+
+      return raund;
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   }
 
   goHome() {
-    this.result.classList.add('deactivate__page')
-    this.result.classList.remove('active__page')
+    this.result.classList.add('deactivate__page');
+    this.result.classList.remove('active__page');
     setTimeout(() => {
-      this.result.classList.remove('deactivate__page')
-      this.result.classList.remove('active')
-      new mainPage()
-    }, 1000)
+      this.result.classList.remove('deactivate__page');
+      this.result.classList.remove('active');
+      new MainPage();
+    }, 1000);
   }
 
   openCategory() {
-    this.result.classList.add('deactivate__page')
-    this.result.classList.remove('active__page')
+    this.result.classList.add('deactivate__page');
+    this.result.classList.remove('active__page');
     setTimeout(() => {
-      this.result.classList.remove('deactivate__page')
-      this.result.classList.remove('active')
-      new Category(this.isArtist, this.counter, this.categoryText)
-    }, 1000)
+      this.result.classList.remove('deactivate__page');
+      this.result.classList.remove('active');
+      new Category(this.isArtist, this.counter, this.categoryText);
+    }, 1000);
   }
 }
 
-export default Results
+export default Results;

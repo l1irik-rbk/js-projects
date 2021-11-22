@@ -1,15 +1,14 @@
-import Question from './question.js'
-import Results from './results.js'
-import mainPage from './mainPage.js'
-import { answersArr } from './question.js'
+import Question, { answersArr } from './question';
+import Results from './results';
+import MainPage from './mainPage';
 
 class Category {
   constructor(isArtist, counter, categoryText) {
-    this.isArtist = isArtist
-    this.counter = counter
-    this.categoryText = categoryText
-    this.isArtist ? this.id = 0 : this.id = 12
-    this.quiz = document.querySelector('.quiz')
+    this.isArtist = isArtist;
+    this.counter = counter;
+    this.categoryText = categoryText;
+    this.isArtist ? (this.id = 0) : (this.id = 12);
+    this.quiz = document.querySelector('.quiz');
     this.screen = `
       <div class="new__quiz">
         <div class="container">
@@ -169,100 +168,97 @@ class Category {
           </ul>
         </div>
       </div>
-    `
-    this.quiz.innerHTML = this.screen
-    this.quizCategories = this.quiz.querySelectorAll('.quiz__category')
-    this.quizCategoryImg = this.quiz.querySelectorAll('.quiz__category-img')
-    this.homeBtn = this.quiz.querySelector('.quiz__header-home__btn')
-    this.quiz.classList.add('active')
-    this.quiz.classList.add('active__page')
+    `;
+    this.quiz.innerHTML = this.screen;
+    this.quizCategories = this.quiz.querySelectorAll('.quiz__category');
+    this.quizCategoryImg = this.quiz.querySelectorAll('.quiz__category-img');
+    this.homeBtn = this.quiz.querySelector('.quiz__header-home__btn');
+    this.quiz.classList.add('active');
+    this.quiz.classList.add('active__page');
 
-    this.homeBtn.addEventListener('click', this.goHome.bind(this))
-    this.setCategory()
+    this.homeBtn.addEventListener('click', this.goHome.bind(this));
+    this.setCategory();
   }
 
   async setCategory() {
     try {
-      const scoreRaunds = getScore()
-      const numArr = await this.getPictures()
+      const scoreRaunds = getScore();
+      const numArr = await this.getPictures();
 
       // Устанавливаем каринки категорий
       for (let i = 0; i < numArr.length; i++) {
-        this.quizCategoryImg[i].style.backgroundImage = `url('assets/image-data/img/${numArr[i]}.jpg')`
+        this.quizCategoryImg[i].style.backgroundImage = `url('assets/image-data/img/${numArr[i]}.jpg')`;
       }
 
-      // Выводим результаты сыгранного раунда и активируем кнопку score для просмотра резултатов раунда
+      // Выводим результаты сыгранного раунда и активируем кнопку score для просмотра резултатов
       for (let i = 0; i < this.quizCategories.length; i++) {
         if (scoreRaunds[i + this.id] !== 0) {
-          this.quizCategories[i].querySelector('.quiz__category-score').classList.add('active')
-          this.quizCategories[i].querySelector('.quiz__category-counter').textContent = scoreRaunds[i + this.id]
-          this.quizCategories[i].querySelector('.quiz__category-img').classList.add('quiz__category-img--active')
-          const quizReload = this.quizCategories[i].querySelector('.quiz__reload')
-          quizReload.classList.remove('hidden')
+          this.quizCategories[i].querySelector('.quiz__category-score').classList.add('active');
+          this.quizCategories[i].querySelector('.quiz__category-counter').textContent = scoreRaunds[i + this.id];
+          this.quizCategories[i].querySelector('.quiz__category-img').classList.add('quiz__category-img--active');
+          const quizReload = this.quizCategories[i].querySelector('.quiz__reload');
+          quizReload.classList.remove('hidden');
 
           quizReload.addEventListener('click', (e) => {
-            e.stopPropagation()
+            e.stopPropagation();
             if (e.currentTarget === quizReload) {
-              let raund = this.quizCategories[i].querySelector('.quiz__category-header').textContent.toLowerCase()
-              let number = +this.quizCategories[i].id
+              const raund = this.quizCategories[i].querySelector('.quiz__category-header').textContent.toLowerCase();
+              const number = +this.quizCategories[i].id;
 
-              this.quiz.classList.add('deactivate__page')
-              this.quiz.classList.remove('active__page')
+              this.quiz.classList.add('deactivate__page');
+              this.quiz.classList.remove('active__page');
               setTimeout(() => {
-                this.quiz.classList.remove('deactivate__page')
-                this.quiz.classList.remove('active')
-                new Results(raund, number, this.categoryText, this.isArtist, this.counter)
-              }, 1000)
-
-
+                this.quiz.classList.remove('deactivate__page');
+                this.quiz.classList.remove('active');
+                new Results(raund, number, this.categoryText, this.isArtist, this.counter);
+              }, 1000);
             }
-          })
+          });
         }
       }
 
       // Запускаем раунд при клике на категорию
-      this.quizCategories.forEach(quizCategory => {
+      this.quizCategories.forEach((quizCategory) => {
         quizCategory.addEventListener('click', (e) => {
           if (e.currentTarget === quizCategory) {
-            let raund = quizCategory.querySelector('.quiz__category-header').textContent.toLowerCase()
-            let number = +quizCategory.id
+            const raund = quizCategory.querySelector('.quiz__category-header').textContent.toLowerCase();
+            const number = +quizCategory.id;
 
-            answersArr[number] = []
-            this.quiz.classList.add('deactivate__page')
-            this.quiz.classList.remove('active__page')
+            answersArr[number] = [];
+            this.quiz.classList.add('deactivate__page');
+            this.quiz.classList.remove('active__page');
             setTimeout(() => {
-              this.quiz.classList.remove('deactivate__page')
-              this.quiz.classList.remove('active')
-              new Question(raund, this.isArtist, this.counter, 0, number, this.categoryText)
-            }, 1000)
+              this.quiz.classList.remove('deactivate__page');
+              this.quiz.classList.remove('active');
+              new Question(raund, this.isArtist, this.counter, 0, number, this.categoryText);
+            }, 1000);
           }
-
-        })
-      })
+        });
+      });
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   }
 
   async getPictures() {
     try {
-      const res = await fetch('data.json')
-      const data = await res.json()
-      let categories = []
-      let numArr = []
+      const res = await fetch('data.json');
+      const data = await res.json();
+      const categories = [];
+      const numArr = [];
 
-      data.forEach(el => {
+      data.forEach((el) => {
         if (!categories.includes(el.category)) {
-          categories.push(el.category)
+          categories.push(el.category);
         }
-      })
+      });
 
       if (this.isArtist) {
         for (let i = 0; i < categories.length; i++) {
           for (let j = data.length / 2; j < data.length; j++) {
             if (categories[i] === data[j].category) {
-              numArr.push(data[j].imageNum)
-              break
+              numArr.push(data[j].imageNum);
+              break;
             }
           }
         }
@@ -270,45 +266,42 @@ class Category {
         for (let i = 0; i < categories.length; i++) {
           for (let j = data.length - 1; j > 0; j--) {
             if (categories[i] === data[j].category) {
-              numArr.push(data[j].imageNum)
-              break
+              numArr.push(data[j].imageNum);
+              break;
             }
           }
         }
       }
-      return numArr
-
+      return numArr;
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-
-
   }
 
   goHome() {
-    this.quiz.classList.add('deactivate__page')
-    this.quiz.classList.remove('active__page')
+    this.quiz.classList.add('deactivate__page');
+    this.quiz.classList.remove('active__page');
     setTimeout(() => {
-      this.quiz.classList.remove('deactivate__page')
-      this.quiz.classList.remove('active')
-      new mainPage()
-    }, 1000)
+      this.quiz.classList.remove('deactivate__page');
+      this.quiz.classList.remove('active');
+      new MainPage();
+    }, 1000);
   }
 }
 
 function getScore() {
-  let scoreRaund = []
+  const scoreRaund = [];
 
   for (let i = 0; i < answersArr.length; i++) {
-    let counter = 0
+    let counter = 0;
     for (let j = 0; j < answersArr[i].length; j++) {
       if (answersArr[i].length !== 0 && answersArr[i][j] === 'point__correct') {
-        counter++
+        counter++;
       }
     }
-    scoreRaund.push(counter)
+    scoreRaund.push(counter);
   }
-  return scoreRaund
+  return scoreRaund;
 }
 
-export default Category
+export default Category;
