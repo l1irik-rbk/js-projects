@@ -17,11 +17,10 @@ const baseConfig = {
                 loader: 'ts-loader',
                 exclude: ['/node_modules/'],
             },
-
         ],
     },
     resolve: {
-        extensions: ['.ts', '.js']
+        extensions: ['.ts', '.js'],
     },
     output: {
         filename: 'index.js',
