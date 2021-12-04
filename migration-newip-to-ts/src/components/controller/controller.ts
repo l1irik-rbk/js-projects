@@ -1,22 +1,9 @@
 import AppLoader from './appLoader';
 
-interface IDataResponse {
-    status: string;
-    sources: INews[]
-}
-
-interface INews {
-    category: string;
-    country: string;
-    description: string;
-    id: string;
-    language: string;
-    name: string;
-    url: string;
-}
+type Callback = <T>(data: T) => void
 
 class AppController extends AppLoader {
-    getSources(callback: <IDataResponse>(data: IDataResponse) => void): void {
+    getSources(callback: Callback) {
         super.getResp(
             {
                 endpoint: 'sources',
@@ -25,10 +12,9 @@ class AppController extends AppLoader {
         );
     }
 
-    getNews(e: Event, callback: <IDataResponse>(data: IDataResponse) => void) {
+    getNews(e: Event, callback: Callback) {
         let target = e.target as HTMLElement;
         const newsContainer = e.currentTarget as HTMLElement;
-
         while (target !== newsContainer) {
             if (target.classList.contains('source__item')) {
                 const sourceId: string = target.getAttribute('data-source-id');

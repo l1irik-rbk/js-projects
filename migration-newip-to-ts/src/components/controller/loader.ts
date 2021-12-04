@@ -1,31 +1,17 @@
-// type Callback<T> = (data: T) => void;
-interface IDataResponse {
-    status: string;
-    sources: INews[]
-}
-
-interface INews {
-    category: string;
-    country: string;
-    description: string;
-    id: string;
-    language: string;
-    name: string;
-    url: string;
-}
+type Callback = <T>(data: T) => void
 
 class Loader {
     baseLink: string;
-    options: { apiKey: string };
+    options: { apiKey?: string };
 
-    constructor(baseLink: string, options: { apiKey: string }) {
+    constructor(baseLink: string, options: { apiKey?: string }) {
         this.baseLink = baseLink;
         this.options = options;
     }
 
     getResp(
         { endpoint, options = {} }: { endpoint: string, options?: Record<string, string> },
-        callback: <IDataResponse>(data: IDataResponse) => void = () => {
+        callback: Callback = () => {
             console.error('No callback for GET response');
         }
     ) {
@@ -44,7 +30,7 @@ class Loader {
 
     makeUrl(options: object, endpoint: string) {
         const urlOptions: object = { ...this.options, ...options };
-        let url: string = `${this.baseLink}${endpoint}?`;
+        let url = `${this.baseLink}${endpoint}?`;
 
         (Object.keys(urlOptions) as Array<keyof typeof urlOptions>).forEach((key) => {
             url += `${key}=${urlOptions[key]}&`;
@@ -53,12 +39,12 @@ class Loader {
         return url.slice(0, -1);
     }
 
-    load(method: string, endpoint: string, callback: <IDataResponse>(data: IDataResponse) => void, options: { apiKey?: string } = {}) {
+    load(method: string, endpoint: string, callback: Callback, options: { apiKey?: string } = {}) {
         fetch(this.makeUrl(options, endpoint), { method })
             .then(this.errorHandler)
             .then((res) => res.json())
             .then((data) => callback(data))
-            .catch((err) => console.error(err));
+            .catch((err: string) => console.error(err));
     }
 }
 
