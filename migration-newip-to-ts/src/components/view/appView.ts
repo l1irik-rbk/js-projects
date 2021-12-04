@@ -24,14 +24,13 @@ interface IDataSources {
 }
 
 interface ISourses {
-    author: string;
-    content: string;
+    category: string;
+    country: string;
     description: string;
-    publishedAt: string;
-    title: string;
+    id: string;
+    language: string;
+    name: string;
     url: string;
-    urlToImage: string;
-    source: { id: string, name: string }
 }
 
 export class AppView {
@@ -49,6 +48,7 @@ export class AppView {
     }
 
     drawSources(data: IDataSources) {
+        console.log(data)
         const values = data?.sources ? data?.sources : [];
         this.sources.draw(values);
     }
