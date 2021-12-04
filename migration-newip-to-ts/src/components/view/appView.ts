@@ -48,7 +48,6 @@ export class AppView {
     }
 
     drawSources(data: IDataSources) {
-        console.log(data)
         const values = data?.sources ? data?.sources : [];
         this.sources.draw(values);
     }
