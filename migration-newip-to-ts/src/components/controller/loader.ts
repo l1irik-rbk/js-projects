@@ -1,4 +1,4 @@
-type Callback = <T>(data: T) => void
+type Callback = <T>(data: T) => void;
 
 class Loader {
     baseLink: string;
@@ -10,7 +10,7 @@ class Loader {
     }
 
     getResp(
-        { endpoint, options = {} }: { endpoint: string, options?: Record<string, string> },
+        { endpoint, options = {} }: { endpoint: string; options?: Record<string, string> },
         callback: Callback = () => {
             console.error('No callback for GET response');
         }
@@ -49,5 +49,3 @@ class Loader {
 }
 
 export default Loader;
-
-

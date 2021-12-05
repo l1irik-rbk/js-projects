@@ -1,6 +1,6 @@
 import AppLoader from './appLoader';
 
-type Callback = <T>(data: T) => void
+type Callback = <T>(data: T) => void;
 
 class AppController extends AppLoader {
     getSources(callback: Callback) {

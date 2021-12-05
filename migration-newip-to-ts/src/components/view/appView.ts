@@ -1,15 +1,15 @@
 import News from './news/news';
 import Sources from './sources/sources';
-import {ISourses} from './sources/sources';
-import {IArticles} from './news/news';
+import { ISourses } from './sources/sources';
+import { IArticles } from './news/news';
 
-interface IDataArticles {
+export interface IDataArticles {
     status?: string;
     totalResults?: number;
-    articles?: Array<IArticles>
+    articles?: Array<IArticles>;
 }
 
-interface IDataSources {
+export interface IDataSources {
     status?: string;
     sources?: Array<ISourses>;
 }
@@ -23,7 +23,7 @@ export class AppView {
         this.sources = new Sources();
     }
 
-    drawNews(data: IDataArticles) :void {
+    drawNews(data: IDataArticles): void {
         const values = data?.articles ? data?.articles : [];
         this.news.draw(values);
     }
