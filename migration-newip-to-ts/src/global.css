@@ -1,16 +1,47 @@
 body {
-    color: #fff;
+    color: #151616;
     background: #17181c;
     font-family: sans-serif;
+    background: linear-gradient(#1f4037, #99f2c8, #1f4037);
+    background-size: 400% 400%;
+    animation: gradient 12s ease infinite;
+}
+@keyframes gradient {
+    0% {
+        background-position: 0 50%;
+    }
+    50%{
+        background-position: 0 100%;
+    }
+    100%{
+        background-position: 0 50%;
+    }
+}
+
+::-webkit-scrollbar{
+    width: 10px;
+}
+
+::-webkit-scrollbar-track{
+    background-color: rgba(0, 0, 0, .1);
+    border-radius: 15px;
+}
+
+::-webkit-scrollbar-thumb{
+    background-color: #244a4a;
+    border-radius: 5px;
+    height: 50px;
 }
 
 header {
     padding: 10px 30px;
+    text-align: center;
 }
 
 header h1 {
     font-size: 40px;
     font-weight: 800;
+    margin: 0 auto;
 }
 
 footer {
@@ -18,18 +49,51 @@ footer {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
 }
 footer .copyright {
     font-size: 14px;
-    color: #333;
+    color: #151616;
     text-align: center;
 }
 footer .copyright a {
-    color: #444;
+    color: #151616;
 }
 footer .copyright a:hover {
-    color: #555;
+    color: #fff;
 }
 footer .copyright:before {
     content: '©';
 }
+
+.school__contacts{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.school__contacts p{
+    margin: 0;
+}
+
+.school__contacts p{
+    margin-left: 40px;
+}
+
+.github__link,
+.school__link{
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+
+.school__link{
+    width: 68px;
+    margin-left: 40px;
+}
+
+.container{
+    max-width: 700px;
+    margin: 0 auto;
+}
+

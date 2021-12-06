@@ -3,13 +3,13 @@ import Sources from './sources/sources';
 import { ISourses } from './sources/sources';
 import { IArticles } from './news/news';
 
-export interface IDataArticles {
+interface IDataArticles {
     status?: string;
     totalResults?: number;
     articles?: Array<IArticles>;
 }
 
-export interface IDataSources {
+interface IDataSources {
     status?: string;
     sources?: Array<ISourses>;
 }
