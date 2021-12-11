@@ -16,17 +16,108 @@
   <main>
     <div class="container">
       <div class="main__top"></div>
-      <section class="main-page">
+      <!-- <section class="main-page">
         <h1 class="main-page__title title">Помогите бабушке<br> нарядить елку</h1>
         <button class="main-page__btn">Начать</button>
+      </section> -->
+      <section class="toys-page">
+        <div class="toys-page__inner">
+
+          <div class="filters">
+            <div class="filters__top">
+              <div class="filters__top-favorites">
+                <div class="filters__top-favorites__img"></div>
+                <div class="filters__top-score">0</div>
+              </div>
+              <div class="">
+                <input class="filters__top-search" type="text" placeholder="Поиск">
+                <div class="filters__top-icon"></div>
+              </div>
+
+            </div>
+            <div class="filters__select title">
+              <label for="select">
+                Сортировать
+                <select id="select">
+                  <option value="По названию от А до Я">По названию от "А" до "Я"</option>
+                  <option value="По названию от Я до А">По названию от "Я" до "А"</option>
+                  <option value="По возрастанию">По возрастанию</option>
+                  <option value="По убыванию">По убыванию</option>
+                </select>
+              </label>
+            </div>
+            <div class="filters__forms title">
+              <h4 class="filters__forms-title">Форма</h4>
+              <div class="filters__forms-btns">
+                <button class="bell">Колокол</button>
+                <button class="ball">Шар</button>
+                <button class="cone">Шишка</button>
+                <button class="star">Звезда</button>
+                <button class="snowflake">Снежинка</button>
+                <button class="figurine">Фигурка</button>
+              </div>
+            </div>
+            <div class="filters__range">
+
+            </div>
+            <div class="filters__colors">
+              <h4 class="filters__forms-title">Цвет</h4>
+              <div class="filters__color">
+                <button class="white"></button>
+                <button class="yellow"></button>
+                <button class="red"></button>
+                <button class="blue"></button>
+                <button class="green"></button>
+              </div>
+            </div>
+            <div class="filters__size">
+              <h4 class="filters__forms-title">Размер</h4>
+              <div class="filters__size-checkboxes">
+                <div class="filters__size-checkbox">
+                  <input type="checkbox" class="custom-checkbox" id="big" name="big">
+                  <label for="big">Большой</label>
+                </div>
+                <div class="filters__size-checkbox">
+                  <input type="checkbox" class="custom-checkbox" id="middle" name="middle">
+                  <label for="middle">Средний</label>
+                </div>
+                <div class="filters__size-checkbox">
+                  <input type="checkbox" class="custom-checkbox" id="little" name="little">
+                  <label for="little">Маленький</label>
+                </div>
+              </div>
+              <div class="filters__size-favorite">
+                <input type="checkbox" class="custom-checkbox" id="favorite" name="big">
+                <label for="favorite">Только любимые</label>
+              </div>
+            </div>
+            <div class="filters__btns">
+              <button class="filters__btn-reset">Сбросить фильтры</button>
+            </div>
+          </div>
+
+          <div class="toys">
+            <h2 class="toys__title title">Игрушки</h2>
+            <div class="toys__inner">
+              <div class="card">
+                <h5 class="card__title title">Большой шар с рисунком Цветок</h5>
+                <div class="card__img"></div>
+                <p class="card__count">Количество: 2</p>
+                <p class="card__year">Год покупки: 1960 год</p>
+                <p class="card__color">Цвет игрушки: желтый</p>
+                <p class="card__size">Размер игрушки: большой</p>
+                <p class="card__favorite">Любимая: нет</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
-      <section class="toys-page"></section>
     </div>
   </main>
   <footer class="footer">
     <div class="container">
       <div class="footer__inner">
-        <a class="footer__author" href="https://github.com/l1irik-rbk">Работу выполнил: l1irik-rbk</a>
+        <a class="footer__author" href="https://github.com/l1irik-rbk">l1irik-rbk</a>
         <p class="footer__year">2021</p>
         <a class="footer__link" href="https://rs.school/js/">
           <div class="footer__link-content"></div>
