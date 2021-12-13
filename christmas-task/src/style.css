@@ -103,9 +103,8 @@ main{
 
 
 
-.toys-page{
 
-}
+
 
 input{
   display: block;
@@ -468,17 +467,20 @@ select{
   backdrop-filter: blur(4px);
   border-radius: 10px;
   padding: 18px 16px;
+  position: relative;
+  cursor: pointer;
 }
 
 .card__title{
   width: 160px;
+  height: 48px;
   font-size: 22px;
   line-height: 24px;
   margin-bottom: 14px;
 }
 
 .card__img{
-  background-image: url('./assets/toys/1.webp');
+  /* background-image: url('./assets/toys/10.png'); */
   width: 100px;
   height: 106px;
   background-size: cover;
@@ -491,6 +493,30 @@ select{
   margin-bottom: 12px;
 }
 
-.card__favorite{
+.card__beloved{
   margin-bottom: 0;
+}
+
+.card__favorites{
+  position: absolute;
+  width: 60px;
+  height: 40px;
+  background-color: #24C5DB;
+  bottom: 100px;
+  right: 0px;
+}
+
+.card__favorites::after{
+  content: '';
+  position: absolute;
+  border-top: 20px solid transparent;
+  border-bottom: 20px solid transparent;
+  border-right: 15px solid #24C5DB;
+  width: 60px;
+  height: 40px;
+  right: 60px;
+}
+
+.favorites{
+  filter: invert(96%) sepia(63%) saturate(461%) hue-rotate(322deg) brightness(83%) contrast(88%);
 }
