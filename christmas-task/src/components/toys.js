@@ -3,15 +3,19 @@ import FilterToys from './filter';
 
 export default class Toys {
   constructor() {
-    this.select = document.querySelector('#select').addEventListener('change', (e) => {
-      new FilterToys().sorted(e)
-    })
+    // this.select = document.querySelector('#select').addEventListener('change', (e) => {
+    //   new FilterToys().sorted(e)
+    // })
+    // this.toys = document.querySelector('.filters__forms-btns').addEventListener('click', (e) => {
+    //   new FilterToys().filtred(e)
+    // })
   }
 
   draw(data) {
-    for (let i = 0; i < data.length; i++) {
-      const inner = document.querySelector('.toys__inner')
+    const inner = document.querySelector('.toys__inner')
+    inner.innerHTML = ''
 
+    for (let i = 0; i < data.length; i++) {
       const card = document.createElement('div')
       const h5 = document.createElement('h5')
       const cardImg = document.createElement('div')
@@ -20,6 +24,7 @@ export default class Toys {
       const cardColor = document.createElement('p')
       const cardSize = document.createElement('p')
       const cardBeloved = document.createElement('p')
+      const cardShape = document.createElement('p')
       const cardFavorites = document.createElement('div')
 
       card.classList.add('card')
@@ -27,6 +32,7 @@ export default class Toys {
       cardImg.classList.add('card__img')
       cardCount.classList.add('card__count')
       cardYear.classList.add('card__year')
+      cardShape.classList.add('card__shape')
       cardColor.classList.add('card__color')
       cardSize.classList.add('card__size')
       cardBeloved.classList.add('card__beloved')
@@ -38,6 +44,7 @@ export default class Toys {
       cardImg.style.backgroundImage = `url('./assets/toys/${data[i].num}.webp')`
       cardCount.textContent = `Количество: ${data[i].count}`
       cardYear.textContent = `Год покупки: ${data[i].year} год`
+      cardShape.textContent = `Форма игрушки: ${data[i].shape}`
       cardColor.textContent = `Цвет игрушки: ${data[i].color}`
       cardSize.textContent = `Размер игрушки: ${data[i].size}`
       cardBeloved.textContent = `Любимая: ${favorite}`
@@ -47,6 +54,7 @@ export default class Toys {
       card.append(cardImg)
       card.append(cardCount)
       card.append(cardYear)
+      card.append(cardShape)
       card.append(cardColor)
       card.append(cardSize)
       card.append(cardBeloved)
@@ -80,14 +88,30 @@ export default class Toys {
       counter--
       document.querySelector('.filters__top-score').textContent = `${counter}`
     }
-
-    console.log(counter)
   }
-
 
 }
 
+// document.querySelector('#select').addEventListener('change', (e) => {
+//   new FilterToys().sorted(e)
+// })
+// document.querySelector('.filters__forms-btns').addEventListener('click', (e) => {
+//   new FilterToys().filtred(e)
+// })
+
+// document.querySelector('.filters__color').addEventListener('click', (e) => {
+//   new FilterToys().filtred(e)
+// })
+
+// document.querySelector('.filters__size-checkboxes').addEventListener('click', (e) => {
+//   new FilterToys().filtred(e)
+// })
+
+// document.querySelector('.filters__size-favorite').addEventListener('click', (e) => {
+//   new FilterToys().filtred(e)
+// })
+
 let counter = 0
-let flag = false
-// if (flag) alert('asdasd')
 const toys = []
+
+

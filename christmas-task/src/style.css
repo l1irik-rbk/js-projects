@@ -192,7 +192,6 @@ select{
   line-height: 22px;
   text-transform: uppercase;
   align-items: center;
-  margin-bottom: 100px;
 }
 
 .filters__select select{
@@ -367,7 +366,9 @@ select{
 }
 
 .filters__size-checkbox input,
-.filters__size-checkbox label{
+.filters__size-checkbox label,
+.filters__size-favorite input,
+.filters__size-favorite label{
   display: block;
   cursor: pointer;
 }
@@ -390,7 +391,7 @@ select{
   user-select: none;
 }
 
- .custom-checkbox+label::before {
+.custom-checkbox+label::before {
   content: '';
   display: inline-block;
   width: 20px;
@@ -476,7 +477,7 @@ select{
   height: 48px;
   font-size: 22px;
   line-height: 24px;
-  margin-bottom: 14px;
+  margin-bottom: 10px;
 }
 
 .card__img{
@@ -486,11 +487,11 @@ select{
   background-size: cover;
   background-repeat: no-repeat;
   margin: 0 auto;
-  margin-bottom: 17px;
+  margin-bottom: 10px;
 }
 
 .card p{
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 
 .card__beloved{
@@ -519,4 +520,63 @@ select{
 
 .favorites{
   filter: invert(96%) sepia(63%) saturate(461%) hue-rotate(322deg) brightness(83%) contrast(88%);
+}
+
+.slider__count-title,
+.slider__yeart-title{
+  font-size: 18px;
+  line-height: 22px;
+  margin-bottom: 16px;
+}
+
+.slider__count-inner,
+.slider__year-inner{
+  margin-bottom: 24px;
+}
+
+#slider__year,
+#slider__count{
+  margin-bottom: 8px;
+}
+
+.sliders .noUi-target{
+  border-radius: 0;
+  border: none;
+}
+.sliders .noUi-horizontal {
+  height: 2px;
+}
+.sliders .noUi-connect{
+  background-color: #24C5DB;
+}
+
+.sliders .noUi-horizontal .noUi-handle{
+  width: 16px;
+  height: 16px;
+  right: -15px;
+  top: -6px;
+}
+
+.sliders .noUi-handle{
+  border: none;
+  border-radius: 50%;
+  cursor: col-resize;
+}
+
+.sliders .noUi-handle:before, 
+.sliders .noUi-handle:after{
+  width: 0;
+  height: 0;
+}
+
+.sliders span{
+  display: inline-block;
+  font-size: 18px;
+  line-height: 22px;
+}
+
+.slider__count-count,
+.slider__year-year{
+  display: flex;
+  justify-content: space-between;
 }

@@ -49,25 +49,39 @@
             <div class="filters__forms title">
               <h4 class="filters__forms-title">Форма</h4>
               <div class="filters__forms-btns">
-                <button class="bell">Колокол</button>
-                <button class="ball">Шар</button>
-                <button class="cone">Шишка</button>
-                <button class="star">Звезда</button>
-                <button class="snowflake">Снежинка</button>
-                <button class="figurine">Фигурка</button>
+                <button class="bell" data-icon="bell">Колокол</button>
+                <button class="ball" data-icon="ball">Шар</button>
+                <button class="cone" data-icon="cone">Шишка</button>
+                <button class="snowflake" data-icon="snowflake">Снежинка</button>
+                <button class="figurine" data-icon="figurine">Фигурка</button>
               </div>
             </div>
-            <div class="filters__range">
-
+            <div class="sliders">
+              <div class="slider__count-inner">
+                <h5 class="slider__count-title">Количество экземпляров</h5>
+                <div id="slider__count"></div>
+                <div class="slider__count-count">
+                  <span class="min-count">1</span>
+                  <span class="max-count">12</span>
+                </div>
+              </div>
+              <div class="slider__year-inner">
+                <h5 class="slider__yeart-title">Год приобретения</h5>
+                <div id="slider__year"></div>
+                <div class="slider__year-year">
+                  <span class="min-year">1940</span>
+                  <span class="max-year">2020</span>
+                </div>
+              </div>
             </div>
             <div class="filters__colors">
               <h4 class="filters__forms-title">Цвет</h4>
               <div class="filters__color">
-                <button class="white"></button>
-                <button class="yellow"></button>
-                <button class="red"></button>
-                <button class="blue"></button>
-                <button class="green"></button>
+                <button class="white" data-color="white"></button>
+                <button class="yellow" data-color="yellow"></button>
+                <button class="red" data-color="red"></button>
+                <button class="blue" data-color="blue"></button>
+                <button class="green" data-color="green"></button>
               </div>
             </div>
             <div class="filters__size">
@@ -104,6 +118,7 @@
                 <div class="card__img" style="background-image: url('./assets/toys/1.webp');"></div>
                 <p class="card__count">Количество: 2</p>
                 <p class="card__year">Год покупки: 1960 год</p>
+                <p class="card__shape">Форма игрушки: шар</p>
                 <p class="card__color">Цвет игрушки: желтый</p>
                 <p class="card__size">Размер игрушки: большой</p>
                 <p class="card__beloved">Любимая: нет</p>
