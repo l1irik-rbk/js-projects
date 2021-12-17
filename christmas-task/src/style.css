@@ -170,13 +170,14 @@ select{
 
 .filters__top-icon{
   position: absolute;
-  background-image: url(./assets/svg/search.svg);
+  background-image: url(./assets/svg/close.svg);
   background-position: center;
   background-size: cover;
   width: 24px;
   height: 24px;
   right: 15px;
   bottom: 9px;
+  cursor: pointer;
 }
 
 .filters__top-search::placeholder{

@@ -160,8 +160,82 @@ export default class FilterToys {
     });
   }
 
-  reset() {
+  resetBtn() {
+    for (let key in mainObj.shape) {
+      mainObj.shape[`${key}`] = false
+    }
 
+    for (let key in mainObj.color) {
+      mainObj.color[`${key}`] = false
+    }
+
+    for (let key in mainObj.size) {
+      mainObj.size[`${key}`] = false
+    }
+
+    for (let key in mainObj.favorite) {
+      mainObj.favorite[`${key}`] = false
+    }
+
+    mainObj.count.start = 1
+    mainObj.count.end = 12
+    mainObj.year.start = 1940
+    mainObj.year.end = 2020
+
+    const forms = form.querySelectorAll('button')
+    const colors = color.querySelectorAll('button')
+    const sizes = size.querySelectorAll('input')
+    const favorites = favorite.querySelector('input')
+
+    forms.forEach(form => {
+      if (form.classList.contains('toy--active')) form.classList.remove('toy--active')
+    })
+
+    colors.forEach(color => {
+      if (color.classList.contains('filters__color--active')) color.classList.remove('filters__color--active')
+    })
+
+    sizes.forEach(size => {
+      if (size.checked) size.checked = false
+    })
+
+    if (favorites.checked) favorites.checked = false
+    sliderCount.noUiSlider.reset()
+    sliderYear.noUiSlider.reset()
+    minCount.textContent = 1
+    maxCount.textContent = 12
+    minYear.textContent = 1940
+    maxYear.textContent = 2020
+
+    this.filterData(newData, mainObj)
+  }
+
+  search() {
+    const inner = document.querySelector('.toys__inner')
+    const cards = inner.querySelectorAll('.card')
+    const deleteText = document.querySelector('.filters__top-icon')
+    const inputValue = search.value.toLowerCase()
+    let arr = []
+
+    deleteText.addEventListener('click', () => {
+      search.value = ''
+      cards.forEach(card => card.style.display = '')
+      
+    })
+    
+    cards.forEach(card => {
+      const cardTitle = card.querySelector('h5')
+      if (cardTitle.textContent.toLowerCase().indexOf(inputValue) > -1) {
+        card.style.display = ''
+      } else {
+        card.style.display = 'none'
+        arr.push('')
+      }
+
+      if (cards.length === arr.length) {
+        console.log('Извините, совпадений не обнаружено')
+      }
+    })
   }
 }
 
@@ -216,11 +290,21 @@ const mainObj = {
   },
 }
 
-document.querySelector('#select').addEventListener('change', e => new FilterToys().sorted(e))
-document.querySelector('.filters__forms-btns').addEventListener('click', callFilter)
-document.querySelector('.filters__color').addEventListener('click', callFilter)
-document.querySelector('.filters__size-checkboxes').addEventListener('click', callFilter)
-document.querySelector('.filters__size-favorite').addEventListener('click', callFilter)
+const select = document.querySelector('#select')
+const form = document.querySelector('.filters__forms-btns')
+const color = document.querySelector('.filters__color')
+const size = document.querySelector('.filters__size-checkboxes')
+const favorite = document.querySelector('.filters__size-favorite')
+const reset = document.querySelector('.filters__btn-reset')
+const search = document.querySelector('.filters__top-search')
+
+select.addEventListener('change', e => new FilterToys().sorted(e))
+form.addEventListener('click', callFilter)
+color.addEventListener('click', callFilter)
+size.addEventListener('click', callFilter)
+favorite.addEventListener('click', callFilter)
+reset.addEventListener('click', () => new FilterToys().resetBtn())
+search.addEventListener('keyup', () => new FilterToys().search())
 
 function callFilter(e) {
   new FilterToys().filtred(e)
