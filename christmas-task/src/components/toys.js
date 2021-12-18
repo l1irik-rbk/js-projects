@@ -2,15 +2,6 @@ import data from './data';
 import FilterToys from './filter';
 
 export default class Toys {
-  constructor() {
-    // this.select = document.querySelector('#select').addEventListener('change', (e) => {
-    //   new FilterToys().sorted(e)
-    // })
-    // this.toys = document.querySelector('.filters__forms-btns').addEventListener('click', (e) => {
-    //   new FilterToys().filtred(e)
-    // })
-  }
-
   draw(data) {
     const inner = document.querySelector('.toys__inner')
     inner.innerHTML = ''
@@ -49,6 +40,14 @@ export default class Toys {
       cardSize.textContent = `Размер игрушки: ${data[i].size}`
       cardBeloved.textContent = `Любимая: ${favorite}`
 
+      if (toysArr.length !== 0) {
+        for (let i = 0; i < toysArr.length; i++) {
+          if (h5.textContent === toysArr[i]) {
+            cardFavorites.classList.add('favorites')
+          }
+        }
+      }
+
       inner.append(card)
       card.append(h5)
       card.append(cardImg)
@@ -68,50 +67,45 @@ export default class Toys {
     const element = this
     const elementTitle = element.querySelector('.card__title').textContent
     const favorites = element.querySelector('.card__favorites')
+    const score = document.querySelector('.filters__top-score')
 
     if (!favorites.classList.contains('favorites') && counter < 21) {
-      if (toys.length < 20) {
+      if (toysArr.length < 20) {
         favorites.classList.add('favorites')
-        toys.push(elementTitle)
+        toysArr.push(elementTitle)
       }
       counter++
-      document.querySelector('.filters__top-score').textContent = `${counter}`
+      score.textContent = `${counter}`
       if (counter === 21) {
         alert('Извините, все слоты заполнены')
         counter--
-        document.querySelector('.filters__top-score').textContent = `${counter}`
+        score.textContent = `${counter}`
       }
     } else if (favorites.classList.contains('favorites')) {
       favorites.classList.remove('favorites')
-      const toyIndex = toys.indexOf(elementTitle)
-      if (toyIndex !== -1) toys.splice(toyIndex, 1)
+      const toyIndex = toysArr.indexOf(elementTitle)
+      if (toyIndex !== -1) toysArr.splice(toyIndex, 1)
       counter--
-      document.querySelector('.filters__top-score').textContent = `${counter}`
+      score.textContent = `${counter}`
     }
+    console.log(toysArr)
   }
-
 }
 
-// document.querySelector('#select').addEventListener('change', (e) => {
-//   new FilterToys().sorted(e)
-// })
-// document.querySelector('.filters__forms-btns').addEventListener('click', (e) => {
-//   new FilterToys().filtred(e)
-// })
+// function setLocalStorage() {
+//   localStorage.setItem('toysArr', JSON.stringify(toysArr));
+// }
 
-// document.querySelector('.filters__color').addEventListener('click', (e) => {
-//   new FilterToys().filtred(e)
-// })
+// function getLocalStorage() {
+//   if (localStorage.getItem('toysArr')) {
+//     toysArr = JSON.parse(localStorage.getItem('toysArr'));
+//   }
+//   counter = toysArr.length
+// }
 
-// document.querySelector('.filters__size-checkboxes').addEventListener('click', (e) => {
-//   new FilterToys().filtred(e)
-// })
-
-// document.querySelector('.filters__size-favorite').addEventListener('click', (e) => {
-//   new FilterToys().filtred(e)
-// })
-
+// window.addEventListener('beforeunload', setLocalStorage);
+// window.addEventListener('load', getLocalStorage);
 let counter = 0
-const toys = []
+export let toysArr = []
 
-
+// console.log(toysArr)

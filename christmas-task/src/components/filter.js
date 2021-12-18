@@ -1,4 +1,4 @@
-import Toys from './toys'
+import Toys, {toysArr} from './toys'
 import data from './data';
 import { sliderCount, sliderYear, minCount, maxCount, minYear, maxYear } from './slider'
 
@@ -182,11 +182,6 @@ export default class FilterToys {
     mainObj.year.start = 1940
     mainObj.year.end = 2020
 
-    const forms = form.querySelectorAll('button')
-    const colors = color.querySelectorAll('button')
-    const sizes = size.querySelectorAll('input')
-    const favorites = favorite.querySelector('input')
-
     forms.forEach(form => {
       if (form.classList.contains('toy--active')) form.classList.remove('toy--active')
     })
@@ -220,9 +215,9 @@ export default class FilterToys {
     deleteText.addEventListener('click', () => {
       search.value = ''
       cards.forEach(card => card.style.display = '')
-      
+
     })
-    
+
     cards.forEach(card => {
       const cardTitle = card.querySelector('h5')
       if (cardTitle.textContent.toLowerCase().indexOf(inputValue) > -1) {
@@ -259,7 +254,7 @@ sliderYear.noUiSlider.on('slide', (values) => {
   new FilterToys().filterData(newData, mainObj)
 })
 
-const mainObj = {
+let mainObj = {
   shape: {
     ['bell']: false,
     ['ball']: false,
@@ -297,6 +292,11 @@ const size = document.querySelector('.filters__size-checkboxes')
 const favorite = document.querySelector('.filters__size-favorite')
 const reset = document.querySelector('.filters__btn-reset')
 const search = document.querySelector('.filters__top-search')
+const clearLocStor = document.querySelector('.filters__btn-settings')
+const forms = form.querySelectorAll('button')
+const colors = color.querySelectorAll('button')
+const sizes = size.querySelectorAll('input')
+const favorites = favorite.querySelector('input')
 
 select.addEventListener('change', e => new FilterToys().sorted(e))
 form.addEventListener('click', callFilter)
@@ -305,9 +305,65 @@ size.addEventListener('click', callFilter)
 favorite.addEventListener('click', callFilter)
 reset.addEventListener('click', () => new FilterToys().resetBtn())
 search.addEventListener('keyup', () => new FilterToys().search())
+clearLocStor.addEventListener('click', () => {
+  localStorage.removeItem('mainObj')
+  localStorage.removeItem('toysArr')
+  localStorage.removeItem('newData')
+  new FilterToys().filterData(newData, mainObj)
+})
 
 function callFilter(e) {
   new FilterToys().filtred(e)
 }
 
 
+function setLocalStorage() {
+  localStorage.setItem('mainObj', JSON.stringify(mainObj));
+  localStorage.setItem('newData', JSON.stringify(newData));
+}
+window.addEventListener('beforeunload', setLocalStorage);
+
+function getLocalStorage() {
+  if (localStorage.getItem('mainObj')) {
+    mainObj = JSON.parse(localStorage.getItem('mainObj'));
+
+    forms.forEach(form => {
+      for (let key in mainObj.shape) {
+        if (mainObj.shape[`${key}`] && form.classList.contains(`${key}`)) {
+          form.classList.add('toy--active')
+        }
+      }
+    })
+
+    colors.forEach(color => {
+      for (let key in mainObj.color) {
+        if (mainObj.color[`${key}`] && color.classList.contains(`${key}`)) {
+          color.classList.add('filters__color--active')
+        }
+      }
+    })
+
+    sizes.forEach(size => {
+      for (let key in mainObj.cosizelor) {
+        if (mainObj.size[`${key}`] && size.classList.contains(`${key}`)) {
+          size.classList.add('filters__color--active')
+        }
+      }
+    })
+
+    if (mainObj.favorite[`favorite`]) favorites.checked = true
+    minCount.textContent = mainObj.count.start
+    maxCount.textContent = mainObj.count.end
+    minYear.textContent = mainObj.year.start
+    maxYear.textContent = mainObj.year.end
+
+    sliderCount.noUiSlider.updateOptions({start: [mainObj.count.start, mainObj.count.end],})
+    sliderYear.noUiSlider.updateOptions({start: [mainObj.year.start, mainObj.year.end],})
+  }
+
+  if (localStorage.getItem('newData')) {
+    newData = JSON.parse(localStorage.getItem('newData'));
+  }
+  new FilterToys().filterData(newData, mainObj)
+}
+window.addEventListener('load', getLocalStorage);
