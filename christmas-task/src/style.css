@@ -173,10 +173,10 @@ select{
   background-image: url(./assets/svg/close.svg);
   background-position: center;
   background-size: cover;
-  width: 24px;
-  height: 24px;
+  width: 16px;
+  height: 16px;
   right: 15px;
-  bottom: 9px;
+  bottom: 12px;
   cursor: pointer;
 }
 
@@ -545,6 +545,7 @@ select{
 #slider__year,
 #slider__count{
   margin-bottom: 8px;
+  z-index: 0;
 }
 
 .sliders .noUi-target{
@@ -588,3 +589,6 @@ select{
   display: flex;
   justify-content: space-between;
 }
+
+
+
