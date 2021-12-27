@@ -20,11 +20,12 @@ export default class Toys {
     this.isSelected = !this.isSelected
     const favorites = card.querySelector('.card__favorites')
     const cardName = card.querySelector('.card__title').textContent
-
+   
     if (!favorites.classList.contains('favorites') && counter < MAX_CARDS) {
       if (toysArr.length < MAX_CARDS - 1) {
         favorites.classList.add('favorites')
         toysArr.push(cardName)
+        newData.push(this)
       }
       counter++
       score.textContent = `${counter}`
@@ -36,7 +37,10 @@ export default class Toys {
     } else if (favorites.classList.contains('favorites')) {
       favorites.classList.remove('favorites')
       const toyIndex = toysArr.indexOf(cardName)
-      if (toyIndex !== -1) toysArr.splice(toyIndex, 1)
+      if (toyIndex !== -1) {
+        toysArr.splice(toyIndex, 1)
+        newData.splice(toyIndex, 1)
+      } 
       counter--
       score.textContent = `${counter}`
     }
@@ -66,7 +70,9 @@ function getLocalStorage() {
   })
   score.textContent = counter
 }
-window.addEventListener('beforeunload', setLocalStorage);
-window.addEventListener('load', getLocalStorage);
+// window.addEventListener('beforeunload', setLocalStorage);
+// window.addEventListener('load', getLocalStorage);
+
 let counter = 0
 export let toysArr = []
+export let newData = []

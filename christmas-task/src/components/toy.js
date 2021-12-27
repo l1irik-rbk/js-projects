@@ -1,6 +1,4 @@
 import { CARD_ELEMENT } from './helpers/constants';
-import {toysArr} from './toys';
-
 
 export default class Toy {
   constructor(obj) {
@@ -28,6 +26,7 @@ export default class Toy {
       cardColor: `Цвет игрушки: ${this.color}`,
       cardSize: `Размер игрушки: ${this.size}`,
       cardBeloved: `Любимая: ${this.favorite ? 'Да' : 'Нет'}`,
+      сardCounter: `${this.count}`,
     }
   }
 
@@ -38,10 +37,6 @@ export default class Toy {
       htmlElement.classList.add(...element.classes)
       this.fillTextContent(key, htmlElement)
       this.card.append(htmlElement)
-      // if (toysArr.includes(this.name) && htmlElement.classList.contains('card__favorites')) {
-      //   htmlElement.classList.add('favorites')
-      // } 
-      // console.log(toysArr)
     }
     return this.card
   }
@@ -59,27 +54,3 @@ export default class Toy {
     }
   }
 }
-
-// function setLocalStorage() {
-//   // localStorage.setItem('mainObj', JSON.stringify(mainObj));
-//   // localStorage.setItem('newData', JSON.stringify(newData));
-//   localStorage.setItem('toysArr', JSON.stringify(toysArr));
-//   console.log(toysArr)
-// }
-// window.addEventListener('beforeunload', setLocalStorage);
-
-// function getLocalStorage()  {
-//   if (localStorage.getItem('toysArr')) {
-//     toysArr = JSON.parse(localStorage.getItem('toysArr'));
-//   }
-//   console.log(toysArr)
-// }
-// window.addEventListener('load', getLocalStorage);
-
-// function getLocalStorage()  {
-//   if (localStorage.getItem('toysArr')) {
-//     toysArr = JSON.parse(localStorage.getItem('toysArr'));
-//   }
-//   console.log(toysArr)
-// }
-// window.addEventListener('load', getLocalStorage);

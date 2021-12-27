@@ -31,13 +31,14 @@
   text-align: center;
 }
 
-.popup__close-btn{
+.container.popup__close-btn{
   font-size: 20px;
   line-height: 26px;
   margin: 0 auto;
   transition: all .3s;
   padding-bottom: 2px;
   border-bottom: 2px solid transparent;
+  display: none;
 }
 
 .popup__close-btn:hover{
