@@ -476,7 +476,8 @@ select{
 }
 
 .filters__btn-reset,
-.filters__btn-settings{
+.filters__btn-settings,
+.tree__btn-settings{
   display: block;
   font-size: 16px;
   line-height: 19px;
@@ -641,13 +642,6 @@ select{
   display: none;
 }
 
-
-
-
-
-
-
-
 .tree-page{
   display: none;
   
@@ -664,7 +658,7 @@ select{
 
 .settings{
   display: flex;
-  margin-bottom: 50px; 
+  margin-bottom: 25px; 
 }
 
 .settings__snow{
@@ -822,7 +816,7 @@ select{
 }
 
 .garland{
-  margin-bottom: 69px;
+  margin-bottom: 30px;
 }
 
 .garland__inner{
@@ -846,7 +840,7 @@ select{
   height: 800px;
   background-repeat: no-repeat;
   background-size: cover;
-  position: relative;
+  background-image: url(./assets/bg/1.jpg);
 }
 
 .tree__box{
@@ -856,7 +850,7 @@ select{
   height: 714px;
   margin: 0 auto;
   margin-top: 40px;
-  /* background-image: url(./assets/tree/5.png); */
+  background-image: url(./assets/tree/5.png);
 }
 
 .welcom__text{
@@ -870,12 +864,15 @@ select{
 
 .snow{
   position: absolute;
-  top: 0;
-  bottom: 0;
+  top: 70px;
+  bottom: 100px;
   right: 0;
   left: 0;
   overflow: hidden;
   display: none;
+  pointer-events: none;
+  margin-left: 490px;
+  z-index: 500;
 }
 
 .snow--active{
@@ -929,7 +926,7 @@ select{
   position: absolute;
   height: 60px;
   width: 60px;
-  right: 12px;
+  left: 12px;
   top: 7px;
   cursor: move;
 }
@@ -973,20 +970,9 @@ select{
   margin: 0 auto;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+area{
+  cursor: pointer;
+}
 
 .active{
   display: block;

@@ -3,18 +3,19 @@ import { snowBlock } from '../helpers/constants'
 export function snowFlake() {
   if (!snowBlock.classList.contains('snow--active')) {
     snowBlock.classList.add('snow--active')
+    snowFlag = true
   } else {
     snowBlock.classList.remove('snow--active')
+    snowFlag = false
   }
 
   const interevalId = setInterval(() => {
     if (snowBlock.classList.contains('snow--active')) {
       showSnow()
     } else {
-      setInterval(interevalId)
+      clearInterval(interevalId)
     }
   }, 50)
-
 }
 
 function showSnow() {
@@ -31,3 +32,18 @@ function showSnow() {
     snowFlakeItem.remove()
   }, 10000)
 }
+
+let snowFlag = false
+
+function setLocalStorage() {
+  localStorage.setItem('snowFlag', snowFlag);
+}
+
+function getLocalStorage() {
+  if (localStorage.getItem('snowFlag')) {
+    let snowFlag = localStorage.getItem('snowFlag');
+    if (snowFlag === 'true') snowFlake()
+  }
+}
+window.addEventListener('beforeunload', setLocalStorage);
+window.addEventListener('load', getLocalStorage);

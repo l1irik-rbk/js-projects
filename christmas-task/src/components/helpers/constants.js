@@ -6,6 +6,7 @@ import { changeBg } from '../change-bg/change-bg'
 import { changeTree } from '../change-tree/change-tree'
 import { playMusic } from '../music/music'
 import { changeGarland } from '../garland/garland'
+import { resetTree } from '../tree-toys/tree-toys'
 
 export const MAX_CARDS = 21
 export const select = document.querySelector('#select')
@@ -40,10 +41,10 @@ export const background = document.querySelector('.background__inner')
 export const mainBg = document.querySelector('.center')
 export const trees = document.querySelector('.trees__inner')
 export const treeBox = document.querySelector('.tree__box')
-export const welcomText = document.querySelector('.welcom__text')
 export const music = document.querySelector('.settings__music')
 export const garlands = document.querySelector('.garland__inner')
 export const lights = document.querySelector('.lights')
+export const resetTreeBtn = document.querySelector('.tree__btn-settings')
 
 select.addEventListener('change', sorted)
 form.addEventListener('click', filtred)
@@ -62,6 +63,7 @@ background.addEventListener('click', changeBg)
 trees.addEventListener('click', changeTree)
 music.addEventListener('click', playMusic)
 garlands.addEventListener('click', changeGarland)
+resetTreeBtn.addEventListener('click', resetTree)
 
 export const CARD_ELEMENT = {
   title: {

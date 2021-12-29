@@ -1,9 +1,19 @@
 import './garland.css'
 import { lights, garlandsArr } from "../helpers/constants";
 
-export function changeGarland(e) {
+export function changeGarland(e, garlandColor) {
   lights.innerHTML = ''
-  const color = e.target.dataset.color
+  let color
+
+  if (garlandColor) {
+    color = garlandColor
+  } else {
+    color = e.target.dataset.color
+  }
+
+  window.addEventListener('beforeunload', () => {
+    localStorage.setItem('garlandColor', color);
+  });
 
   for (let i = 0; i < garlandsArr.length; i++) {
     const width = garlandsArr[i].width
@@ -28,3 +38,11 @@ export function changeGarland(e) {
     }
   }
 }
+
+function getLocalStorage(e) {
+  if (localStorage.getItem('garlandColor')) {
+    const garlandColor = localStorage.getItem('garlandColor');
+    if (garlandColor) changeGarland(e, garlandColor)
+  }
+}
+window.addEventListener('load', getLocalStorage);
