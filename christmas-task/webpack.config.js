@@ -5,7 +5,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 
 const baseConfig = {
-  entry: path.resolve(__dirname, './src/index.js'),
+  entry: path.resolve(__dirname, './src/index.ts'),
   mode: 'development',
   module: {
     rules: [
@@ -43,7 +43,7 @@ const baseConfig = {
       patterns: [
         {
           from: path.resolve(__dirname, 'src/assets/toys'),
-          to: path.resolve(__dirname, 'dist/assets/toys')
+          to: path.resolve(__dirname, 'dist/assets/toys'),
         },
       ],
     }),
