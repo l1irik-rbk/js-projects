@@ -18,26 +18,16 @@ import { IData, IFilterObject, IObjet, IMainObj, IKeys } from './helpers/interfa
 
 let newData: Array<IData> = data;
 
-export function sorted(e: Event): void {
-  // let arr: Array<IData>;
+export function sorted(e: Event) {
   if ((e.target as HTMLInputElement).value === 'По названию от А до Я') {
-    newData.sort((a, b) => {
-      if (a.name < b.name) return -1;
-    });
+    newData.sort((a, b) => (a.name < b.name ? -1 : 1));
   } else if ((e.target as HTMLInputElement).value === 'По названию от Я до А') {
-    newData.sort((a, b) => {
-      if (a.name > b.name) return -1;
-    });
+    newData.sort((a, b) => (a.name > b.name ? -1 : 1));
   } else if ((e.target as HTMLInputElement).value === 'По возрастанию') {
-    newData.sort((a, b) => {
-      if (+a.count < +b.count) return -1;
-    });
+    newData.sort((a, b) => (+a.count < +b.count ? -1 : 1));
   } else if ((e.target as HTMLInputElement).value === 'По убыванию') {
-    newData.sort((a, b) => {
-      if (+a.count > +b.count) return -1;
-    });
+    newData.sort((a, b) => (+a.count > +b.count ? -1 : 1));
   }
-  // newData = arr;
   filterData(newData, mainObj);
 }
 
@@ -70,12 +60,12 @@ export function filtred(e: Event): void {
     !(e.target as HTMLElement).classList.contains('filters__color--active')
   ) {
     (e.target as HTMLElement).classList.add('filters__color--active');
-    const dataAtr = (e.target as HTMLElement).dataset.color;
+    const dataAtr = (e.target as HTMLElement).dataset.color as string;
     mainObj.color[dataAtr] = true;
     filterData(newData, mainObj);
   } else if ((e.target as HTMLElement).classList.contains('filters__color--active')) {
     (e.target as HTMLElement).classList.remove('filters__color--active');
-    const dataAtr = (e.target as HTMLElement).dataset.color;
+    const dataAtr = (e.target as HTMLElement).dataset.color as string;
     mainObj.color[dataAtr] = false;
     filterData(newData, mainObj);
   }
@@ -184,35 +174,12 @@ function filterData(data: Array<IData>, mainObj: IMainObj): void {
 
 function filterArr(array: Array<IData>, filters: IObjet) {
   const keys = Object.keys(filters);
-  return array.filter((el) => {
-    // const commonKeys = keys.filter((key) => el.hasOwnProperty(key));
-    // console.log(
-    //   keys.forEach((key) => {
-    //     console.log(filters[key]);
-    //     console.log(key);
-    //   })
-    // );
-
+  return array.filter((el: IData) => {
     return keys.reduce((flag, key) => flag && filters[key].includes(el[key]), true);
   });
 }
 
-export function resetBtn() {
-  // Object.entries(color).forEach(([key, value]) => {
-  //   if (value) {
-  //     if (!object.color) object.color = [];
-  //     object.color.push(keys[`${key}`]);
-  //   }
-  // });
-
-  // Object.entries(mainObj).forEach(([key, value]) => {
-  //   if (key !== 'count' && key !== 'year') {
-  //     Object.entries(value).forEach(([key, value]) => {
-  //       mainObj[key].value = false;
-  //     });
-  //   }
-  // });
-
+export function resetBtn(): void {
   for (const key in mainObj.shape) {
     mainObj.shape[`${key}`] = false;
   }
@@ -257,7 +224,7 @@ export function resetBtn() {
   filterData(newData, mainObj);
 }
 
-export function searchField() {
+export function searchField(): void {
   const inner = document.querySelector('.toys__inner') as HTMLElement;
   const cards = inner.querySelectorAll('.card');
   const deleteText = document.querySelector('.filters__top-icon') as HTMLElement;
@@ -270,8 +237,8 @@ export function searchField() {
   });
 
   cards.forEach((card) => {
-    const cardTitle = card.querySelector('h5');
-    if (cardTitle.textContent.toLowerCase().indexOf(inputValue) > -1) {
+    const cardTitle = (card.querySelector('h5') as HTMLElement).textContent || '';
+    if (cardTitle.toLowerCase().indexOf(inputValue) > -1) {
       (card as HTMLElement).style.display = '';
     } else {
       (card as HTMLElement).style.display = 'none';
@@ -373,7 +340,7 @@ function getLocalStorage() {
     });
 
     sizes.forEach((size) => {
-      for (const key in mainObj.cosizelor) {
+      for (const key in mainObj.size) {
         if (mainObj.size[`${key}`] && size.classList.contains(`${key}`)) {
           size.classList.add('filters__color--active');
         }

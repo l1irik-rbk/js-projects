@@ -1,11 +1,6 @@
 import { CARD_ELEMENT } from './helpers/constants';
 import { IData } from './helpers/interfaces';
 
-// type elementInt = {
-//   classes: Array<string>;
-//   htmlElement: string;
-// };
-
 export default class Toy {
   color?: string;
   count?: string;

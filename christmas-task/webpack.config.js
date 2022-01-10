@@ -45,6 +45,18 @@ const baseConfig = {
           from: path.resolve(__dirname, 'src/assets/toys'),
           to: path.resolve(__dirname, 'dist/assets/toys'),
         },
+        {
+          from: path.resolve(__dirname, 'src/assets/bg'),
+          to: path.resolve(__dirname, 'dist/assets/bg'),
+        },
+        {
+          from: path.resolve(__dirname, 'src/assets/tree'),
+          to: path.resolve(__dirname, 'dist/assets/tree'),
+        },
+        {
+          from: path.resolve(__dirname, 'src/assets/audio'),
+          to: path.resolve(__dirname, 'dist/assets/audio'),
+        },
       ],
     }),
   ],

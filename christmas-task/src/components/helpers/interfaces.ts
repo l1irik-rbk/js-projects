@@ -37,28 +37,10 @@ export interface IObjet {
 }
 
 export interface IMainObj {
-  shape: {
-    ['bell']: boolean;
-    ['ball']: boolean;
-    ['cone']: boolean;
-    ['snowflake']: boolean;
-    ['figurine']: boolean;
-  };
-  color: {
-    ['white']: boolean;
-    ['yellow']: boolean;
-    ['red']: boolean;
-    ['blue']: boolean;
-    ['green']: boolean;
-  };
-  size: {
-    ['big']: boolean;
-    ['middle']: boolean;
-    ['little']: boolean;
-  };
-  favorite: {
-    ['favorite']: boolean;
-  };
+  shape: { [key: string]: boolean };
+  color: { [key: string]: boolean };
+  size: { [key: string]: boolean };
+  favorite: { [key: string]: boolean };
   count: {
     start: number;
     end: number;
