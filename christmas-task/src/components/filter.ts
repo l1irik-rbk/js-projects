@@ -18,7 +18,7 @@ import { IData, IFilterObject, IObjet, IMainObj, IKeys } from './helpers/interfa
 
 let newData: Array<IData> = data;
 
-export function sorted(e: Event) {
+export function sorted(e: Event): void {
   if ((e.target as HTMLInputElement).value === 'По названию от А до Я') {
     newData.sort((a, b) => (a.name < b.name ? -1 : 1));
   } else if ((e.target as HTMLInputElement).value === 'По названию от Я до А') {
@@ -313,13 +313,13 @@ clearLocStor.addEventListener('click', () => {
   filterData(newData, mainObj);
 });
 
-function setLocalStorage() {
+function setLocalStorage(): void {
   localStorage.setItem('mainObj', JSON.stringify(mainObj));
   localStorage.setItem('newData', JSON.stringify(newData));
 }
 window.addEventListener('beforeunload', setLocalStorage);
 
-function getLocalStorage() {
+function getLocalStorage(): void {
   if (localStorage.getItem('mainObj')) {
     mainObj = JSON.parse(localStorage.getItem('mainObj') || '');
 

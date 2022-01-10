@@ -1,5 +1,11 @@
 import { sorted, filtred, resetBtn, searchField } from '../filter';
 import { closePopup } from '../popup/popup';
+import { snowFlake } from '../snowflake/snowflake';
+import { changeBg } from '../change-bg/change-bg';
+import { changeTree } from '../change-tree/change-tree';
+import { playMusic } from '../music/music';
+import { changeGarland } from '../garland/garland';
+import { resetTree } from '../tree-toys/tree-toys';
 
 export const CARD_ELEMENT = {
   title: {
@@ -40,6 +46,30 @@ export const CARD_ELEMENT = {
   },
 };
 
+export const garlandsArr = [
+  { numbers: 5, rotate: 65, angle: 12, width: 120, height: 120 },
+  { numbers: 9, rotate: 60, angle: 8, width: 220, height: 220 },
+  { numbers: 13, rotate: 55, angle: 6, width: 320, height: 320 },
+  { numbers: 17, rotate: 58, angle: 4, width: 420, height: 420 },
+  { numbers: 24, rotate: 58, angle: 3, width: 520, height: 520 },
+  { numbers: 32, rotate: 52, angle: 2.5, width: 620, height: 620 },
+];
+
+export interface IKeys {
+  [key: string]: string;
+}
+
+export const TOY_CARD_ELEMENT = {
+  littleCardImage: {
+    classes: ['toy'],
+    htmlElement: 'img',
+  },
+  сardCounter: {
+    classes: ['toy__counter'],
+    htmlElement: 'span',
+  },
+};
+
 export const MIN_YEAR = 1940;
 export const MAX_YEAR = 2020;
 export const MIN_COUNT = 1;
@@ -61,6 +91,23 @@ export const score = document.querySelector('.filters__top-score') as HTMLElemen
 export const popupText = document.querySelector('.popup__text') as HTMLElement;
 export const popupCloseBtn = document.querySelector('.popup__close-btn') as HTMLElement;
 export const popupAnswer = document.querySelector('.popup__answer') as HTMLElement;
+export const popup = document.querySelector('.popup') as HTMLElement;
+export const popupContent = document.querySelector('.popup__content') as HTMLElement;
+export const menuList = document.querySelectorAll('.menu__list-item');
+export const mainPage = document.querySelector('.main-page') as HTMLElement;
+export const toysPage = document.querySelector('.toys-page') as HTMLElement;
+export const treePage = document.querySelector('.tree-page') as HTMLElement;
+export const main = document.querySelector('main') as HTMLElement;
+export const snowBlock = document.querySelector('.snow') as HTMLElement;
+export const addSnow = document.querySelector('.settings__snow') as HTMLElement;
+export const background = document.querySelector('.background__inner') as HTMLElement;
+export const mainBg = document.querySelector('.center') as HTMLElement;
+export const trees = document.querySelector('.trees__inner') as HTMLElement;
+export const treeBox = document.querySelector('.tree__box') as HTMLImageElement;
+export const music = document.querySelector('.settings__music') as HTMLElement;
+export const garlands = document.querySelector('.garland__inner') as HTMLElement;
+export const lights = document.querySelector('.lights') as HTMLElement;
+export const resetTreeBtn = document.querySelector('.tree__btn-settings') as HTMLElement;
 
 select.addEventListener('change', sorted);
 form.addEventListener('click', filtred);
@@ -70,3 +117,9 @@ favorite.addEventListener('click', filtred);
 reset.addEventListener('click', resetBtn);
 search.addEventListener('keyup', searchField);
 popupCloseBtn.addEventListener('click', closePopup);
+addSnow.addEventListener('click', snowFlake);
+background.addEventListener('click', changeBg);
+trees.addEventListener('click', changeTree);
+music.addEventListener('click', playMusic);
+garlands.addEventListener('click', changeGarland);
+resetTreeBtn.addEventListener('click', resetTree);

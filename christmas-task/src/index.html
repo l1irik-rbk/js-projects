@@ -13,20 +13,29 @@
 </head>
 
 <body>
+  <header class="header">
+    <div class="container">
+      <nav class="menu">
+        <ul class="menu__list">
+          <li class="menu__list-item logo main__page-btn"></li>
+          <li class="menu__list-item toys__page-btn">Игрушки</li>
+          <li class="menu__list-item tree__page-btn">Ёлка</li>
+        </ul>
+      </nav>
+    </div>
+  </header>
   <main>
     <div class="container">
-      <div class="main__top"></div>
-      <!-- <section class="main-page">
+      <section class="main-page active">
         <h1 class="main-page__title title">Помогите бабушке<br> нарядить елку</h1>
         <button class="main-page__btn">Начать</button>
-      </section> -->
+      </section>
       <section class="toys-page">
         <div class="toys-page__inner">
 
           <div class="filters">
             <div class="filters__top">
               <div class="filters__top-favorites">
-                <div class="filters__top-favorites__img"></div>
                 <div class="filters__top-score">0</div>
               </div>
               <div>
@@ -113,35 +122,85 @@
 
           <div class="toys">
             <h2 class="toys__title title">Игрушки</h2>
-            <div class="toys__inner">
-              <!-- <div class="card">
-                <h5 class="card__title title">Большой шар с рисунком Цветок</h5>
-                <div class="card__img" style="background-image: url('./assets/toys/1.webp');"></div>
-                <p class="card__count">Количество: 2</p>
-                <p class="card__year">Год покупки: 1960 год</p>
-                <p class="card__shape">Форма игрушки: шар</p>
-                <p class="card__color">Цвет игрушки: желтый</p>
-                <p class="card__size">Размер игрушки: большой</p>
-                <p class="card__beloved">Любимая: нет</p>
-                <div class="card__favorites favorites"></div>
-              </div> -->
-            </div>
+            <div class="toys__inner"></div>
           </div>
         </div>
       </section>
+      <section class="tree-page">
+        <div class="tree-page__inner">
+          <div class="left__side">
+            <div class="settings">
+              <button class="settings__music"></button>
+              <button class="settings__snow"></button>
+            </div>
+            <div class="settings__trees">
+              <h5 class="trees__title title">Выберите Ёлку</h5>
+              <div class="trees__inner">
+                <div class="tree" data-tree="1"></div>
+                <div class="tree" data-tree="2"></div>
+                <div class="tree" data-tree="3"></div>
+                <div class="tree" data-tree="4"></div>
+                <div class="tree" data-tree="5"></div>
+                <div class="tree" data-tree="6"></div>
+              </div>
+            </div>
+            <div class="background">
+              <h5 class="background__title title">Выберите фон</h5>
+              <div class="background__inner">
+                <div class="background__element" data-bg="1"></div>
+                <div class="background__element" data-bg="2"></div>
+                <div class="background__element" data-bg="3"></div>
+                <div class="background__element" data-bg="4"></div>
+                <div class="background__element" data-bg="5"></div>
+                <div class="background__element" data-bg="6"></div>
+                <div class="background__element" data-bg="7"></div>
+                <div class="background__element" data-bg="8"></div>
+                <div class="background__element" data-bg="9"></div>
+                <div class="background__element" data-bg="10"></div>
+              </div>
+            </div>
+            <div class="garland">
+              <h5 class="garland__title title">Гирлянда</h5>
+              <div class="garland__inner">
+                <button class="garland__btn multicolor__btn" data-color="multicolor"></button>
+                <button class="garland__btn red__btn" data-color="red"></button>
+                <button class="garland__btn green__btn" data-color="green"></button>
+                <button class="garland__btn blue__btn" data-color="blue"></button>
+                <button class="garland__btn purple__btn" data-color="purple"></button>
+                <button class="clear__btn" data-color="clear">Выкл</button>
+              </div>
+            </div>
+            <button class="tree__btn-settings">Сбросить настройки</button>
+          </div>
 
-      <div class="popup">
-        <div class="popup__answer">
-          <div class="popup__container">
-            <div class="popup__content">
-              <div class="popup__text"></div>
-              <button class="popup__close-btn">Close</button>
+          <div class="center">
+            <div class="snow"></div>
+            <div class="lights"></div>
+           
+            <map name="tree-map">
+              <area coords="11,543,59,546,96,532,97,506,70,485,39,465,26,437,79,435,120,421,116,383,83,358,125,356,119,329,124,269,115,222,185,180,181,133,222,69,240,18,263,5,274,36,301,62,300,93,297,124,307,163,347,140,349,183,352,219,394,210,404,236,372,275,397,281,385,310,367,337,386,355,418,348,430,369,373,399,404,406,408,431,450,440,458,473,415,485,424,504,436,529,489,531,494,558,475,573,472,587,465,622,444,660,430,678,377,668,375,689,348,701,302,698,264,698,233,699,197,696,183,702,165,646,143,685,108,681,51,624,14,581,4,558" shape="poly">
+            </map>
+            <img class="tree__box" usemap="#tree-map" alt="tree" src="./assets/tree/1.png">
+          </div>
+
+          <div class="right__side">
+            <div class="toys__block">
+              <h5 class="toys__block-title title">Игрушки</h5>
+              <div class="toys__block-inner"></div>
+            </div>
+            <div class="decorate">
+              <h5 class="decorate__title title">Вы нарядили</h5>
+              <div class="decorate__inner">
+                <div class="decorate__card">
+                  <div class="decorate__card-tree"></div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </div>
 
+      </section>
+    </div>
   </main>
   <footer class="footer">
     <div class="container">
@@ -154,6 +213,16 @@
       </div>
     </div>
   </footer>
+  <div class="popup">
+    <div class="popup__answer">
+      <div class="popup__container">
+        <div class="popup__content">
+          <div class="popup__text"></div>
+          <button class="popup__close-btn">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 
 </html>

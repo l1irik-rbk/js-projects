@@ -38,6 +38,7 @@ export default class Toy {
       cardColor: `Цвет игрушки: ${this.color}`,
       cardSize: `Размер игрушки: ${this.size}`,
       cardBeloved: `Любимая: ${this.favorite ? 'Да' : 'Нет'}`,
+      сardCounter: `${this.count}`,
     };
   }
 

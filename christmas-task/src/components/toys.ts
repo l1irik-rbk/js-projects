@@ -4,7 +4,7 @@ import { showPopup } from './popup/popup';
 import { IData } from './helpers/interfaces';
 
 export default class Toys {
-  draw(data: Array<IData>) {
+  draw(data: Array<IData>): void {
     const inner = document.querySelector('.toys__inner') as HTMLElement;
     inner.innerHTML = '';
 
@@ -16,7 +16,7 @@ export default class Toys {
     }
   }
 
-  toFavorites(e: Event) {
+  toFavorites(e: Event): void {
     const card = e.currentTarget as HTMLElement;
     const favorites = card.querySelector('.card__favorites') as HTMLElement;
     const cardName = (card.querySelector('.card__title') as HTMLElement).textContent || '';
@@ -25,6 +25,7 @@ export default class Toys {
       if (toysArr.length < MAX_CARDS - 1) {
         favorites.classList.add('favorites');
         toysArr.push(cardName);
+        newData.push(this);
       }
       counter++;
       score.textContent = `${counter}`;
@@ -36,19 +37,22 @@ export default class Toys {
     } else if (favorites.classList.contains('favorites')) {
       favorites.classList.remove('favorites');
       const toyIndex = toysArr.indexOf(cardName);
-      if (toyIndex !== -1) toysArr.splice(toyIndex, 1);
+      if (toyIndex !== -1) {
+        toysArr.splice(toyIndex, 1);
+        newData.splice(toyIndex, 1);
+      }
       counter--;
       score.textContent = `${counter}`;
     }
   }
 }
 
-function setLocalStorage() {
+function setLocalStorage(): void {
   localStorage.setItem('toysArr', JSON.stringify(toysArr));
   localStorage.setItem('counter', JSON.stringify(counter));
 }
 
-function getLocalStorage() {
+function getLocalStorage(): void {
   if (localStorage.getItem('toysArr')) {
     toysArr = JSON.parse(localStorage.getItem('toysArr') || '');
   }
@@ -66,7 +70,9 @@ function getLocalStorage() {
   });
   score.textContent = counter.toString();
 }
+
 window.addEventListener('beforeunload', setLocalStorage);
 window.addEventListener('load', getLocalStorage);
 let counter = 0;
 export let toysArr: Array<string> = [];
+export const newData: Array<IData> = [];
