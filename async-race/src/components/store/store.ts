@@ -1,5 +1,5 @@
-import { IStore, IData } from './helpers/interfaces';
-import { getCars, getWinners } from './api';
+import { IStore } from '../helpers/interfaces';
+import { getCars, getWinners } from '../api/api';
 
 const { data: cars, count: carsCount } = await getCars(1);
 

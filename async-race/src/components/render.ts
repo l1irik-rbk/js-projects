@@ -7,13 +7,14 @@ import {
   GARAGE_ELEMENT_BTNS,
   CAR_ENGINE_CONTROLS,
   PAGES_BTNS,
+  MAX_CARS_ON_PAGE,
 } from './helpers/constants';
 
-import store from './store';
+import store from './store/store';
 import { addListener } from './helpers/listeners';
-import { getCars } from './api';
+import { getCars } from './api/api';
 
-const renderCarImage = (color: string) => {
+const getCarImage = (color: string): string => {
   const html = `
     <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="1280.000000pt" height="640.000000pt" viewBox="0 0 1280.000000 640.000000" preserveAspectRatio="xMidYMid meet">
       <g transform="translate(0.000000,640.000000) scale(0.100000,-0.100000)" fill="${color}" stroke="red" stroke-width="60">
@@ -52,7 +53,7 @@ const renderCarImage = (color: string) => {
   return html;
 };
 
-const renderFlag = () => {
+const getFlagImage = (): string => {
   const html = `
     <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="806.000000pt" height="1280.000000pt" viewBox="0 0 806.000000 1280.000000" preserveAspectRatio="xMidYMid meet">
       <g transform="translate(0.000000,1280.000000) scale(0.100000,-0.100000)" fill="red" stroke="none">
@@ -63,12 +64,12 @@ const renderFlag = () => {
   return html;
 };
 
-export const renderHeaderBtns = () => {
+export const renderHeaderBtns = (): void => {
   const headerBtns = document.querySelector('.header__btns') as HTMLElement;
   defaultRender(HEADER_BTNS, headerBtns);
 };
 
-export const renderCarSettings = () => {
+export const renderCarSettings = (): void => {
   const html = `
     <div class="car__forms">
       <div class="car__form car__form-create"></div>
@@ -91,7 +92,7 @@ export const renderCarSettings = () => {
   defaultRender(SETTINGS_BTNS, carSettingsBtns);
 };
 
-export const renderCarBtns = (i: number, car: IData) => {
+export const renderCarBtns = (i: number, car: IData): void => {
   const carBtns = document.querySelectorAll('.car__btns');
   const carBtn = carBtns[i] as HTMLElement;
   const carId = car.id.toString();
@@ -100,14 +101,14 @@ export const renderCarBtns = (i: number, car: IData) => {
   defaultRender(GARAGE_ELEMENT_BTNS, carBtn, carId, carName, carColor);
 };
 
-export const renderEngineConrols = (i: number, car: IData) => {
+export const renderEngineConrols = (i: number, car: IData): void => {
   const engineConrols = document.querySelectorAll('.engine_conrols');
   const engineConrol = engineConrols[i] as HTMLElement;
   const carId = car.id.toString();
   defaultRender(CAR_ENGINE_CONTROLS, engineConrol, carId);
 };
 
-export const renderCars = () => {
+export const renderCars = (): void => {
   const gargeInner = document.querySelector('.garge__inner') as HTMLElement;
   gargeInner.innerHTML = '';
   store.cars.forEach((car, index) => {
@@ -116,10 +117,10 @@ export const renderCars = () => {
       <div class="car__road">
         <div class="engine_conrols"></div>
         <div class="car" data-id="${car.id}">
-            ${renderCarImage(car.color)}
+            ${getCarImage(car.color)}
         </div>
         <div class="flag">
-          ${renderFlag()}
+          ${getFlagImage()}
         </div>
       </div>
     `;
@@ -132,7 +133,7 @@ export const renderCars = () => {
   });
 };
 
-export const renderGarage = () => {
+export const renderGarage = (): void => {
   const html = `
     <h1 class="garage__heder">Garage (${store.carsCount})</h1>
     <h2 class="garage__page-heder">Page #${store.carsPage}</h2>
@@ -147,12 +148,12 @@ export const renderGarage = () => {
   renderCars();
 };
 
-export const renderPagesBtn = () => {
+export const renderPagesBtn = (): void => {
   const pagesBtn = document.querySelector('.pages__btn') as HTMLElement;
   defaultRender(PAGES_BTNS, pagesBtn);
 };
 
-export const render = () => {
+export const render = (): void => {
   const html = `
     <div class="header__btns"></div>
     <div class="garage__container"></div>
@@ -168,10 +169,25 @@ export const render = () => {
   renderPagesBtn();
 };
 
-export const updateGarage = async () => {
+export const updateGarage = async (): Promise<void> => {
   const { data, count } = await getCars(store.carsPage);
+  const prevBtn = document.querySelector('.prev__btn') as HTMLButtonElement;
+  const nextBtn = document.querySelector('.next__btn') as HTMLButtonElement;
   store.cars = data;
   store.carsCount = count;
+  const maxPage = Math.ceil(store.carsCount / MAX_CARS_ON_PAGE);
+
+  if (store.carsCount > MAX_CARS_ON_PAGE && store.carsPage !== maxPage) {
+    nextBtn.disabled = false;
+  } else {
+    nextBtn.disabled = true;
+  }
+
+  if (store.carsPage > 1) {
+    prevBtn.disabled = false;
+  } else {
+    prevBtn.disabled = true;
+  }
 };
 
 export const getText = (name: string) => {

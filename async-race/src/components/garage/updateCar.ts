@@ -1,9 +1,9 @@
 import { IText } from './../helpers/interfaces';
-import { updateCar } from '../api';
+import { updateCar } from '../api/api';
 import { renderGarage, updateGarage } from '../render';
 import { PLACEHOLDER_MESSAGE } from '../helpers/constants';
 
-export const changeCar = async (e: Event) => {
+export const changeCar = (e: Event): void => {
   const inputText = document.querySelector('.car__form-update .input-text') as HTMLInputElement;
   const inputColor = document.querySelector('.car__form-update .input-color') as HTMLInputElement;
   const updateBtn = document.querySelector('.update-btn') as HTMLInputElement;
@@ -16,7 +16,11 @@ export const changeCar = async (e: Event) => {
   updateBtn.addEventListener('click', updateCarBtn.bind(updateBtn, inputText, inputColor, carId));
 };
 
-const updateCarBtn = async (inputText: HTMLInputElement, inputColor: HTMLInputElement, carId: number) => {
+const updateCarBtn = async (
+  inputText: HTMLInputElement,
+  inputColor: HTMLInputElement,
+  carId: number
+): Promise<void> => {
   const value = inputText.value;
   const color = inputColor.value;
 

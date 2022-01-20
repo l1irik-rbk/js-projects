@@ -1,4 +1,4 @@
-import { IData, IText } from './helpers/interfaces';
+import { IData, IText } from '../helpers/interfaces';
 
 const host = 'http://127.0.0.1:3000';
 
@@ -59,7 +59,6 @@ export const updateCar = async (car: IText, id: number) => {
   const newCar = await response.json();
   return newCar;
 };
-// updateCar()
 
 export const startEngine = async () => {
   const response = await fetch(`${host}${path.engine}?id=13&status=started`, {
