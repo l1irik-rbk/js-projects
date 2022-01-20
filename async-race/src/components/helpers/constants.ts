@@ -7,10 +7,13 @@ export const HEADER_BTNS: IRender = {
   garageBtn: {
     classes: ['btn', 'garage-btn'],
     htmlElement: 'button',
+    disabled: true,
+    hasListener: true,
   },
   winnersBtn: {
     classes: ['btn', 'winners-btn'],
     htmlElement: 'button',
+    hasListener: true,
   },
 };
 
@@ -93,12 +96,14 @@ export const CAR_ENGINE_CONTROLS: IRender = {
     classes: ['btn', 'start-engine'],
     htmlElement: 'button',
     hasId: true,
+    hasListener: true,
   },
   stopEngine: {
     classes: ['btn', 'stop-engine'],
     htmlElement: 'button',
     disabled: true,
     hasId: true,
+    hasListener: true,
   },
 };
 

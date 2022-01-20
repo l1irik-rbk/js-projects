@@ -153,10 +153,48 @@ export const renderPagesBtn = (): void => {
   defaultRender(PAGES_BTNS, pagesBtn);
 };
 
+export const renderView = (): void => {
+  if (store.veiw === 'garage') {
+    renderCarSettings();
+    renderGarage();
+  } else {
+    renderWinners();
+  }
+};
+
+export const renderWinners = (): void => {
+  const html = `
+    <h1 class="winners__header">Winners</h1>
+    <h2 class="winners__page-heder">Page</h2>
+    <table>
+      <thead>
+        <th>Number</th>
+        <th>Car</th>
+        <th>Name</th>
+        <th>Wins</th>
+        <th>Best time(sec)</th>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td></td>
+          <td>Tesla</td>
+          <td>2</td>
+          <td>10</td>
+        </tr>
+      </tbody>
+    </table>
+  `;
+
+  const winners = document.querySelector('.winners') as HTMLElement;
+  winners.innerHTML = html;
+};
+
 export const render = (): void => {
   const html = `
     <div class="header__btns"></div>
     <div class="garage__container"></div>
+    <div class="winners"></div>
     <div class="pages__btn"></div>
   `;
   const container = document.createElement('div');
@@ -164,8 +202,7 @@ export const render = (): void => {
   container.innerHTML = html;
   document.body.append(container);
   renderHeaderBtns();
-  renderCarSettings();
-  renderGarage();
+  renderView();
   renderPagesBtn();
 };
 
@@ -192,8 +229,8 @@ export const updateGarage = async (): Promise<void> => {
 
 export const getText = (name: string) => {
   return {
-    garageBtn: 'To winners',
-    winnersBtn: 'To garage',
+    winnersBtn: 'To winners',
+    garageBtn: 'To garage',
     raceBtn: 'Race',
     resetBtn: 'Reset',
     generateBtn: 'Generate cars',

@@ -4,9 +4,17 @@ import { removeCar } from '../garage/removeCar';
 import { changeCar } from '../garage/updateCar';
 import { getNextPage } from '../switchPages/getNextPage';
 import { generateRandomCars } from '../garage/generateRandomCars';
+import { driveCar } from '../garage/drive/stop/driveCar';
+import { showGarage, showWinners } from '../switchView';
 
 export const addListener = (htmlElement: HTMLButtonElement, name: string): void => {
   switch (name) {
+    case 'garage-btn':
+      htmlElement.addEventListener('click', showGarage);
+      break;
+    case 'winners-btn':
+      htmlElement.addEventListener('click', showWinners);
+      break;
     case 'create-btn':
       htmlElement.addEventListener('click', generateCar);
       break;
@@ -25,11 +33,11 @@ export const addListener = (htmlElement: HTMLButtonElement, name: string): void 
     case 'generate-btn':
       htmlElement.addEventListener('click', generateRandomCars);
       break;
-    // case 'start-engine':
-    //   htmlElement.addEventListener('click', generateRandomCars);
-    //   break;
-    // case 'stop-engine':
-    //   htmlElement.addEventListener('click', generateRandomCars);
-    //   break;
+    case 'start-engine':
+      htmlElement.addEventListener('click', driveCar);
+      break;
+    case 'stop-engine':
+      htmlElement.addEventListener('click', generateRandomCars);
+      break;
   }
 };
