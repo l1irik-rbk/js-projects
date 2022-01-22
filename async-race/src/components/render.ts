@@ -119,7 +119,7 @@ export const renderCars = (): void => {
         <div class="car" data-id="${car.id}">
             ${getCarImage(car.color)}
         </div>
-        <div class="flag">
+        <div class="flag" flag-id="${car.id}">
           ${getFlagImage()}
         </div>
       </div>

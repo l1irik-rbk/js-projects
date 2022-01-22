@@ -8,4 +8,5 @@ export default {
   carsCount,
   carsPage: 1,
   veiw: 'garage',
+  animation: {},
 } as IStore;

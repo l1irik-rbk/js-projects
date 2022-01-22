@@ -60,25 +60,35 @@ export const updateCar = async (car: IText, id: number) => {
   return newCar;
 };
 
-export const startEngine = async () => {
-  const response = await fetch(`${host}${path.engine}?id=13&status=started`, {
+export const startEngine = async (id: number) => {
+  const response = await fetch(`${host}${path.engine}?id=${id}&status=started`, {
     method: 'PATCH',
   });
   const start = await response.json();
-  console.log(start);
+
   return start;
 };
-// startEngine();
 
-export const stopEngine = async () => {
-  const response = await fetch(`${host}${path.engine}?id=13&status=stopped`, {
+export const stopEngine = async (id: number) => {
+  const response = await fetch(`${host}${path.engine}?id=${id}&status=stopped`, {
     method: 'PATCH',
   });
   const stop = await response.json();
-  console.log(stop);
+
   return stop;
 };
-// stopEngine();
+
+export const driving = async (id: number) => {
+  const response = await fetch(`${host}${path.engine}?id=${id}&status=drive`, {
+    method: 'PATCH',
+  });
+
+  if (response.status !== 200) {
+    return { success: false };
+  } else {
+    return await response.json();
+  }
+};
 
 export const getWinners = async () => {
   console.log('asd');

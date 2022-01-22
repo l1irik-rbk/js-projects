@@ -6,6 +6,7 @@ import { getNextPage } from '../switchPages/getNextPage';
 import { generateRandomCars } from '../garage/generateRandomCars';
 import { driveCar } from '../garage/drive/stop/driveCar';
 import { showGarage, showWinners } from '../switchView';
+import { stopCar } from '../garage/drive/stop/stopCar';
 
 export const addListener = (htmlElement: HTMLButtonElement, name: string): void => {
   switch (name) {
@@ -37,7 +38,7 @@ export const addListener = (htmlElement: HTMLButtonElement, name: string): void 
       htmlElement.addEventListener('click', driveCar);
       break;
     case 'stop-engine':
-      htmlElement.addEventListener('click', generateRandomCars);
+      htmlElement.addEventListener('click', stopCar);
       break;
   }
 };

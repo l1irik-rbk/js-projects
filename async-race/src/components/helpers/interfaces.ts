@@ -9,6 +9,7 @@ export interface IStore {
   carsCount: number;
   carsPage: number;
   veiw: string;
+  animation: IAnimation;
 }
 
 export interface IText {
@@ -27,4 +28,16 @@ export interface IName {
   disabled?: boolean;
   hasId?: boolean;
   hasListener?: boolean;
+}
+
+export interface ICarParams {
+  [key: string]: number;
+}
+
+export interface IAnimation {
+  [key: number]: IId;
+}
+
+export interface IId {
+  [key: string]: number;
 }
