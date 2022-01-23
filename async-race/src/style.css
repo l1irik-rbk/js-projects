@@ -226,6 +226,22 @@ td{
   padding: 5px;
 }
 
-.next__btn {
+.next__btn{
   margin-left: 10px;
+}
+
+.container{
+  position: relative;
+}
+
+.winner{
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  font-size: 40px;
+  line-height: 60px;
+  transform: translateY(50%);
+  transform: translateX(50%);
+  color: #fff;
+  text-shadow: 0 0 20px #fefcc9, 10px -10px 30px #feec85, -20px -20px 40px #ffae34, 20px -40px 50px #ec760c, -20px -60px 60px #cd4606, 0 -80px 70px #973716, 10px -90px 80px #451b0e;
 }

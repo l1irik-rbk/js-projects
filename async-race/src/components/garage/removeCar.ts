@@ -1,4 +1,4 @@
-import { deleteCar } from '../api/api';
+import { deleteCar, deleteWinner } from '../api/api';
 import { renderGarage, updateGarage } from '../render';
 
 export const removeCar = async (e: Event): Promise<void> => {
@@ -6,6 +6,7 @@ export const removeCar = async (e: Event): Promise<void> => {
   const carId = Number(removeBtn.getAttribute('car-id')) as number;
 
   await deleteCar(carId);
+  await deleteWinner(carId);
   await updateGarage();
   renderGarage();
 };

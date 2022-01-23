@@ -10,6 +10,9 @@ export interface IStore {
   carsPage: number;
   veiw: string;
   animation: IAnimation;
+  isRace: boolean;
+  raceWinner: IId;
+  raceWinnerTime: number;
 }
 
 export interface IText {

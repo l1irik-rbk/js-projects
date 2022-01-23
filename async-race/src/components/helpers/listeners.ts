@@ -7,6 +7,8 @@ import { generateRandomCars } from '../garage/generateRandomCars';
 import { driveCar } from '../garage/drive/stop/driveCar';
 import { showGarage, showWinners } from '../switchView';
 import { stopCar } from '../garage/drive/stop/stopCar';
+import { startRace } from '../garage/race/race';
+import { resetCars } from '../garage/reset/reset';
 
 export const addListener = (htmlElement: HTMLButtonElement, name: string): void => {
   switch (name) {
@@ -39,6 +41,12 @@ export const addListener = (htmlElement: HTMLButtonElement, name: string): void 
       break;
     case 'stop-engine':
       htmlElement.addEventListener('click', stopCar);
+      break;
+    case 'race-btn':
+      htmlElement.addEventListener('click', startRace);
+      break;
+    case 'reset-btn':
+      htmlElement.addEventListener('click', resetCars);
       break;
   }
 };

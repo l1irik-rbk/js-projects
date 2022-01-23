@@ -2,16 +2,24 @@ import { ICarParams, IId } from './../../../helpers/interfaces';
 import { driving, startEngine } from '../../../api/api';
 import { CAR_WIDTH } from '../../../helpers/constants';
 import store from '../../../store/store';
-import { getCar, getFlag, getStopBtn } from '../../../helpers/getElements';
+import { getCar, getFlag, getStartBtn, getStopBtn, getWinnersBtn } from '../../../helpers/getElements';
 
-export const driveCar = async (e: Event): Promise<void> => {
-  const startBtn = e.target as HTMLButtonElement;
-  const carId = Number(startBtn.getAttribute('car-id'));
+export const driveCar = async (e: Event, id = 0) => {
+  let carId: number;
+  let startBtn: HTMLButtonElement;
+
+  if (id === 0) {
+    startBtn = e.target as HTMLButtonElement;
+    carId = Number(startBtn.getAttribute('car-id'));
+  } else {
+    carId = id;
+    startBtn = getStartBtn(carId);
+  }
+
   const stopBtn = getStopBtn(carId);
   const car = getCar(carId);
   const flag = getFlag(carId);
   startBtn.disabled = true;
-
   const carParams: ICarParams = await startEngine(carId);
 
   const time = Math.ceil(carParams.distance / carParams.velocity);
@@ -19,7 +27,8 @@ export const driveCar = async (e: Event): Promise<void> => {
 
   store.animation[carId] = animate(car, time, distance);
   stopBtn.disabled = false;
-  const { success } = await driving(carId);
+
+  const { success }: { success: boolean } = await driving(carId);
   if (!success) window.cancelAnimationFrame(store.animation[carId].id);
 };
 
@@ -35,9 +44,14 @@ const animate = (car: HTMLElement, duration: number, distance: number): IId => {
 
     if (timeFraction < 1) {
       carId.id = requestAnimationFrame(animate);
+    } else {
+      if (store.isRace && progress * distance === distance) {
+        store.isRace = false;
+        store.raceWinner = carId;
+        store.raceWinnerTime = duration;
+      }
     }
   });
-
   return carId;
 };
 

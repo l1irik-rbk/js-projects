@@ -90,6 +90,76 @@ export const driving = async (id: number) => {
   }
 };
 
-export const getWinners = async () => {
-  console.log('asd');
+export const getWinners = async (page: number, limit = 10) => {
+  const response = await fetch(`${host}${path.winners}?_page=${page}&_limit=${limit}`);
+  const data: IData[] = await response.json();
+  const count = Number(response.headers.get('X-Total-Count'));
+  console.log(data)
+  return {
+    data,
+    count,
+  };
+};
+
+export const checkCurrentWinner = async (id: number) => {
+  const status = (await fetch(`${host}${path.winners}/${id}`)).status;
+  return status;
+};
+
+export const getWinner = async (id: number) => {
+  const response = await fetch(`${host}${path.winners}/${id}`);
+  const winner = await response.json();
+  return winner;
+};
+
+export const updateWinner = async (winner, id: number) => {
+  const oldRace = await getWinner(id);
+  const oldTime: number = oldRace.time;
+  const oldWin: number = oldRace.wins;
+
+  const response = await fetch(`${host}${path.winners}/${id}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      wins: oldWin + 1,
+      time: oldTime < winner.time ? oldTime : winner.time,
+    }),
+  });
+
+  const newWinner = await response.json();
+  return newWinner;
+};
+
+export const createNewWinner = async (winner) => {
+  const response = await fetch(`${host}${path.winners}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(winner),
+  });
+
+  const car = await response.json();
+  return car;
+};
+
+export const createWinner = async (winner) => {
+  const currentWinnerStatus: number = await checkCurrentWinner(winner.id);
+
+  if (currentWinnerStatus === 404) {
+    await createNewWinner(winner);
+  } else {
+    await updateWinner(winner, winner.id);
+  }
+};
+
+export const deleteWinner = async (id: number) => {
+  const response = await fetch(`${host}${path.winners}/${id}`, {
+    method: 'DELETE',
+  });
+
+  const deleted = await response.json();
+  return deleted;
 };

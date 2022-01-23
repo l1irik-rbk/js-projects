@@ -196,6 +196,7 @@ export const render = (): void => {
     <div class="garage__container"></div>
     <div class="winners"></div>
     <div class="pages__btn"></div>
+    <div class="winner"></div>
   `;
   const container = document.createElement('div');
   container.classList.add('container');

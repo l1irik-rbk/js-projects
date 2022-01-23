@@ -3,6 +3,7 @@ import { IRender } from './interfaces';
 export const PLACEHOLDER_MESSAGE = 'Enter car name!';
 export const MAX_CARS_ON_PAGE = 7;
 export const CAR_WIDTH = 80;
+export const STARTED_PAGE = 1;
 
 export const HEADER_BTNS: IRender = {
   garageBtn: {
@@ -22,10 +23,13 @@ export const SETTINGS_BTNS: IRender = {
   raceBtn: {
     classes: ['btn', 'race-btn'],
     htmlElement: 'button',
+    hasListener: true,
   },
   resetBtn: {
     classes: ['btn', 'reset-btn'],
     htmlElement: 'button',
+    disabled: true,
+    hasListener: true,
   },
   generateBtn: {
     classes: ['btn', 'generate-btn'],
