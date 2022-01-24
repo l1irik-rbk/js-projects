@@ -9,3 +9,6 @@ export const getRaceBtn = () => document.querySelector(`.race-btn`) as HTMLButto
 export const getWinnerMessage = () => document.querySelector(`.winner`) as HTMLButtonElement;
 export const getResetBtn = () => document.querySelector(`.reset-btn`) as HTMLButtonElement;
 export const getCreateBtn = () => document.querySelector(`.create-btn`) as HTMLButtonElement;
+export const getGenerateBtn = () => document.querySelector(`.generate-btn`) as HTMLButtonElement;
+export const getPrevBtn = () => document.querySelector(`.prev__btn`) as HTMLButtonElement;
+export const getNextBtn = () => document.querySelector(`.next__btn`) as HTMLButtonElement;

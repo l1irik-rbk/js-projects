@@ -2,11 +2,15 @@ import { ICarParams, IId } from '../../../helpers/interfaces';
 import { driving, startEngine } from '../../../api/api';
 import { CAR_WIDTH } from '../../../helpers/constants';
 import store from '../../../store/store';
-import { getCar, getFlag, getStartBtn, getStopBtn } from '../../../helpers/getElements';
+import { getCar, getFlag, getNextBtn, getPrevBtn, getStartBtn, getStopBtn } from '../../../helpers/getElements';
 
 export const driveCar = async (e: Event, id = 0) => {
   let carId: number;
   let startBtn: HTMLButtonElement;
+  const prevBtn = getPrevBtn();
+  const nextBtn = getNextBtn();
+  prevBtn.disabled = true;
+  nextBtn.disabled = true;
 
   if (id === 0) {
     startBtn = e.target as HTMLButtonElement;
