@@ -2,6 +2,12 @@ export interface IData {
   name: string;
   color: string;
   id: number;
+  time?: number;
+  wins?: number;
+}
+
+export interface IWinners {
+  [key: string]: number;
 }
 
 export interface IStore {
@@ -13,6 +19,11 @@ export interface IStore {
   isRace: boolean;
   raceWinner: IId;
   raceWinnerTime: number;
+  winners: IWinners[];
+  winnersCount: number;
+  winnersPage: number;
+  sorted: string;
+  order: string;
 }
 
 export interface IText {

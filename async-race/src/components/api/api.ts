@@ -1,4 +1,4 @@
-import { IData, IText } from '../helpers/interfaces';
+import { IData, IText, IWinners } from '../helpers/interfaces';
 
 const host = 'http://127.0.0.1:3000';
 
@@ -90,13 +90,21 @@ export const driving = async (id: number) => {
   }
 };
 
-export const getWinners = async (page: number, limit = 10) => {
-  const response = await fetch(`${host}${path.winners}?_page=${page}&_limit=${limit}`);
-  const data: IData[] = await response.json();
+const sortWinners = (sorted: string, order: string): string => {
+  console.log(sorted, order);
+  // return `&_sort=${'wins'}&_order=${'asd'}`;
+  if (sorted && order) return `&_sort=${sorted}&_order=${order}`;
+  return '';
+};
+
+export const getWinners = async (page: number, sorted = '', order = '', limit = 10) => {
+  const response = await fetch(`${host}${path.winners}?_page=${page}&_limit=${limit}${sortWinners(sorted, order)}`);
+  console.log(response);
+  const data = await response.json();
   const count = Number(response.headers.get('X-Total-Count'));
-  console.log(data)
+
   return {
-    data,
+    data: await Promise.all(data.map(async (winner) => ({ ...winner, car: await getCar(winner.id) }))),
     count,
   };
 };
@@ -123,6 +131,7 @@ export const updateWinner = async (winner, id: number) => {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
+      id,
       wins: oldWin + 1,
       time: oldTime < winner.time ? oldTime : winner.time,
     }),
@@ -133,6 +142,7 @@ export const updateWinner = async (winner, id: number) => {
 };
 
 export const createNewWinner = async (winner) => {
+  console.log(winner);
   const response = await fetch(`${host}${path.winners}`, {
     method: 'POST',
     headers: {

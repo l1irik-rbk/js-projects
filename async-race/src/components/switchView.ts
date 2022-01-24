@@ -1,7 +1,7 @@
-import { renderView, updateGarage } from './render';
+import { renderView, updateGarage, updateWinners } from './render';
 import store from './store/store';
 
-export const showWinners = (e: Event) => {
+export const showWinners = async (e: Event) => {
   const winnersBtn = e.target as HTMLButtonElement;
   const garageBtn = document.querySelector('.garage-btn') as HTMLButtonElement;
   const garaegContainer = document.querySelector('.garage__container') as HTMLElement;
@@ -9,6 +9,7 @@ export const showWinners = (e: Event) => {
   store.veiw = 'winners';
   winnersBtn.disabled = true;
   garageBtn.disabled = false;
+  await updateWinners();
   renderView();
 };
 
@@ -20,6 +21,6 @@ export const showGarage = async (e: Event) => {
   store.veiw = 'garage';
   garageBtn.disabled = true;
   winnersBtn.disabled = false;
-  renderView();
   await updateGarage();
+  renderView();
 };

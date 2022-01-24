@@ -8,11 +8,13 @@ import {
   CAR_ENGINE_CONTROLS,
   PAGES_BTNS,
   MAX_CARS_ON_PAGE,
+  MAX_WINNERS_ON_PAGE,
 } from './helpers/constants';
 
 import store from './store/store';
 import { addListener } from './helpers/listeners';
-import { getCars } from './api/api';
+import { getCars, getCar, getWinners } from './api/api';
+import { sortTable } from './winners/sort';
 
 const getCarImage = (color: string): string => {
   const html = `
@@ -162,32 +164,45 @@ export const renderView = (): void => {
   }
 };
 
+export const renderTable = (): void => {
+  const tbody = document.querySelector('tbody') as HTMLElement;
+  tbody.innerHTML = '';
+  console.log(store.winners);
+  store.winners.forEach(async (winner, index) => {
+    const html = `
+      <td>${index + 1}</td>
+      <td>${getCarImage(winner.car.color)}</td>
+      <td>${winner.car.name}</td>
+      <td>${winner.wins}</td>
+      <td>${winner.time}</td>
+  `;
+
+    const tr = document.createElement('tr');
+    tr.innerHTML = html;
+    tbody.append(tr);
+  });
+};
+
 export const renderWinners = (): void => {
   const html = `
-    <h1 class="winners__header">Winners</h1>
-    <h2 class="winners__page-heder">Page</h2>
+    <h1 class="winners__header">Winners (${store.winnersCount})</h1>
+    <h2 class="winners__page-heder">Page #${store.winnersPage}</h2>
     <table>
       <thead>
         <th>Number</th>
         <th>Car</th>
         <th>Name</th>
-        <th>Wins</th>
-        <th>Best time(sec)</th>
+        <th class="wins-sort">Wins</th>
+        <th class="time-sort">Best time(sec)</th>
       </thead>
-      <tbody>
-        <tr>
-          <td>1</td>
-          <td></td>
-          <td>Tesla</td>
-          <td>2</td>
-          <td>10</td>
-        </tr>
-      </tbody>
+      <tbody></tbody>
     </table>
   `;
 
   const winners = document.querySelector('.winners') as HTMLElement;
   winners.innerHTML = html;
+  renderTable();
+  sortTable();
 };
 
 export const render = (): void => {
@@ -222,6 +237,27 @@ export const updateGarage = async (): Promise<void> => {
   }
 
   if (store.carsPage > 1) {
+    prevBtn.disabled = false;
+  } else {
+    prevBtn.disabled = true;
+  }
+};
+
+export const updateWinners = async (): Promise<void> => {
+  const { data, count } = await getWinners(store.winnersPage, store.sorted, store.order);
+  const prevBtn = document.querySelector('.prev__btn') as HTMLButtonElement;
+  const nextBtn = document.querySelector('.next__btn') as HTMLButtonElement;
+  store.winners = data;
+  store.winnersCount = count;
+  const maxPage = Math.ceil(store.winnersCount / MAX_WINNERS_ON_PAGE);
+
+  if (store.winnersCount > MAX_CARS_ON_PAGE && store.winnersPage !== maxPage) {
+    nextBtn.disabled = false;
+  } else {
+    nextBtn.disabled = true;
+  }
+
+  if (store.winnersPage > 1) {
     prevBtn.disabled = false;
   } else {
     prevBtn.disabled = true;

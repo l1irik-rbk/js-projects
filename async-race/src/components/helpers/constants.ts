@@ -2,6 +2,7 @@ import { IRender } from './interfaces';
 
 export const PLACEHOLDER_MESSAGE = 'Enter car name!';
 export const MAX_CARS_ON_PAGE = 7;
+export const MAX_WINNERS_ON_PAGE = 10;
 export const CAR_WIDTH = 80;
 export const STARTED_PAGE = 1;
 

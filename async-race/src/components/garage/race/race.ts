@@ -15,7 +15,7 @@ export const startRace = async (e: Event) => {
   createBtn.disabled = true;
 
   store.cars.forEach(async (car) => {
-    await driveCar(e, car.id);
+    const asd = await driveCar(e, car.id);
     if (store.animation[car.id].id === store.raceWinner.id) {
       const time = store.raceWinnerTime / 1000;
       message.innerHTML = `Winner ${car.name} ${time}sec`;
@@ -25,7 +25,7 @@ export const startRace = async (e: Event) => {
         wins: 1,
         time: time,
       };
-      createWinner(winnerObj);
+      await createWinner(winnerObj);
     }
   });
 };

@@ -30,6 +30,7 @@ export const driveCar = async (e: Event, id = 0) => {
 
   const { success }: { success: boolean } = await driving(carId);
   if (!success) window.cancelAnimationFrame(store.animation[carId].id);
+  return carId;
 };
 
 const animate = (car: HTMLElement, duration: number, distance: number): IId => {
