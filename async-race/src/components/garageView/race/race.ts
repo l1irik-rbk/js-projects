@@ -28,7 +28,7 @@ export const startRace = async (e: Event) => {
     if (store.animation[carID].id === store.raceWinner.id) {
       const time = store.raceWinnerTime / 1000;
       message.innerHTML = `Winner ${car.name} ${time}sec`;
-      console.log(store);
+
       const winnerObj = {
         id: car.id,
         wins: 1,
