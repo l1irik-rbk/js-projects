@@ -1,6 +1,5 @@
-import { driveCar } from './driveCar';
 import { stopEngine } from '../../../api/api';
-import { getCar, getStartBtn, getStopBtn, getWinnersBtn } from '../../../helpers/getElements';
+import { getCar, getStartBtn, getStopBtn } from '../../../helpers/getElements';
 import store from '../../../store/store';
 
 export const stopCar = async (e: Event, id = 0): Promise<void> => {

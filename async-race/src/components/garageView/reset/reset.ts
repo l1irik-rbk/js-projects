@@ -1,4 +1,4 @@
-import { getCreateBtn, getRaceBtn } from './../../helpers/getElements';
+import { getCreateBtn, getRaceBtn } from '../../helpers/getElements';
 import { getWinnerMessage } from '../../helpers/getElements';
 import store from '../../store/store';
 import { stopCar } from '../drive/stop/stopCar';

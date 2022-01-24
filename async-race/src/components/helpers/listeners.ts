@@ -1,14 +1,14 @@
 import { getPrevPage } from './../switchPages/getPrevPage';
-import { generateCar } from '../garage/generateCar';
-import { removeCar } from '../garage/removeCar';
-import { changeCar } from '../garage/updateCar';
+import { generateCar } from '../garageView/generate/generateCar';
+import { removeCar } from '../garageView/remove/update/removeCar';
+import { changeCar } from '../garageView/remove/update/updateCar';
 import { getNextPage } from '../switchPages/getNextPage';
-import { generateRandomCars } from '../garage/generateRandomCars';
-import { driveCar } from '../garage/drive/stop/driveCar';
-import { showGarage, showWinners } from '../switchView';
-import { stopCar } from '../garage/drive/stop/stopCar';
-import { startRace } from '../garage/race/race';
-import { resetCars } from '../garage/reset/reset';
+import { generateRandomCars } from '../garageView/generate/generateRandomCars';
+import { driveCar } from '../garageView/drive/stop/driveCar';
+import { showGarage, showWinners } from '../switchViews/switchView';
+import { stopCar } from '../garageView/drive/stop/stopCar';
+import { startRace } from '../garageView/race/race';
+import { resetCars } from '../garageView/reset/reset';
 
 export const addListener = (htmlElement: HTMLButtonElement, name: string): void => {
   switch (name) {

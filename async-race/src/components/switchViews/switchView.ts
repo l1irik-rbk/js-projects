@@ -1,5 +1,5 @@
-import { renderView, updateGarage, updateWinners } from './render';
-import store from './store/store';
+import { renderView, updateGarage, updateWinners } from '../mainRender/render';
+import store from '../store/store';
 
 export const showWinners = async (e: Event) => {
   const winnersBtn = e.target as HTMLButtonElement;

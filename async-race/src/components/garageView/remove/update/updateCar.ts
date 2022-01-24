@@ -1,7 +1,8 @@
-import { IText } from './../helpers/interfaces';
-import { updateCar } from '../api/api';
-import { renderGarage, updateGarage } from '../render';
-import { PLACEHOLDER_MESSAGE } from '../helpers/constants';
+import { IText } from '../../../helpers/interfaces';
+import { updateCar } from '../../../api/api';
+import { updateGarage } from '../../../mainRender/render';
+import { PLACEHOLDER_MESSAGE } from '../../../helpers/constants';
+import { renderGarage } from '../../renderGarage/renderGarage';
 
 export const changeCar = (e: Event): void => {
   const inputText = document.querySelector('.car__form-update .input-text') as HTMLInputElement;

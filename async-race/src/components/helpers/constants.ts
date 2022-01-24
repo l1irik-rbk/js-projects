@@ -6,6 +6,14 @@ export const MAX_WINNERS_ON_PAGE = 10;
 export const CAR_WIDTH = 80;
 export const STARTED_PAGE = 1;
 
+export const host = 'http://127.0.0.1:3000';
+
+export const path = {
+  garage: '/garage',
+  winners: '/winners',
+  engine: '/engine',
+};
+
 export const HEADER_BTNS: IRender = {
   garageBtn: {
     classes: ['btn', 'garage-btn'],

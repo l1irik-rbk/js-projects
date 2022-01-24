@@ -1,5 +1,5 @@
-import { renderView, updateWinners } from '../render';
-import store from '../store/store';
+import { renderView, updateWinners } from '../../mainRender/render';
+import store from '../../store/store';
 
 export const sortTable = (): void => {
   const winsColumn = document.querySelector('.wins-sort') as HTMLElement;

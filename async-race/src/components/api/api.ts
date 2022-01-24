@@ -1,12 +1,5 @@
-import { IData, IText, IWinners } from '../helpers/interfaces';
-
-const host = 'http://127.0.0.1:3000';
-
-const path = {
-  garage: '/garage',
-  winners: '/winners',
-  engine: '/engine',
-};
+import { host, path } from '../helpers/constants';
+import { IData, IText, IWinners, IWinnersRender } from '../helpers/interfaces';
 
 export const getCars = async (page: number, limit = 7) => {
   const response = await fetch(`${host}${path.garage}?_page=${page}&_limit=${limit}`);
@@ -21,7 +14,8 @@ export const getCars = async (page: number, limit = 7) => {
 
 export const getCar = async (id: number) => {
   const response = await fetch(`${host}${path.garage}/${id}`);
-  const data = await response.json();
+  const data: IData[] = await response.json();
+
   return data;
 };
 
@@ -33,8 +27,8 @@ export const createCar = async (newCar: IText) => {
     },
     body: JSON.stringify(newCar),
   });
+  const car: IData[] = await response.json();
 
-  const car = await response.json();
   return car;
 };
 
@@ -42,8 +36,8 @@ export const deleteCar = async (id: number) => {
   const response = await fetch(`${host}${path.garage}/${id}`, {
     method: 'DELETE',
   });
+  const car: IData[] = await response.json();
 
-  const car = await response.json();
   return car;
 };
 
@@ -55,8 +49,8 @@ export const updateCar = async (car: IText, id: number) => {
     },
     body: JSON.stringify(car),
   });
+  const newCar: IData[] = await response.json();
 
-  const newCar = await response.json();
   return newCar;
 };
 
@@ -64,7 +58,7 @@ export const startEngine = async (id: number) => {
   const response = await fetch(`${host}${path.engine}?id=${id}&status=started`, {
     method: 'PATCH',
   });
-  const start = await response.json();
+  const start: IWinners = await response.json();
 
   return start;
 };
@@ -73,7 +67,7 @@ export const stopEngine = async (id: number) => {
   const response = await fetch(`${host}${path.engine}?id=${id}&status=stopped`, {
     method: 'PATCH',
   });
-  const stop = await response.json();
+  const stop: IWinners = await response.json();
 
   return stop;
 };
@@ -91,20 +85,20 @@ export const driving = async (id: number) => {
 };
 
 const sortWinners = (sorted: string, order: string): string => {
-  console.log(sorted, order);
-  // return `&_sort=${'wins'}&_order=${'asd'}`;
   if (sorted && order) return `&_sort=${sorted}&_order=${order}`;
   return '';
 };
 
 export const getWinners = async (page: number, sorted = '', order = '', limit = 10) => {
   const response = await fetch(`${host}${path.winners}?_page=${page}&_limit=${limit}${sortWinners(sorted, order)}`);
-  console.log(response);
   const data = await response.json();
   const count = Number(response.headers.get('X-Total-Count'));
+  const newData: IWinnersRender[] = await Promise.all(
+    data.map(async (winner: IWinners) => ({ ...winner, car: await getCar(winner.id) }))
+  );
 
   return {
-    data: await Promise.all(data.map(async (winner) => ({ ...winner, car: await getCar(winner.id) }))),
+    data: newData,
     count,
   };
 };
@@ -120,7 +114,7 @@ export const getWinner = async (id: number) => {
   return winner;
 };
 
-export const updateWinner = async (winner, id: number) => {
+export const updateWinner = async (winner: IWinners, id: number) => {
   const oldRace = await getWinner(id);
   const oldTime: number = oldRace.time;
   const oldWin: number = oldRace.wins;
@@ -141,8 +135,7 @@ export const updateWinner = async (winner, id: number) => {
   return newWinner;
 };
 
-export const createNewWinner = async (winner) => {
-  console.log(winner);
+export const createNewWinner = async (winner: IWinners) => {
   const response = await fetch(`${host}${path.winners}`, {
     method: 'POST',
     headers: {
@@ -155,7 +148,7 @@ export const createNewWinner = async (winner) => {
   return car;
 };
 
-export const createWinner = async (winner) => {
+export const createWinner = async (winner: IWinners) => {
   const currentWinnerStatus: number = await checkCurrentWinner(winner.id);
 
   if (currentWinnerStatus === 404) {

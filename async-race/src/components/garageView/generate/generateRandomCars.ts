@@ -1,7 +1,8 @@
-import { createCar } from '../api/api';
-import { IText } from './../helpers/interfaces';
-import { brandsCars, modelsCars } from '../helpers/constants';
-import { renderGarage, updateGarage } from '../render';
+import { createCar } from '../../api/api';
+import { IText } from '../../helpers/interfaces';
+import { brandsCars, modelsCars } from '../../helpers/constants';
+import { updateGarage } from '../../mainRender/render';
+import { renderGarage } from '../renderGarage/renderGarage';
 
 export const generateRandomCars = async (e: Event): Promise<void> => {
   const btn = e.target as HTMLButtonElement;

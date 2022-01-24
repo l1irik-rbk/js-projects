@@ -1,22 +1,15 @@
-import { IRender, IData, IText } from './helpers/interfaces';
 import {
-  HEADER_BTNS,
-  SETTINGS_BTNS,
+  CAR_ENGINE_CONTROLS,
   FORM_CREATE,
   FORM_UPDATE,
   GARAGE_ELEMENT_BTNS,
-  CAR_ENGINE_CONTROLS,
-  PAGES_BTNS,
-  MAX_CARS_ON_PAGE,
-  MAX_WINNERS_ON_PAGE,
-} from './helpers/constants';
+  SETTINGS_BTNS,
+} from '../../helpers/constants';
+import { IData } from '../../helpers/interfaces';
+import { defaultRender } from '../../mainRender/render';
+import store from '../../store/store';
 
-import store from './store/store';
-import { addListener } from './helpers/listeners';
-import { getCars, getCar, getWinners } from './api/api';
-import { sortTable } from './winners/sort';
-
-const getCarImage = (color: string): string => {
+export const getCarImage = (color: string): string => {
   const html = `
     <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="1280.000000pt" height="640.000000pt" viewBox="0 0 1280.000000 640.000000" preserveAspectRatio="xMidYMid meet">
       <g transform="translate(0.000000,640.000000) scale(0.100000,-0.100000)" fill="${color}" stroke="red" stroke-width="60">
@@ -64,11 +57,6 @@ const getFlagImage = (): string => {
     </svg>
   `;
   return html;
-};
-
-export const renderHeaderBtns = (): void => {
-  const headerBtns = document.querySelector('.header__btns') as HTMLElement;
-  defaultRender(HEADER_BTNS, headerBtns);
 };
 
 export const renderCarSettings = (): void => {
@@ -148,165 +136,4 @@ export const renderGarage = (): void => {
   garage.innerHTML = html;
   garageContainer.append(garage);
   renderCars();
-};
-
-export const renderPagesBtn = (): void => {
-  const pagesBtn = document.querySelector('.pages__btn') as HTMLElement;
-  defaultRender(PAGES_BTNS, pagesBtn);
-};
-
-export const renderView = (): void => {
-  if (store.veiw === 'garage') {
-    renderCarSettings();
-    renderGarage();
-  } else {
-    renderWinners();
-  }
-};
-
-export const renderTable = (): void => {
-  const tbody = document.querySelector('tbody') as HTMLElement;
-  tbody.innerHTML = '';
-  console.log(store.winners);
-  store.winners.forEach(async (winner, index) => {
-    const html = `
-      <td>${index + 1}</td>
-      <td>${getCarImage(winner.car.color)}</td>
-      <td>${winner.car.name}</td>
-      <td>${winner.wins}</td>
-      <td>${winner.time}</td>
-  `;
-
-    const tr = document.createElement('tr');
-    tr.innerHTML = html;
-    tbody.append(tr);
-  });
-};
-
-export const renderWinners = (): void => {
-  const html = `
-    <h1 class="winners__header">Winners (${store.winnersCount})</h1>
-    <h2 class="winners__page-heder">Page #${store.winnersPage}</h2>
-    <table>
-      <thead>
-        <th>Number</th>
-        <th>Car</th>
-        <th>Name</th>
-        <th class="wins-sort">Wins</th>
-        <th class="time-sort">Best time(sec)</th>
-      </thead>
-      <tbody></tbody>
-    </table>
-  `;
-
-  const winners = document.querySelector('.winners') as HTMLElement;
-  winners.innerHTML = html;
-  renderTable();
-  sortTable();
-};
-
-export const render = (): void => {
-  const html = `
-    <div class="header__btns"></div>
-    <div class="garage__container"></div>
-    <div class="winners"></div>
-    <div class="pages__btn"></div>
-    <div class="winner"></div>
-  `;
-  const container = document.createElement('div');
-  container.classList.add('container');
-  container.innerHTML = html;
-  document.body.append(container);
-  renderHeaderBtns();
-  renderView();
-  renderPagesBtn();
-};
-
-export const updateGarage = async (): Promise<void> => {
-  const { data, count } = await getCars(store.carsPage);
-  const prevBtn = document.querySelector('.prev__btn') as HTMLButtonElement;
-  const nextBtn = document.querySelector('.next__btn') as HTMLButtonElement;
-  store.cars = data;
-  store.carsCount = count;
-  const maxPage = Math.ceil(store.carsCount / MAX_CARS_ON_PAGE);
-
-  if (store.carsCount > MAX_CARS_ON_PAGE && store.carsPage !== maxPage) {
-    nextBtn.disabled = false;
-  } else {
-    nextBtn.disabled = true;
-  }
-
-  if (store.carsPage > 1) {
-    prevBtn.disabled = false;
-  } else {
-    prevBtn.disabled = true;
-  }
-};
-
-export const updateWinners = async (): Promise<void> => {
-  const { data, count } = await getWinners(store.winnersPage, store.sorted, store.order);
-  const prevBtn = document.querySelector('.prev__btn') as HTMLButtonElement;
-  const nextBtn = document.querySelector('.next__btn') as HTMLButtonElement;
-  store.winners = data;
-  store.winnersCount = count;
-  const maxPage = Math.ceil(store.winnersCount / MAX_WINNERS_ON_PAGE);
-
-  if (store.winnersCount > MAX_CARS_ON_PAGE && store.winnersPage !== maxPage) {
-    nextBtn.disabled = false;
-  } else {
-    nextBtn.disabled = true;
-  }
-
-  if (store.winnersPage > 1) {
-    prevBtn.disabled = false;
-  } else {
-    prevBtn.disabled = true;
-  }
-};
-
-export const getText = (name: string) => {
-  return {
-    winnersBtn: 'To winners',
-    garageBtn: 'To garage',
-    raceBtn: 'Race',
-    resetBtn: 'Reset',
-    generateBtn: 'Generate cars',
-    createBtn: 'Create',
-    updateBtn: 'Update',
-    garageHeder: `Garage (${store.carsCount})`,
-    garagePageHeder: `Page #${store.carsPage}`,
-    selectBtn: 'Select',
-    removeBtn: 'Remove',
-    carName: `${name}`,
-    startEngine: 'A',
-    stopEngine: 'B',
-    prevBtn: 'Prev',
-    nextBtn: 'Next',
-  };
-};
-
-const defaultRender = (obj: IRender, el: HTMLElement, id = '', name = '', color = '') => {
-  for (const key in obj) {
-    const element = obj[key];
-    const htmlElement = document.createElement(element.htmlElement);
-    htmlElement.classList.add(...element.classes);
-    if (element.htmlElement === 'span') htmlElement.style.color = color;
-    if (element.htmlElement === 'car__name') htmlElement.style.color = color;
-    if (element.type) htmlElement.setAttribute('type', element.type);
-    if (element.value) htmlElement.setAttribute('value', element.value);
-    if (element.disabled) (htmlElement as HTMLButtonElement).disabled = true;
-    if (element.hasId) htmlElement.setAttribute('car-id', id);
-    if (element.hasListener) addListener(htmlElement as HTMLButtonElement, element.classes[1]);
-    fillTextContet(key, htmlElement, name);
-    el.append(htmlElement);
-  }
-};
-
-export const fillTextContet = (key: string, htmlElement: HTMLElement, name = '') => {
-  const text: IText = getText(name);
-  for (const el in text) {
-    if (el === key) {
-      htmlElement.innerHTML = `${text[key]}`;
-    }
-  }
 };
