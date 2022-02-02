@@ -1,7 +1,7 @@
 import { updateGarage } from '../../mainRender/render';
 import { createCar } from '../../api/api';
 import { IText } from '../../helpers/interfaces';
-import { PLACEHOLDER_MESSAGE } from '../../helpers/constants';
+import { PLACEHOLDER_MESSAGE, WHITE_COLOR } from '../../helpers/constants';
 import { renderGarage } from '../renderGarage/renderGarage';
 
 export const generateCar = async (): Promise<void> => {
@@ -18,7 +18,7 @@ export const generateCar = async (): Promise<void> => {
   }
 
   inputCreate.value = '';
-  inputColor.value = '#ffffff';
+  inputColor.value = WHITE_COLOR;
 
   const newCar: IText = {
     name: value,

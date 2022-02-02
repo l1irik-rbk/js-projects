@@ -6,6 +6,7 @@ import { addListener } from '../helpers/listeners';
 import { getCars, getWinners } from '../api/api';
 import { renderWinners } from '../winnersView/renderWinners/renderWinners';
 import { renderCarSettings, renderGarage } from '../garageView/renderGarage/renderGarage';
+import { getNextBtn, getPrevBtn } from '../helpers/getElements';
 
 export const renderHeaderBtns = (): void => {
   const headerBtns = document.querySelector('.header__btns') as HTMLElement;
@@ -43,25 +44,40 @@ export const render = (): void => {
   renderPagesBtn();
 };
 
-export const updateGarage = async (): Promise<void> => {
-  const { data, count } = await getCars(store.carsPage);
-  const prevBtn = document.querySelector('.prev__btn') as HTMLButtonElement;
-  const nextBtn = document.querySelector('.next__btn') as HTMLButtonElement;
-  store.cars = data;
-  store.carsCount = count;
-  const maxPage = Math.ceil(store.carsCount / MAX_CARS_ON_PAGE);
+export const checkPage = (prevBtn: HTMLButtonElement, nextBtn: HTMLButtonElement, maxPage: number): void => {
+  let count: number;
+  let page: number;
 
-  if (store.carsCount > MAX_CARS_ON_PAGE && store.carsPage !== maxPage) {
+  if (store.veiw === 'garage') {
+    count = store.carsCount;
+    page = store.carsPage;
+  } else {
+    count = store.winnersCount;
+    page = store.winnersPage;
+  }
+
+  if (count > MAX_CARS_ON_PAGE && page !== maxPage) {
     nextBtn.disabled = false;
   } else {
     nextBtn.disabled = true;
   }
 
-  if (store.carsPage > 1) {
+  if (page > 1) {
     prevBtn.disabled = false;
   } else {
     prevBtn.disabled = true;
   }
+};
+
+export const updateGarage = async (): Promise<void> => {
+  const { data, count } = await getCars(store.carsPage);
+  const prevBtn = getPrevBtn();
+  const nextBtn = getNextBtn();
+  store.cars = data;
+  store.carsCount = count;
+  const maxPage = Math.ceil(store.carsCount / MAX_CARS_ON_PAGE);
+
+  checkPage(prevBtn, nextBtn, maxPage);
 };
 
 export const updateWinners = async (): Promise<void> => {
@@ -72,17 +88,7 @@ export const updateWinners = async (): Promise<void> => {
   store.winnersCount = count;
   const maxPage = Math.ceil(store.winnersCount / MAX_WINNERS_ON_PAGE);
 
-  if (store.winnersCount > MAX_CARS_ON_PAGE && store.winnersPage !== maxPage) {
-    nextBtn.disabled = false;
-  } else {
-    nextBtn.disabled = true;
-  }
-
-  if (store.winnersPage > 1) {
-    prevBtn.disabled = false;
-  } else {
-    prevBtn.disabled = true;
-  }
+  checkPage(prevBtn, nextBtn, maxPage);
 };
 
 export const getText = (name: string): IText => {

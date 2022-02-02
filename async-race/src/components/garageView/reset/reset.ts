@@ -8,6 +8,7 @@ import {
   getWinnersBtn,
 } from '../../helpers/getElements';
 import { getWinnerMessage } from '../../helpers/getElements';
+import { checkPage } from '../../mainRender/render';
 import store from '../../store/store';
 import { stopCar } from '../drive/stop/stopCar';
 
@@ -29,17 +30,6 @@ export const resetCars = async (e: Event): Promise<void> => {
   winnersBtn.disabled = false;
   generateBtn.disabled = false;
 
-  if (store.carsPage !== 1) {
-    prevBtn.disabled = false;
-  } else {
-    prevBtn.disabled = true;
-  }
-
   const maxPage = Math.ceil(store.carsCount / MAX_CARS_ON_PAGE);
-
-  if (store.carsCount > MAX_CARS_ON_PAGE && store.carsPage !== maxPage) {
-    nextBtn.disabled = false;
-  } else {
-    nextBtn.disabled = true;
-  }
+  checkPage(prevBtn, nextBtn, maxPage);
 };

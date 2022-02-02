@@ -5,6 +5,7 @@ export const MAX_CARS_ON_PAGE = 7;
 export const MAX_WINNERS_ON_PAGE = 10;
 export const CAR_WIDTH = 80;
 export const STARTED_PAGE = 1;
+export const WHITE_COLOR = '#ffffff';
 
 export const host = 'http://127.0.0.1:3000';
 
