@@ -1,0 +1,268 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Presentation</title><script defer="defer" src="node_vendors.4900121276f01ec69ddd.js"></script><script defer="defer" src="main.6ed11ffba7a80668be1d.js"></script></head><body><div class="reveal"><div class="slides"><section><h2>GraphQL</h2><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/GraphQL_Logo.svg/1200px-GraphQL_Logo.svg.png" style="height: 180px;" alt="GraphQL"></section><section id="fragments"><h2>What is GraphQL?</h2><p class="fragment">GraphQL is a query language for APIs and a runtime for fulfilling those queries with your existing data. GraphQL provides a complete and understandable description of the data in your API, gives clients the power to ask for exactly what they need and nothing more.</p></section><section><p>GraphQL was developed by Facebook in 2012 and released in 2015.</p><img src="https://static.wikia.nocookie.net/logopedia/images/0/0f/Facebook_%282005-2012%29.svg" alt="Facebook"></section><section><h2>Companies that use GraphQL</h2><p>Audi, GitHub, KLM, Meta, PayPal, Starbucks, Twitter and others...</p></section><section><h2>The benefits of using GraphQL</h2><ul><li>Applications using GraphQL are fast and stable;</li><li>Unlike Restful services, these applications can restrict the data that must be received from the server.</li></ul><aside class="notes">Consider the benefits of using GraphQL Let's see next example</aside></section><section><section id="fragments"><h2>Ask what you want and get it</h2><p>Let's look at a <em style="color: green;">Continent</em> object with <em style="color: green;">code</em>, <em style="color: green;">name</em> and <em style="color: green;">countries</em> attributes.</p><p>Let's say the app only needs to select <em style="color: green;">code</em> and <em style="color: green;">name</em>.</p><p class="fragment">/api/v1/Continents</p><aside class="notes">Let's look at a Continent object with code, name, and countries attributes. Let's say the app only needs to select name and code. If we design a REST endpoint THIS, the result will be information for all fields of the country object. This means that there is more data than we needed. This problem can be solved with GraphQL. Consider an example GraphQL query</aside></section><section id="fragments"><pre><code data-trim data-noescape data-line-numbers>
+							query{
+								continents {
+									code
+									name
+								}
+							}
+						</code></pre><pre class="fragment"><code data-trim data-noescape>
+							{
+								"data": {
+									"continents": [
+										{
+											"code": "AF",
+											"name": "Africa"
+										},
+										{
+											"code": "AN",
+											"name": "Antarctica"
+										},
+										...
+									]
+								}
+							}
+						</code></pre><aside class="notes">And get the response</aside></section></section><section><section id="fragments"><h2>Get many resources in one request</h2><p class="fragment">Let's look at another object <em style="color: green;">Country</em> with <em style="color: green;">code</em>, <em style="color: green;">name</em>, <em style="color: green;">native</em>, <em style="color: green;">phone</em> and others attributes.</p><p class="fragment">The Continent object has an association with the Country object.</p><p class="fragment">/api/v1/Continents</p><p class="fragment">/api/v1/Countries</p><aside class="notes"><em>GraphQL queries make it easy to retrieve related objects, while typical REST APIs require loading from multiple URLs. GraphQL APIs retrieve all the data your application needs in a single request. Applications using GraphQL can be fast on slow mobile network connections</em> Let's look at another object, Country, with code, name, native, phone and others attributes. The Continent object has an association with the Country object. If we were to use the REST API to get information about Continents and their Countries, we would end up making two requests to the server like THIS and THIS. Therefore, applications are forced to make several requests to the server in order to get the necessary data. Consider an example GraphQL query</aside></section><section id="fragments" data-auto-animate><pre><code data-trim data-noescape data-line-numbers>
+							query {
+								continents {
+									code
+									name
+									countries {
+										code
+										name
+										native
+										phone
+									}
+								}
+							}
+						</code></pre><pre class="fragment" data-id="code-animation"><code data-trim data-noescape data-line-numbers="|1-12|12-24">
+							{
+								"data": {
+									"continents": [
+										{
+											"code": "AF",
+											"name": "Africa",
+											"countries": [
+												{
+													"code": "AO",
+													"name": "Angola",
+													"native": "Angola",
+													"phone": "244"
+												},
+												{
+													"code": "BF",
+													"name": "Burkina Faso",
+													"native": "Burkina Faso",
+													"phone": "226"
+												},
+												...
+												]
+											}
+										]
+									}
+								}
+						</code></pre><aside class="notes">And get the response</aside></section></section><section><section><h2>Describe what is possible with the type system</h2><p>GraphQL is typed and queries are based on fields and their associated data types.</p><aside class="notes">GraphQL is typed and queries are based on fields and their associated data types. When there is a type mismatch in a GraphQL query, server applications return understandable and useful error messages. This helps in debugging and error detection by client applications. GraphQL also provides client libraries that can help reduce explicit data transformation and parsing.</aside></section><section id="fragments"><pre><code data-trim data-noescape data-line-numbers>
+						type Query {
+							continents:[Continent!]!
+				 	}
+						 
+				  type Continent {
+					   code: ID!
+					   name: String!
+					   countries: [Country!]!
+				 	}
+						 
+				 	type Country {
+							code: ID!
+							name: String!
+							native: String!
+							phone: String!
+			  	}
+						</code></pre><aside class="notes">The ID scalar type represents a unique identifier. When expected as an input type, any string (such as "4") or integer (such as 4) input value will be accepted as an ID.</aside></section></section><section><h2>Queries</h2><p>You could see a shorthand syntax where we omit the query name, but in production apps it's useful to use these to make our code more readable.</p><pre><code data-trim data-noescape data-line-numbers>
+					query someName {
+						continents {
+							code
+							name
+							countries {
+								code
+								name
+								native
+								phone
+							}
+						}
+					}
+					</code></pre><aside class="notes">Queries you could see from the previous example. Now more information about it and how to implement them. You could see a shorthand syntax where we omit the query name, but in production apps it's useful to use these to make our code more readable. For example</aside></section><section><section><h2>Variables</h2><p>When we start working with variables, we need to do three things:</p><ol><li>Replace the static value in the query with <em style="color: green;">$variableName</em></li><li>Declare <em style="color: green;">$variableName</em> as one of the variables accepted by the query</li><li>Pass <em style="color: green;">variableName: value</em> in the separate, transport-specific (usually JSON) variables dictionary</li></ol><aside class="notes">GraphQL has a first-class way to factor dynamic values out of the query, and pass them as a separate dictionary. These values are called variables. When we start working with variables, we need to do three things: 1. Replace the static value in the query with $variableName 2. Declare $variableName as one of the variables accepted by the query 3. Pass variableName: value in the separate, transport-specific (usually JSON) variables dictionary</aside></section><section id="fragments"><pre><code data-trim data-noescape>
+							query($code: String!){
+								continents(filter: {
+									code: {
+										eq: $code
+									}
+								}) {
+									code
+									name
+								}
+							}
+						</code></pre><p class="fragment" style="text-transform: uppercase;">query variables:</p><pre class="fragment"><code data-trim data-noescape>
+							{
+								"code": "EU"
+							}
+						</code></pre><aside class="notes">Here's what it looks like all together: Now, in our client code, we can simply pass a different variable rather than needing to construct an entirely new query.</aside></section><section><p style="text-transform: uppercase;">response:</p><pre class="fragment"><code data-trim data-noescape>
+						{
+							"data": {
+								"continents": [
+									{
+										"code": "EU",
+										"name": "Europe"
+									}
+								]
+							}
+						}
+					</code></pre></section><section><h2>default value</h2><pre class="fragment"><code data-trim data-noescape>
+						query($code: String = "EU"){
+							continents(filter: {
+								code: {
+									eq: $code
+								}
+							}) {
+								code
+								name
+							}
+						}						
+					</code></pre><div class="fragment"><p style="text-transform: uppercase;">the same response:</p><pre><code data-trim data-noescape>
+							{
+								"data": {
+									"continents": [
+										{
+											"code": "EU",
+											"name": "Europe"
+										}
+									]
+								}
+							}
+						</code></pre></div><aside class="notes">We can also specify a default value for a variable:</aside></section></section><section><section><h2>Fragments</h2><p>Fragments let you construct sets of fields, and then include them in queries where you need to.</p><aside class="notes">Fragments let you construct sets of fields, and then include them in queries where you need to. You can see how the above query would be pretty repetitive if the fields were repeated. The concept of fragments is frequently used to split complicated application data requirements into smaller chunks, especially when you need to combine lots of UI components with different fragments into one initial data fetch.</aside></section><section><pre><code data-trim data-noescape>
+						fragment newField on Continent {
+							code
+							name
+						}
+						
+						query($code: String = "EU"){
+							continents(filter: {
+								code: {
+									eq: $code
+								}
+							}) {
+								...newField
+							}
+						}				
+					</code></pre></section><section><p style="text-transform: uppercase;">response:</p><pre><code data-trim data-noescape>
+							{
+								"data": {
+									"continents": [
+										{
+											"code": "EU",
+											"name": "Europe"
+										}
+									]
+								}
+							}
+						</code></pre></section></section><section><section><h2>Aliases</h2><p>You can't directly query for the same field with different arguments. That's why you need aliases - they let you rename the result of a field to anything you want.</p><aside class="notes">You can't directly query for the same field with different arguments. That's why you need aliases - they let you rename the result of a field to anything you want.</aside></section><section><pre data-id="code-animation"><code data-trim data-noescape data-line-numbers="|7-13|14-20">
+						fragment newField on Continent {
+							code
+							name
+						}
+						
+						query($code: String = "EU"){
+							eu: continents(filter: {
+								code: {
+									eq: $code
+								}
+							}) {
+								...newField
+							}
+							as: continents(filter: {
+								code: {
+									eq: "AS"
+								}
+							}) {
+								...newField
+							}
+						}
+					</code></pre><aside class="notes">In example, the two fields would have conflicted, but since we can alias them to different names, we can get both results in one request.</aside></section><section><p style="text-transform: uppercase;">response:</p><pre><code data-trim data-noescape>
+						{
+							"data": {
+								"eu": [
+									{
+										"code": "EU",
+										"name": "Europe"
+									}
+								],
+								"as": [
+									{
+										"code": "AS",
+										"name": "Asia"
+									}
+								]
+							}
+						}
+						</code></pre></section></section><section><section><h2>Directives</h2><p>Directives can be useful to get out of situations where you otherwise would need to do string manipulation to add and remove fields in your query.</p><p>The core GraphQL specification includes exactly two directives, which must be supported by any spec-compliant GraphQL server implementation:</p><ul><li><em style="color: green;">@include(if: Boolean)</em> Only include this field in the result if the argument is <em style="color: green;">true</em>;</li><li><em style="color: green;">@skip(if: Boolean)</em> Skip this field if the argument is <em style="color: green;">true</em>.</li></ul><aside class="notes">Directives can be useful to get out of situations where you otherwise would need to do string manipulation to add and remove fields in your query. A directive can be attached to a field or fragment inclusion, and can affect execution of the query in any way the server desires. The core GraphQL specification includes exactly two directives, which must be supported by any spec-compliant GraphQL server implementation:</aside></section><section><p>@include directive:</p><pre><code data-trim data-noescape>
+						query($includeCountries: Boolean = false) {
+							continents {
+							 	code
+								name
+							}
+							countries @include(if: $includeCountries) {
+								code
+								name
+							}
+						}
+					</code></pre><aside class="notes">• @include(if: Boolean) Only include this field in the result if the argument is true.</aside></section><section><p>@skip directive:</p><pre><code data-trim data-noescape>
+						query($skipCountries: Boolean = true) {
+						  continents {
+						   	code
+						  	name
+						  }
+						  countries @skip(if: $skipCountries) {
+						    code
+						  	name
+						  }
+						}
+					</code></pre><aside class="notes">• @skip(if: Boolean) Skip this field if the argument is true.</aside></section><section><p style="text-transform: uppercase;">response:</p><pre><code data-trim data-noescape>
+						{
+							"data": {
+								"continents": [
+									{
+										"code": "AF",
+										"name": "Africa"
+									},
+									{
+										"code": "AN",
+										"name": "Antarctica"
+									},
+									...
+								]
+							}
+						}
+						</code></pre></section></section><section><section><h2>Mutations</h2><p>Just like in queries, if the mutation field returns an object type, you can ask for nested fields. This can be useful for fetching the new state of an object after an update. Take a look at an example from the official documentation</p><aside class="notes">Just like in queries, if the mutation field returns an object type, you can ask for nested fields. This can be useful for fetching the new state of an object after an update. Take a look at an example from the official documentation</aside></section><section><pre><code data-trim data-noescape>
+						mutation CreateReviewForEpisode($ep: Episode!, $review: ReviewInput!) {
+							createReview(episode: $ep, review: $review) {
+								stars
+								commentary
+							}
+						}
+						</code></pre><p class="fragment" style="text-transform: uppercase;">query variables:</p><pre class="fragment"><code data-trim data-noescape>
+						{
+							"ep": "JEDI",
+							"review": {
+								"stars": 5,
+								"commentary": "This is a great movie!"
+							}
+						}
+						</code></pre><aside class="notes">Note how createReview field returns the stars and commentary fields of the newly created review. This is especially useful when mutating existing data, for example, when incrementing a field, since we can mutate and query the new value of the field with one request. You might also notice that, in this example, the review variable we passed in is not a scalar. It's an input object type, a special kind of object type that can be passed in as an argument.</aside></section><section><p style="text-transform: uppercase;">response:</p><pre><code data-trim data-noescape>
+						{
+							"data": {
+								"createReview": {
+									"stars": 5,
+									"commentary": "This is a great movie!"
+								}
+							}
+						}
+						</code></pre></section></section><section><h2>Multiple fields in mutations</h2><p>While query fields are executed in parallel, mutation fields run in series, one after the other!</p><aside class="notes">A mutation can contain multiple fields, just like a query. There's one important distinction between queries and mutations, other than the name: While query fields are executed in parallel, mutation fields run in series, one after the other. This means that if we send two mutations in one request, the first is guaranteed to finish before the second begins, ensuring that we don't end up with a race condition with ourselves.</aside></section><section><h2>Thank you for attention!</h2></section><section><h2>Sources</h2><ul><li>https://graphql.org/</li><li>https://lucasconstantino.github.io/graphiql-online/</li><li>https://www.freecodecamp.org/news/so-whats-this-graphql-thing-i-keep-hearing-about-baf4d36c20cf</li><li>https://coderlessons.com/tutorials/veb-razrabotka/izuchite-graphql/graphql-kratkoe-rukovodstvo</li><li>https://habr.com/ru/post/326986/</li><li>https://habr.com/ru/company/ruvds/blog/445268/</li></ul></section></div></div></body></html>
