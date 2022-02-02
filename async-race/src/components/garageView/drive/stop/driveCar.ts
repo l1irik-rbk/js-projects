@@ -60,7 +60,7 @@ const animate = (car: HTMLElement, duration: number, distance: number): IId => {
   return carId;
 };
 
-const timing = (timeFraction: number): number => {
+const timing = <T>(timeFraction: T) => {
   return timeFraction;
 };
 

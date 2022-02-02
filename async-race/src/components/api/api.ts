@@ -86,7 +86,7 @@ export const driving = async (id: number): Promise<ISuccess> => {
   }
 };
 
-const sortWinners = (sorted: string, order: string): string => {
+const sortWinners = <T>(sorted: T, order: T) => {
   if (sorted && order) return `&_sort=${sorted}&_order=${order}`;
   return '';
 };
