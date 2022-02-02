@@ -60,3 +60,17 @@ export interface IAnimation {
 export interface IId {
   [key: string]: number;
 }
+
+export interface ICars {
+  data: IData[];
+  count: number;
+}
+
+export interface IGetWinners {
+  data: IWinnersRender[];
+  count: number;
+}
+
+export interface ISuccess {
+  success: boolean;
+}

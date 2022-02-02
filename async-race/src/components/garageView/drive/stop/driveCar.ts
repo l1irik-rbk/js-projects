@@ -4,7 +4,7 @@ import { CAR_WIDTH } from '../../../helpers/constants';
 import store from '../../../store/store';
 import { getCar, getFlag, getNextBtn, getPrevBtn, getStartBtn, getStopBtn } from '../../../helpers/getElements';
 
-export const driveCar = async (e: Event, id = 0) => {
+export const driveCar = async (e: Event, id = 0): Promise<number> => {
   let carId: number;
   let startBtn: HTMLButtonElement;
   const prevBtn = getPrevBtn();

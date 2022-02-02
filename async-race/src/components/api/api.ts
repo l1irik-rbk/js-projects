@@ -1,7 +1,8 @@
+import { ICars, IGetWinners, ISuccess } from './../helpers/interfaces';
 import { host, path } from '../helpers/constants';
 import { IData, IText, IWinners, IWinnersRender } from '../helpers/interfaces';
 
-export const getCars = async (page: number, limit = 7) => {
+export const getCars = async (page: number, limit = 7): Promise<ICars> => {
   const response = await fetch(`${host}${path.garage}?_page=${page}&_limit=${limit}`);
   const data: IData[] = await response.json();
   const count = Number(response.headers.get('X-Total-Count'));
@@ -12,14 +13,14 @@ export const getCars = async (page: number, limit = 7) => {
   };
 };
 
-export const getCar = async (id: number) => {
+export const getCar = async (id: number): Promise<IData[]> => {
   const response = await fetch(`${host}${path.garage}/${id}`);
   const data: IData[] = await response.json();
 
   return data;
 };
 
-export const createCar = async (newCar: IText) => {
+export const createCar = async (newCar: IText): Promise<IData[]> => {
   const response = await fetch(`${host}${path.garage}`, {
     method: 'POST',
     headers: {
@@ -32,7 +33,7 @@ export const createCar = async (newCar: IText) => {
   return car;
 };
 
-export const deleteCar = async (id: number) => {
+export const deleteCar = async (id: number): Promise<IData[]> => {
   const response = await fetch(`${host}${path.garage}/${id}`, {
     method: 'DELETE',
   });
@@ -41,7 +42,7 @@ export const deleteCar = async (id: number) => {
   return car;
 };
 
-export const updateCar = async (car: IText, id: number) => {
+export const updateCar = async (car: IText, id: number): Promise<IData[]> => {
   const response = await fetch(`${host}${path.garage}/${id}`, {
     method: 'PUT',
     headers: {
@@ -54,7 +55,7 @@ export const updateCar = async (car: IText, id: number) => {
   return newCar;
 };
 
-export const startEngine = async (id: number) => {
+export const startEngine = async (id: number): Promise<IWinners> => {
   const response = await fetch(`${host}${path.engine}?id=${id}&status=started`, {
     method: 'PATCH',
   });
@@ -63,7 +64,7 @@ export const startEngine = async (id: number) => {
   return start;
 };
 
-export const stopEngine = async (id: number) => {
+export const stopEngine = async (id: number): Promise<IWinners> => {
   const response = await fetch(`${host}${path.engine}?id=${id}&status=stopped`, {
     method: 'PATCH',
   });
@@ -72,7 +73,7 @@ export const stopEngine = async (id: number) => {
   return stop;
 };
 
-export const driving = async (id: number) => {
+export const driving = async (id: number): Promise<ISuccess> => {
   const response = await fetch(`${host}${path.engine}?id=${id}&status=drive`, {
     method: 'PATCH',
   });
@@ -80,7 +81,8 @@ export const driving = async (id: number) => {
   if (response.status !== 200) {
     return { success: false };
   } else {
-    return await response.json();
+    const success: ISuccess = await response.json();
+    return success;
   }
 };
 
@@ -89,7 +91,7 @@ const sortWinners = (sorted: string, order: string): string => {
   return '';
 };
 
-export const getWinners = async (page: number, sorted = '', order = '', limit = 10) => {
+export const getWinners = async (page: number, sorted = '', order = '', limit = 10): Promise<IGetWinners> => {
   const response = await fetch(`${host}${path.winners}?_page=${page}&_limit=${limit}${sortWinners(sorted, order)}`);
   const data = await response.json();
   const count = Number(response.headers.get('X-Total-Count'));
@@ -103,18 +105,20 @@ export const getWinners = async (page: number, sorted = '', order = '', limit = 
   };
 };
 
-export const checkCurrentWinner = async (id: number) => {
+export const checkCurrentWinner = async (id: number): Promise<number> => {
   const status = (await fetch(`${host}${path.winners}/${id}`)).status;
+
   return status;
 };
 
-export const getWinner = async (id: number) => {
+export const getWinner = async (id: number): Promise<IWinners> => {
   const response = await fetch(`${host}${path.winners}/${id}`);
   const winner = await response.json();
+
   return winner;
 };
 
-export const updateWinner = async (winner: IWinners, id: number) => {
+export const updateWinner = async (winner: IWinners, id: number): Promise<IWinners> => {
   const oldRace = await getWinner(id);
   const oldTime: number = oldRace.time;
   const oldWin: number = oldRace.wins;
@@ -132,10 +136,11 @@ export const updateWinner = async (winner: IWinners, id: number) => {
   });
 
   const newWinner = await response.json();
+
   return newWinner;
 };
 
-export const createNewWinner = async (winner: IWinners) => {
+export const createNewWinner = async (winner: IWinners): Promise<IWinners> => {
   const response = await fetch(`${host}${path.winners}`, {
     method: 'POST',
     headers: {
@@ -145,10 +150,11 @@ export const createNewWinner = async (winner: IWinners) => {
   });
 
   const car = await response.json();
+
   return car;
 };
 
-export const createWinner = async (winner: IWinners) => {
+export const createWinner = async (winner: IWinners): Promise<void> => {
   const currentWinnerStatus: number = await checkCurrentWinner(winner.id);
 
   if (currentWinnerStatus === 404) {
@@ -158,11 +164,12 @@ export const createWinner = async (winner: IWinners) => {
   }
 };
 
-export const deleteWinner = async (id: number) => {
+export const deleteWinner = async (id: number): Promise<IData[]> => {
   const response = await fetch(`${host}${path.winners}/${id}`, {
     method: 'DELETE',
   });
 
-  const deleted = await response.json();
+  const deleted: IData[] = await response.json();
+
   return deleted;
 };

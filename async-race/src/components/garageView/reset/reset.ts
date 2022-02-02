@@ -11,7 +11,7 @@ import { getWinnerMessage } from '../../helpers/getElements';
 import store from '../../store/store';
 import { stopCar } from '../drive/stop/stopCar';
 
-export const resetCars = async (e: Event) => {
+export const resetCars = async (e: Event): Promise<void> => {
   const resetBtn = e.target as HTMLButtonElement;
   const raceBtn = getRaceBtn();
   const message = getWinnerMessage();

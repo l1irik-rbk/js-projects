@@ -1,3 +1,4 @@
+import { IWinners } from './../../helpers/interfaces';
 import { getGenerateBtn, getNextBtn, getPrevBtn } from './../../helpers/getElements';
 import { createWinner } from '../../api/api';
 import { getCreateBtn, getResetBtn, getWinnersBtn } from '../../helpers/getElements';
@@ -5,7 +6,7 @@ import { getRaceBtn, getWinnerMessage } from '../../helpers/getElements';
 import store from '../../store/store';
 import { driveCar } from '../drive/stop/driveCar';
 
-export const startRace = async (e: Event) => {
+export const startRace = async (e: Event): Promise<void> => {
   store.isRace = true;
   const raceBtn = getRaceBtn();
   const resetBtn = getResetBtn();
@@ -29,7 +30,7 @@ export const startRace = async (e: Event) => {
       const time = store.raceWinnerTime / 1000;
       message.innerHTML = `Winner ${car.name} ${time}sec`;
 
-      const winnerObj = {
+      const winnerObj: IWinners = {
         id: car.id,
         wins: 1,
         time: time,

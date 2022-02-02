@@ -85,7 +85,7 @@ export const updateWinners = async (): Promise<void> => {
   }
 };
 
-export const getText = (name: string) => {
+export const getText = (name: string): IText => {
   return {
     winnersBtn: 'To winners',
     garageBtn: 'To garage',
@@ -106,7 +106,7 @@ export const getText = (name: string) => {
   };
 };
 
-export const defaultRender = (obj: IRender, el: HTMLElement, id = '', name = '', color = '') => {
+export const defaultRender = (obj: IRender, el: HTMLElement, id = '', name = '', color = ''): void => {
   for (const key in obj) {
     const element = obj[key];
     const htmlElement = document.createElement(element.htmlElement);
@@ -123,7 +123,7 @@ export const defaultRender = (obj: IRender, el: HTMLElement, id = '', name = '',
   }
 };
 
-export const fillTextContet = (key: string, htmlElement: HTMLElement, name = '') => {
+export const fillTextContet = (key: string, htmlElement: HTMLElement, name = ''): void => {
   const text: IText = getText(name);
   for (const el in text) {
     if (el === key) {
