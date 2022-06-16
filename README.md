@@ -1,6 +1,6 @@
 # Momentum 
 
-Deploy: 
+Deploy: https://rolling-scopes-school.github.io/l1irik-rbk-JSFE2021Q3/momentum/
 
 - Время выводится в 24-часовом формате, например: 21:01:00.
 - Время обновляется каждую секунду.
