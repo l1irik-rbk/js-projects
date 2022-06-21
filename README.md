@@ -1,6 +1,6 @@
 # Async race
 
-#### Вы должны запустить сервер для конкретной работы: https://github.com/mikhama/async-race-api
+#### Вы должны запустить сервер для корректной работы: https://github.com/mikhama/async-race-api
 #### Deploy: https://rolling-scopes-school.github.io/l1irik-rbk-JSFE2021Q3/async-race/
 
 1. Базовая структура:
